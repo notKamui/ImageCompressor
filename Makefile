@@ -1,5 +1,5 @@
 INCL    := $(wildcard include/*.h)
-SRC     := $(subst include/,,$(INCL:%.h=src/%.c))
+SRC     := src/main.c $(subst include/,,$(INCL:%.h=src/%.c))
 OBJ     := $(subst src/,,$(SRC:%.c=bin/%.o))
 LIBS    := 
 EXE     := prog
@@ -10,12 +10,16 @@ LIBPATH := -L.
 LDFLAGS := -o bin/$(EXE) $(LIBPATH) $(LIBS)
 RM      := rm -f
 
+all: $(OBJ)
+	$(CC) $(LDFLAGS) $(OBJ)
+
 bin/%.o: src/%.c include/%.h
 	$(CC) -c $(CFLAGS) src/$*.c include/$*.h
 	@mv $*.o bin/$*.o
 
-$(EXE): $(OBJ)
-	$(CC) $(LDFLAGS) $(OBJ)
+bin/main.o: src/main.c
+	$(CC) -c $(CFLAGS) src/main.c
+	@mv main.o bin/main.o
 
 $(OBJ): $(INCL)
 
