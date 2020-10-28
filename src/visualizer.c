@@ -56,15 +56,23 @@ void writeQuadTreeBin(FILE *file, QuadTreeBin tree) {
         fprintf(file, "    n%p:SE:s -> n%p;\n", (void *) tree, (void *) tree->southEast);
 
     writeQuadTreeBin(file, tree->northWest);
-    writeQuadTreeBin(file, tree->southWest);
-    writeQuadTreeBin(file, tree->northEast);
-    writeQuadTreeBin(file, tree->southEast);
+
+    if (tree->southWest != tree->northWest)
+        writeQuadTreeBin(file, tree->southWest);
+
+    if (tree->northEast != tree->northWest && tree->northEast != tree->southWest)
+        writeQuadTreeBin(file, tree->northEast);
+
+    if (tree->southEast != tree->northWest && tree->southEast != tree->southWest && tree->southEast != tree->northEast)
+        writeQuadTreeBin(file, tree->southEast);
 }
 
 void generatePDFQuadTreeRGBA(char *dotFileName, char *pdfFileName, QuadTreeRGBA tree) {
     FILE *out = fopen(dotFileName, "w");
     int len = strlen(dotFileName) + strlen(pdfFileName) + 15;
-    char cmd[len];
+    char *cmd = malloc(sizeof(char) * len);
+
+    if (cmd == NULL) return;
 
     writeFileHeader(out);
     writeQuadTreeRGBA(out, tree);
@@ -81,7 +89,9 @@ void generatePDFQuadTreeRGBA(char *dotFileName, char *pdfFileName, QuadTreeRGBA 
 void generatePDFQuadTreeBin(char *dotFileName, char *pdfFileName, QuadTreeBin tree) {
     FILE *out = fopen(dotFileName, "w");
     int len = strlen(dotFileName) + strlen(pdfFileName) + 15;
-    char cmd[len];
+    char *cmd = malloc(sizeof(char) * len);
+
+    if (cmd == NULL) return;
 
     writeFileHeader(out);
     writeQuadTreeBin(out, tree);
