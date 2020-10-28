@@ -1,3 +1,5 @@
 *.dSYM
 *.o
 .idea/
+.vscode/
+*.h.gch
