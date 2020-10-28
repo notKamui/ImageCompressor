@@ -1,0 +1,13 @@
+digraph quadtree {
+    node [shape = record, height = .1]
+    edge [tailclip = false];
+
+    n0x7f975a4058a0 [label = "<NW> NW | <SW> SW | <r> r:1 | <g> g:2 | <b> b:3 | <a> a:4 | <NE> NE | <SE> SE"];
+    n0x7f975a4058a0:NW:s -> n0x7f975a405900;
+    n0x7f975a4058a0:SW:s -> n0x7f975a4058d0;
+    n0x7f975a4058a0:NE:s -> n0x7f975a4058d0;
+    n0x7f975a405900 [label = "<NW> NW | <SW> SW | <r> r:9 | <g> g:10 | <b> b:11 | <a> a:12 | <NE> NE | <SE> SE"];
+    n0x7f975a4058d0 [label = "<NW> NW | <SW> SW | <r> r:5 | <g> g:6 | <b> b:7 | <a> a:8 | <NE> NE | <SE> SE"];
+    n0x7f975a4058d0:NW:s -> n0x7f975a405900;
+    n0x7f975a405900 [label = "<NW> NW | <SW> SW | <r> r:9 | <g> g:10 | <b> b:11 | <a> a:12 | <NE> NE | <SE> SE"];
+}
