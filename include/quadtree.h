@@ -22,6 +22,24 @@ typedef struct s_quadtree_bin {
     unsigned char b;
 } *QuadTreeBin;
 
+/**
+ * Checks if a QuadTreeRGBA tree is actually a leaf
+ * 
+ * @param tree the tree to be checked
+ * 
+ * @return true if the tree is a leaf
+ */
+int RGBAIsLeaf(QuadTreeRGBA tree);
+
+/**
+ * Checks if a QuadTreeBin tree is actually a leaf
+ * 
+ * @param tree the tree to be checked
+ * 
+ * @return true if the tree is a leaf
+ */
+int BinIsLeaf(QuadTreeBin tree);
+
 QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, float a);
 
 QuadTreeBin allocQuadTreeBin(unsigned char b);

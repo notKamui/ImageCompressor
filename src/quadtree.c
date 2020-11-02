@@ -2,6 +2,20 @@
 #include <stdlib.h>
 #include "../include/quadtree.h"
 
+int RGBAIsLeaf(QuadTreeRGBA tree) {
+    return  tree->northWest != NULL || 
+            tree->southWest != NULL ||
+            tree->northEast != NULL ||
+            tree->southEast != NULL;
+}
+
+int BinIsLeaf(QuadTreeBin tree) {
+    return  tree->northWest != NULL || 
+            tree->southWest != NULL ||
+            tree->northEast != NULL ||
+            tree->southEast != NULL;
+}
+
 QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, float a) {
     QuadTreeRGBA tree = malloc(sizeof(struct s_quadtree_rgba));
 

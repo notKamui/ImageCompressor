@@ -32,7 +32,7 @@ int distBin(QuadTreeBin node1, QuadTreeBin node2);
  * 
  * @return the average of the given nodes
  */
-QuadTreeRGBA avgRGBA(QuadTreeRGBA *nodes, int size);
+QuadTreeRGBA avgRGBA(QuadTreeRGBA nodes[], int size);
 
 /**
  * Calculates an average of given QuadTreeBin nodes
@@ -42,6 +42,26 @@ QuadTreeRGBA avgRGBA(QuadTreeRGBA *nodes, int size);
  * 
  * @return the average of the given nodes
  */
-QuadTreeBin avgBin(QuadTreeBin *nodes, int size);
+QuadTreeBin avgBin(QuadTreeBin nodes[], int size);
+
+/**
+ * Calculates the general distance between two whole QuadTreeRGBA trees
+ * 
+ * @param tree1 the first tree to compare
+ * @param tree2 the second tree to compare
+ * 
+ * @return the general distance between the two trees
+ */
+int distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2);
+
+/**
+ * Calculates the general distance between two whole QuadTreeBin trees
+ * 
+ * @param tree1 the first tree to compare
+ * @param tree2 the second tree to compare
+ * 
+ * @return the general distance between the two trees
+ */
+int distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2);
 
 #endif /* __COMPRESSOR_H */
