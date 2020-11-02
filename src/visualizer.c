@@ -18,7 +18,7 @@ void writeFileFooter(FILE *file) {
 void writeQuadTreeRGBA(FILE *file, QuadTreeRGBA tree) {
     if (tree == NULL) return;
 
-    fprintf(file, "    n%p [label = \"<NW> NW | <SW> SW | <r> r:%d | <g> g:%d | <b> b:%d | <a> a:%f | <NE> NE | <SE> SE\"];\n", (void *) tree, tree->r, tree->g, tree->b, tree->a);
+    fprintf(file, "    n%p [label = \"<NW> NW | <SW> SW | <r> r:%d | <g> g:%d | <b> b:%d | <a> a:%d | <NE> NE | <SE> SE\"];\n", (void *) tree, tree->r, tree->g, tree->b, tree->a);
 
     if (tree->northWest)
         fprintf(file, "    n%p:NW:s -> n%p;\n", (void *) tree, (void *) tree->northWest);
