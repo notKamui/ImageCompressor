@@ -8,10 +8,10 @@ typedef struct s_quadtree_rgba {
     struct s_quadtree_rgba *northEast;
     struct s_quadtree_rgba *southWest;
     struct s_quadtree_rgba *southEast;
-    char r;
-    char g;
-    char b;
-    char a;
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+    float a;
 } *QuadTreeRGBA;
 
 typedef struct s_quadtree_bin {
@@ -19,11 +19,11 @@ typedef struct s_quadtree_bin {
     struct s_quadtree_bin *northEast;
     struct s_quadtree_bin *southWest;
     struct s_quadtree_bin *southEast;
-    char b;
+    unsigned char b;
 } *QuadTreeBin;
 
-QuadTreeRGBA allocQuadTreeRGBA(char r, char g, char b, char a);
+QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, float a);
 
-QuadTreeBin allocQuadTreeBin(char b);
+QuadTreeBin allocQuadTreeBin(unsigned char b);
 
 #endif /* __QUADTREE_H */

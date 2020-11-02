@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "../include/quadtree.h"
 
-QuadTreeRGBA allocQuadTreeRGBA(char r, char g, char b, char a) {
+QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, float a) {
     QuadTreeRGBA tree = malloc(sizeof(struct s_quadtree_rgba));
 
     if (tree) {
@@ -19,7 +19,7 @@ QuadTreeRGBA allocQuadTreeRGBA(char r, char g, char b, char a) {
     return tree;
 }
 
-QuadTreeBin allocQuadTreeBin(char b) {
+QuadTreeBin allocQuadTreeBin(unsigned char b) {
     QuadTreeBin tree = malloc(sizeof(struct s_quadtree_bin));
 
     if (tree) {
