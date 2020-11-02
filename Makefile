@@ -7,7 +7,7 @@ EXE     := prog
 CC      := gcc
 CFLAGS  := -ansi -pedantic -Wall -O2
 LIBPATH := -L.
-LDFLAGS := -o bin/$(EXE) $(LIBPATH) $(LIBS)
+LDFLAGS := -o $(EXE) $(LIBPATH) $(LIBS)
 RM      := rm -f
 
 all: $(OBJ)
