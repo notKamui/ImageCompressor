@@ -6,20 +6,6 @@
 #define __VISUALIZER_H
 
 /**
- * Writes usual begin of a .dot file.
- * 
- * @param file File to write.
- */
-void writeFileHeader(FILE *file);
-
-/**
- * Writes usual end of a .dot file.
- * 
- * @param file File to write.
- */
-void writeFileFooter(FILE *file);
-
-/**
  * Encodes and writes down a QuadTreeRGBA in dot syntax.
  * 
  * @param file File to write.
