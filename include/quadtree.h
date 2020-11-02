@@ -22,8 +22,25 @@ typedef struct s_quadtree_bin {
     unsigned char b;
 } *QuadTreeBin;
 
+/**
+ * Allocates a QuadTreeRGBA node.
+ * 
+ * @param r Red value between 0 and 255.
+ * @param g Green value between 0 and 255.
+ * @param b Blue value between 0 and 255.
+ * @param a Alpha value between 0 and 1.
+ * 
+ * @return The new node.
+ */
 QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, float a);
 
+/**
+ * Allocates a QuadTreeBin node.
+ * 
+ * @param b Binary value among 0 and 1.
+ * 
+ * @return The new node.
+ */
 QuadTreeBin allocQuadTreeBin(unsigned char b);
 
 #endif /* __QUADTREE_H */
