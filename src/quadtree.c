@@ -16,7 +16,7 @@ int BinIsLeaf(QuadTreeBin tree) {
             tree->southEast != NULL;
 }
 
-QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, float a) {
+QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a) {
     QuadTreeRGBA tree = malloc(sizeof(struct s_quadtree_rgba));
 
     if (tree) {
@@ -46,4 +46,3 @@ QuadTreeBin allocQuadTreeBin(unsigned char b) {
 
     return tree;
 }
-
