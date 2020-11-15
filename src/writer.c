@@ -1,8 +1,43 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../include/quadtree.h"
 #include "../include/writer.h"
 
-void writeRGBA(QuadTreeRGBA tree, FILE *file)
+void writeBit(FILE *file, unsigned char bit, unsigned char *buffer, size_t *bufferSize)
+{
+    *buffer = (*buffer << 1) | bit;
+    (*bufferSize)++;
+
+    if (*bufferSize == 8)
+    {
+        fprintf(file, "%c", *buffer);
+        *bufferSize = 0;
+        *buffer = 0;
+    }
+}
+
+void writeByte(FILE *file, unsigned char byte, unsigned char *buffer, size_t *bufferSize)
+{
+    int i;
+    for (i = 7; i >= 0; i--)
+    {
+        writeBit(file, (byte >> i) & 1, buffer, bufferSize);
+    }
+}
+
+void flush(FILE *file, unsigned char *buffer, size_t *bufferSize)
+{
+    int i;
+    if (*bufferSize > 0)
+    {
+        for (i = *bufferSize; i < 8; i++)
+        {
+            writeBit(file, 0, buffer, bufferSize);
+        }
+    }
+}
+
+void writeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *bufferSize)
 {
     int i;
 
@@ -13,36 +48,24 @@ void writeRGBA(QuadTreeRGBA tree, FILE *file)
 
     if (tree->northWest || tree->northEast || tree->southEast || tree->southWest)
     {
-        fprintf(file, "0");
+        writeBit(file, 0, buffer, bufferSize);
     }
     else
     {
-        fprintf(file, "1");
-        for (i = 0; i < 8; i++)
-        {
-            fprintf(file, "%d", !!((tree->r << i) & 0x80));
-        }
-        for (i = 0; i < 8; i++)
-        {
-            fprintf(file, "%d", !!((tree->g << i) & 0x80));
-        }
-        for (i = 0; i < 8; i++)
-        {
-            fprintf(file, "%d", !!((tree->b << i) & 0x80));
-        }
-        for (i = 0; i < 8; i++)
-        {
-            fprintf(file, "%d", !!((tree->a << i) & 0x80));
-        }
+        writeBit(file, 1, buffer, bufferSize);
+        writeByte(file, tree->r, buffer, bufferSize);
+        writeByte(file, tree->g, buffer, bufferSize);
+        writeByte(file, tree->b, buffer, bufferSize);
+        writeByte(file, tree->a, buffer, bufferSize);
     }
 
-    writeRGBA(tree->northWest, file);
-    writeRGBA(tree->northEast, file);
-    writeRGBA(tree->southEast, file);
-    writeRGBA(tree->southWest, file);
+    writeRGBA(tree->northWest, file, buffer, bufferSize);
+    writeRGBA(tree->northEast, file, buffer, bufferSize);
+    writeRGBA(tree->southEast, file, buffer, bufferSize);
+    writeRGBA(tree->southWest, file, buffer, bufferSize);
 }
 
-void writeBin(QuadTreeBin tree, FILE *file)
+void writeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *bufferSize)
 {
     if (tree == NULL)
     {
@@ -51,15 +74,16 @@ void writeBin(QuadTreeBin tree, FILE *file)
 
     if (tree->northWest || tree->northEast || tree->southEast || tree->southWest)
     {
-        fprintf(file, "0");
+        writeBit(file, 0, buffer, bufferSize);
     }
     else
     {
-        fprintf(file, "1%d", (tree->b > 0));
+        writeBit(file, 1, buffer, bufferSize);
+        writeBit(file, (tree->b > 0), buffer, bufferSize);
     }
-    
-    writeBin(tree->northWest, file);
-    writeBin(tree->northEast, file);
-    writeBin(tree->southEast, file);
-    writeBin(tree->southWest, file);
+
+    writeBin(tree->northWest, file, buffer, bufferSize);
+    writeBin(tree->northEast, file, buffer, bufferSize);
+    writeBin(tree->southEast, file, buffer, bufferSize);
+    writeBin(tree->southWest, file, buffer, bufferSize);
 }
