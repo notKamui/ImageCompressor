@@ -1,4 +1,5 @@
 #include "../include/image.h"
+#include "../include/quadtree.h"
 #include <MLV/MLV_all.h>
 #include <math.h>
 #include <stdio.h>
@@ -50,4 +51,27 @@ int colorError(MLV_Image *image, MLV_Color average, int x, int y, int width, int
         }
     }
     return error;
+}
+
+void buildRGBATree(QuadTreeRGBA tree, MLV_Image *image, int x, int y, int width, int height, int maxError)
+{
+    MLV_Color color = averageColor(image, x, y, width, height);
+    if (colorError(image, color, x, y, width, height) > maxError)
+    {
+        tree->northWest = allocQuadTreeRGBA(0, 0, 0, 0);
+        buildRGBATree(tree->northWest, image, x, y, width / 2, height / 2, maxError);
+
+        tree->northEast = allocQuadTreeRGBA(0, 0, 0, 0);
+        buildRGBATree(tree->northEast, image, x + width / 2, y, width / 2, height / 2, maxError);
+        
+        tree->southEast = allocQuadTreeRGBA(0, 0, 0, 0);
+        buildRGBATree(tree->southEast, image, x + width / 2, y + height / 2, width / 2, height / 2, maxError);
+
+        tree->southWest = allocQuadTreeRGBA(0, 0, 0, 0);
+        buildRGBATree(tree->southWest, image, x, y + height / 2, width / 2, height / 2, maxError);
+    }
+    else
+    {
+        MLV_convert_color_to_rgba(color, &(tree->r), &(tree->g), &(tree->b), &(tree->a));
+    }
 }

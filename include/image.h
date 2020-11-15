@@ -3,6 +3,7 @@
 #define __IMAGE_H
 
 #include <MLV/MLV_all.h>
+#include "quadtree.h"
 
 /**
  * @brief Compute average color on the given area of the given image. 
@@ -15,7 +16,7 @@
 MLV_Color averageColor(MLV_Image *image, int x, int y, int width, int height);
 
 /**
- * @brief Compute Euclidian distance between two colors
+ * @brief Compute Euclidian distance between two colors.
  */
 int distColor(MLV_Color color1, MLV_Color color2);
 
@@ -29,5 +30,18 @@ int distColor(MLV_Color color1, MLV_Color color2);
  * @return int Color error.
  */
 int colorError(MLV_Image *image, MLV_Color average, int x, int y, int width, int height);
+
+/**
+ * @brief Build a QuadTreeRGBA from a given image.
+ * 
+ * @param tree QuadTreeRGBA tree.
+ * @param image Image to compute.
+ * @param x x-axis of the start point.
+ * @param y y-axis of the start point.
+ * @param width Width of the image.
+ * @param height Height of the image.
+ * @param maxError Maximal color error tolarated.
+ */
+void buildRGBATree(QuadTreeRGBA tree, MLV_Image *image, int x, int y, int width, int height, int maxError);
 
 #endif /* __IMAGE_H */
