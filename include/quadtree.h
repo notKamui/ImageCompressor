@@ -60,4 +60,14 @@ QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b
  */
 QuadTreeBin allocQuadTreeBin(unsigned char b);
 
+/**
+ * @brief Free memory allocated by the given QuadTreeRGBA.
+ */
+void freeQuadTreeRGBA(QuadTreeRGBA tree);
+
+/**
+ * @brief Free memory allocated by the given QuadTreeBin.
+ */
+void freeQuadTreeBin(QuadTreeBin tree);
+
 #endif /* __QUADTREE_H */

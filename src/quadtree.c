@@ -46,3 +46,27 @@ QuadTreeBin allocQuadTreeBin(unsigned char b) {
 
     return tree;
 }
+
+void freeQuadTreeRGBA(QuadTreeRGBA tree)
+{
+    if (tree != NULL)
+    {
+        freeQuadTreeRGBA(tree->northWest);
+        freeQuadTreeRGBA(tree->northEast);
+        freeQuadTreeRGBA(tree->southEast);
+        freeQuadTreeRGBA(tree->southWest);
+        free(tree);
+    }
+}
+
+void freeQuadTreeBin(QuadTreeBin tree)
+{
+    if (tree != NULL)
+    {
+        freeQuadTreeBin(tree->northWest);
+        freeQuadTreeBin(tree->northEast);
+        freeQuadTreeBin(tree->southEast);
+        freeQuadTreeBin(tree->southWest);
+        free(tree);
+    }
+}
