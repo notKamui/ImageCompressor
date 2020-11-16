@@ -39,8 +39,6 @@ void flush(FILE *file, unsigned char *buffer, size_t *bufferSize)
 
 void writeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *bufferSize)
 {
-    int i;
-
     if (tree == NULL)
     {
         return;
