@@ -3,6 +3,9 @@
 #ifndef __QUADTREE_H
 #define __QUADTREE_H
 
+#define INNER_NODE 0
+#define OUTER_NODE 1
+
 typedef struct s_quadtree_rgba {
     struct s_quadtree_rgba *northWest;
     struct s_quadtree_rgba *northEast;
