@@ -52,7 +52,7 @@ QuadTreeBin avgBin(QuadTreeBin nodes[], int size);
  * 
  * @return the general distance between the two trees
  */
-int distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2);
+float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2);
 
 /**
  * Calculates the general distance between two whole QuadTreeBin trees
@@ -62,6 +62,36 @@ int distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2);
  * 
  * @return the general distance between the two trees
  */
-int distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2);
+float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2);
+
+/**
+ * Minimises a QuadTreeRGBA without loss
+ * 
+ * @param tree the tree to be minimised
+ */
+void minTreeRGBANoLoss(QuadTreeRGBA *tree);
+
+/**
+ * Minimises a QuadTreeBin without loss
+ * 
+ * @param tree the tree to be minimised
+ */
+void minTreeBinNoLoss(QuadTreeBin *tree);
+
+/**
+ * Minimises a QuadTreeRGBA with loss
+ * 
+ * @param tree the tree to be minimised
+ * @param distErr the max error distance to allow minimisation
+ */
+void minTreeRGBALoss(QuadTreeRGBA *tree, float distErr);
+
+/**
+ * Minimises a QuadTreeBin with loss
+ * 
+ * @param tree the tree to be minimised
+ * @param distErr the max error distance to allow minimisation
+ */
+void minTreeBinLoss(QuadTreeBin *tree, float distErr);
 
 #endif /* __COMPRESSOR_H */

@@ -4,10 +4,11 @@
 #include "../include/writer.h"
 #include "../include/gui.h"
 #include "../include/image.h"
+#include "../include/compressor.h"
 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)       \
-    (byte & 0x80 ? '1' : '0'),     \
+        (byte & 0x80 ? '1' : '0'), \
         (byte & 0x40 ? '1' : '0'), \
         (byte & 0x20 ? '1' : '0'), \
         (byte & 0x10 ? '1' : '0'), \
@@ -20,49 +21,40 @@ int main(void)
 {
     QuadTreeBin node1 = allocQuadTreeBin(0);
     QuadTreeBin node2 = allocQuadTreeBin(0);
-    QuadTreeBin node3 = allocQuadTreeBin(0);
+    QuadTreeBin node3 = allocQuadTreeBin(1);
     QuadTreeBin node4 = allocQuadTreeBin(0);
-    QuadTreeBin node5 = allocQuadTreeBin(1);
+    QuadTreeBin node5 = allocQuadTreeBin(0);
+
+    QuadTreeBin node6 = allocQuadTreeBin(1);
+    QuadTreeBin node7 = allocQuadTreeBin(1);
+    QuadTreeBin node8 = allocQuadTreeBin(0);
+    QuadTreeBin node9 = allocQuadTreeBin(1);
+
+    QuadTreeBin node10 = allocQuadTreeBin(1);
+    QuadTreeBin node11 = allocQuadTreeBin(1);
+    QuadTreeBin node12 = allocQuadTreeBin(0);
+    QuadTreeBin node13 = allocQuadTreeBin(1);
 
     node1->northWest = node2;
-    node1->northEast = node2;
-    node1->southEast = node2;
-    node1->southWest = node2;
+    node1->northEast = node3;
+    node1->southEast = node4;
+    node1->southWest = node5;
 
-    node2->northWest = node3;
-    node2->northEast = node3;
-    node2->southEast = node3;
-    node2->southWest = node3;
+    node2->northWest = node10;
+    node2->northEast = node11;
+    node2->southEast = node12;
+    node2->southWest = node13;
 
-    node3->northWest = node4;
-    node3->northEast = node5;
-    node3->southEast = node4;
-    node3->southWest = node5;
+    node4->northWest = node6;
+    node4->northEast = node7;
+    node4->southEast = node8;
+    node4->southWest = node9;
 
-    /*FILE *file = fopen("test.qtn", "wb");*/
+    generatePDFQuadTreeBin("bin.dot", "bin.pdf", node1);
 
-    const int width = 750;
-    const int height = 750;
+    minTreeBinLoss(&node1, 0);
+    minTreeBinNoLoss(&node1);
 
-    MLV_create_window("Test", NULL, width, height);
-
-    MLV_Image *image = MLV_load_image("terre.jpg");
-    MLV_resize_image_with_proportions(image, width, height);
-    MLV_Color average = averageColor(image, 0, 0, width, height);
-
-    MLV_draw_image(image, 0, 0);
-    MLV_actualise_window();
-    MLV_wait_seconds(3);
-
-    MLV_clear_window(average);
-    MLV_actualise_window();
-
-    printf("error=%d\n", colorError(image, average, 0, 0, width, height));
-
-    MLV_wait_seconds(5);
-
-    MLV_free_window();
-    /*writeBin(node1, file);
-    fclose(file);*/
+    generatePDFQuadTreeBin("bin2.dot", "bin2.pdf", node1);
     return 0;
 }
