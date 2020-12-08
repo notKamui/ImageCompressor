@@ -87,7 +87,7 @@ int main(void)
     node16->southWest = node21;
     */
 
-    int width = 64;
+    /*int width = 64;
     int height = 64;
 
     QuadTreeRGBA tree = allocQuadTreeRGBA(0, 0, 0, 0);
@@ -115,9 +115,15 @@ int main(void)
     flush(file, &buffer, &size);
     fclose(file);
 
-    printf("%c%c%c%c%c\n", 46, 167, 114, 159, 112);
+    printf("%c%c%c%c%c\n", 46, 167, 114, 159, 112);*/
 
-    /*
+    
+    QuadTreeBin node1 = allocQuadTreeBin(0);
+    QuadTreeBin node2 = allocQuadTreeBin(0);
+    QuadTreeBin node3 = allocQuadTreeBin(1);
+    QuadTreeBin node4 = allocQuadTreeBin(0);
+    QuadTreeBin node5 = allocQuadTreeBin(0);
+
     QuadTreeBin node6 = allocQuadTreeBin(1);
     QuadTreeBin node7 = allocQuadTreeBin(1);
     QuadTreeBin node8 = allocQuadTreeBin(0);
@@ -149,7 +155,6 @@ int main(void)
     minTreeBinNoLoss(&node1);
 
     generatePDFQuadTreeBin("bin2.dot", "bin2.pdf", node1);
-    */
 
     return 0;
 }
