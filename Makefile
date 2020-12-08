@@ -1,7 +1,7 @@
 INCL    := $(wildcard include/*.h)
 SRC     := src/main.c $(subst include/,,$(INCL:%.h=src/%.c))
 OBJ     := $(subst src/,,$(SRC:%.c=bin/%.o))
-LIBS    := -lm
+LIBS    := -lm -lMLV
 EXE     := prog
 
 CC      := gcc
