@@ -86,48 +86,80 @@ QuadTreeBinBuffer allocQuadTreeBinBuffer()
     return buffer;
 }
 
-void offerRGBABuffer(QuadTreeRGBABuffer *buffer, QuadTreeRGBA tree)
+void setRGBABuffer(QuadTreeRGBABuffer *buffer, QuadTreeRGBA tree, int index)
 {
+    int i;
+
     if ((*buffer)->buffer == NULL)
     {
-        if (((*buffer)->buffer = malloc(sizeof(QuadTreeRGBA))) == NULL)
+        if (((*buffer)->buffer = calloc(sizeof(QuadTreeRGBA), index + 1)) == NULL)
         {
             fprintf(stderr, "FATAL: Allocation error.\n");
             exit(1);
         }
+        for (i = 0; i < index; i++)
+        {
+            (*buffer)->buffer[i] = NULL;
+        }
+        (*buffer)->bufferSize = index + 1;
     }
-    else
+    else if (index >= (*buffer)->bufferSize)
     {
-        if (((*buffer)->buffer = realloc((*buffer)->buffer, ((*buffer)->bufferSize + 1) * sizeof(QuadTreeRGBA))) == NULL)
+        if (((*buffer)->buffer = realloc((*buffer)->buffer, (index + 1) * sizeof(QuadTreeRGBA))) == NULL)
         {
             fprintf(stderr, "FATAL: Allocation error.\n");
             exit(1);
         }
+        for (i = (*buffer)->bufferSize; i < index; i++)
+        {
+            (*buffer)->buffer[i] = NULL;
+        }
+        (*buffer)->bufferSize = index + 1;
     }
-    (*buffer)->buffer[(*buffer)->bufferSize] = tree;
-    (*buffer)->bufferSize++;
+    (*buffer)->buffer[index] = tree;
+}
+
+void setBinBuffer(QuadTreeBinBuffer *buffer, QuadTreeBin tree, int index)
+{
+    int i;
+
+    if ((*buffer)->buffer == NULL)
+    {
+        if (((*buffer)->buffer = calloc(sizeof(QuadTreeBin), index + 1)) == NULL)
+        {
+            fprintf(stderr, "FATAL: Allocation error.\n");
+            exit(1);
+        }
+        for (i = 0; i < index; i++)
+        {
+            (*buffer)->buffer[i] = NULL;
+        }
+        (*buffer)->bufferSize = index + 1;
+    }
+    else if (index >= (*buffer)->bufferSize)
+    {
+        if (((*buffer)->buffer = realloc((*buffer)->buffer, (index + 1) * sizeof(QuadTreeBin))) == NULL)
+        {
+            fprintf(stderr, "FATAL: Allocation error.\n");
+            exit(1);
+        }
+        for (i = (*buffer)->bufferSize; i < index; i++)
+        {
+            (*buffer)->buffer[i] = NULL;
+        }
+        (*buffer)->bufferSize = index + 1;
+    }
+    (*buffer)->buffer[index] = tree;
+}
+
+void offerRGBABuffer(QuadTreeRGBABuffer *buffer, QuadTreeRGBA tree)
+{
+    setRGBABuffer(buffer, tree, (*buffer)->bufferSize);
 }
 
 void offerBinBuffer(QuadTreeBinBuffer *buffer, QuadTreeBin tree)
 {
-    if ((*buffer)->buffer == NULL)
-    {
-        if (((*buffer)->buffer = malloc(sizeof(QuadTreeBin))) == NULL)
-        {
-            fprintf(stderr, "FATAL: Allocation error.\n");
-            exit(1);
-        }
-    }
-    else
-    {
-        if (((*buffer)->buffer = realloc((*buffer)->buffer, ((*buffer)->bufferSize + 1) * sizeof(QuadTreeBin))) == NULL)
-        {
-            fprintf(stderr, "FATAL: Allocation error.\n");
-            exit(1);
-        }
-    }
-    (*buffer)->buffer[(*buffer)->bufferSize] = tree;
-    (*buffer)->bufferSize++;
+    setBinBuffer(buffer, tree, (*buffer)->bufferSize);
 }
 
 int isBufferedRGBA(QuadTreeRGBABuffer buffer, QuadTreeRGBA tree)

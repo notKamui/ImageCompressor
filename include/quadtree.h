@@ -94,6 +94,24 @@ QuadTreeRGBABuffer allocQuadTreeRGBABuffer();
 QuadTreeBinBuffer allocQuadTreeBinBuffer();
 
 /**
+ * @brief Registers a node in the given QuadTreeRGBA buffer at the given index.
+ * 
+ * @param buffer Buffer to write.
+ * @param tree Node to register.
+ * @param index Index of the node in the buffer.
+ */
+void setRGBABuffer(QuadTreeRGBABuffer *buffer, QuadTreeRGBA tree, int index);
+
+/**
+ * @brief Registers a node in the given QuadTreeBin buffer at the given index.
+ * 
+ * @param buffer Buffer to write.
+ * @param tree Node to register.
+ * @param index Index of the node in the buffer.
+ */
+void setBinBuffer(QuadTreeBinBuffer *buffer, QuadTreeBin tree, int index);
+
+/**
  * @brief Registers a node in the given QuadTreeRGBA buffer.
  * 
  * @param buffer Buffer to write.
