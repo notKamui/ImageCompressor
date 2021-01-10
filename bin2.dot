@@ -1,0 +1,17 @@
+digraph quadtree {
+    node [style=filled label=""];
+    edge [arrowhead=none];
+
+    n0x558664072850 [shape=point];
+    n0x558664072850:c -> n0x558664072880:c;
+    n0x558664072850:c -> n0x558664072cd0:c;
+    n0x558664072850:c -> n0x558664072880:c;
+    n0x558664072850:c -> n0x558664072d00:c;
+    n0x558664072880 [shape=point];
+    n0x558664072880:c -> n0x558664072cd0:c;
+    n0x558664072880:c -> n0x558664072cd0:c;
+    n0x558664072880:c -> n0x558664072d00:c;
+    n0x558664072880:c -> n0x558664072cd0:c;
+    n0x558664072cd0 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x558664072cd0 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+}

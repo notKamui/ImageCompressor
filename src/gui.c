@@ -3,7 +3,7 @@
 
 void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height)
 {
-    if (RGBAIsLeaf(tree))
+    if (isLeafRGBA(tree))
     {
         MLV_draw_filled_rectangle(x, y, width, height, MLV_rgba(tree->r, tree->g, tree->b, tree->a));
         return;
@@ -17,7 +17,7 @@ void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height)
 
 void drawQuadTreeBin(QuadTreeBin tree, int x, int y, int width, int height)
 {
-    if (BinIsLeaf(tree))
+    if (isLeafBin(tree))
     {
         MLV_draw_filled_rectangle(x, y, width, height, tree->b ? MLV_COLOR_BLACK : MLV_COLOR_WHITE);
         return;

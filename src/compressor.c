@@ -59,25 +59,25 @@ QuadTreeBin avgBin(QuadTreeBin nodes[], int size)
 float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2) {
     if (tree1 == NULL || tree2 == NULL) return 99999999999;
 
-    if (RGBAIsLeaf(tree1) && RGBAIsLeaf(tree2)) 
+    if (isLeafRGBA(tree1) && isLeafRGBA(tree2)) 
     {
         return distRGBA(tree1, tree2);
     } 
-    else if (RGBAIsLeaf(tree1) && !RGBAIsLeaf(tree2)) 
+    else if (isLeafRGBA(tree1) && !isLeafRGBA(tree2)) 
     {
         return  distTreeRGBA(tree1, tree2->northWest) / 4 +
                 distTreeRGBA(tree1, tree2->northEast) / 4 +
                 distTreeRGBA(tree1, tree2->southWest) / 4 +
                 distTreeRGBA(tree1, tree2->southEast) / 4;
     } 
-    else if (!RGBAIsLeaf(tree1) && RGBAIsLeaf(tree2)) 
+    else if (!isLeafRGBA(tree1) && isLeafRGBA(tree2)) 
     {
         return  distTreeRGBA(tree2, tree1->northWest) / 4 +
                 distTreeRGBA(tree2, tree1->northEast) / 4 +
                 distTreeRGBA(tree2, tree1->southWest) / 4 +
                 distTreeRGBA(tree2, tree1->southEast) / 4;
     } 
-    else if (!RGBAIsLeaf(tree1) && !RGBAIsLeaf(tree2)) 
+    else if (!isLeafRGBA(tree1) && !isLeafRGBA(tree2)) 
     {
         return  distTreeRGBA(tree1->northWest, tree2->northWest) / 4 +
                 distTreeRGBA(tree1->northEast, tree2->northEast) / 4 +
@@ -91,25 +91,25 @@ float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2)
 {
     if (tree1 == NULL || tree2 == NULL) return 99999999999;
 
-    if (BinIsLeaf(tree1) && BinIsLeaf(tree2))
+    if (isLeafBin(tree1) && isLeafBin(tree2))
     {
         return distBin(tree1, tree2);
     }
-    else if (BinIsLeaf(tree1) && !BinIsLeaf(tree2)) 
+    else if (isLeafBin(tree1) && !isLeafBin(tree2)) 
     {
         return  distTreeBin(tree1, tree2->northWest) / 4 +
                 distTreeBin(tree1, tree2->northEast) / 4 +
                 distTreeBin(tree1, tree2->southWest) / 4 +
                 distTreeBin(tree1, tree2->southEast) / 4;
     } 
-    else if (!BinIsLeaf(tree1) && BinIsLeaf(tree2)) 
+    else if (!isLeafBin(tree1) && isLeafBin(tree2)) 
     {
         return  distTreeBin(tree2, tree1->northWest) / 4 +
                 distTreeBin(tree2, tree1->northEast) / 4 +
                 distTreeBin(tree2, tree1->southWest) / 4 +
                 distTreeBin(tree2, tree1->southEast) / 4;
     } 
-    else if (!BinIsLeaf(tree1) && !BinIsLeaf(tree2)) 
+    else if (!isLeafBin(tree1) && !isLeafBin(tree2)) 
     {
         return  distTreeBin(tree1->northWest, tree2->northWest) / 4 +
                 distTreeBin(tree1->northEast, tree2->northEast) / 4 +
@@ -123,7 +123,7 @@ void takeRGBALeaves(QuadTreeRGBA *tree, QuadTreeRGBA *cache, int *size) {
     int isCached;
     int i;
 
-    if (*tree != NULL && RGBAIsLeaf(*tree)) 
+    if (*tree != NULL && isLeafRGBA(*tree)) 
     {
         /* Checking if leaf is cached */
         isCached = 0;
@@ -173,7 +173,7 @@ void takeBinLeaves(QuadTreeBin *tree, QuadTreeBin *cache, int *size) {
     int isCached;
     int i;
 
-    if (*tree != NULL && BinIsLeaf(*tree))
+    if (*tree != NULL && isLeafBin(*tree))
     {
         /* Checking if leaf is cached */
         isCached = 0;
@@ -241,7 +241,7 @@ void minTreeRGBALoss(QuadTreeRGBA *tree, float distErr)
     /* Recursive recall on non leaves */
     for (i = 0; i < 4; i++) 
     {
-        if (!RGBAIsLeaf(*children[i])) 
+        if (!isLeafRGBA(*children[i])) 
         {
             minTreeRGBALoss(children[i], distErr);
         }
@@ -279,7 +279,7 @@ void minTreeBinLoss(QuadTreeBin *tree, float distErr)
     /* Recursive recall on non leaves */
     for (i = 0; i < 4; i++) 
     {
-        if (!BinIsLeaf(*children[i])) 
+        if (!isLeafBin(*children[i])) 
         {
             minTreeBinLoss(children[i], distErr);
         }
