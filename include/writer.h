@@ -1,9 +1,9 @@
 /* Created by Irwin on 02/11/2020. */
-#include <stdio.h>
-#include "quadtree.h"
-
 #ifndef __WRITER_H
 #define __WRITER_H
+
+#include <stdio.h>
+#include "quadtree.h"
 
 /**
  * @brief Write zeros to complete the last byte of the file.
@@ -15,7 +15,7 @@
 void flush(FILE *file, unsigned char *buffer, size_t *bufferSize);
 
 /**
- * Encodes and write down a QuadTreeRGBA in binary.
+ * @brief Encodes and write down a QuadTreeRGBA in binary.
  * 
  * @param tree Tree to encode.
  * @param file File to write.
@@ -25,7 +25,7 @@ void flush(FILE *file, unsigned char *buffer, size_t *bufferSize);
 void writeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *bufferSize);
 
 /**
- * Encodes and write down a QuadTreeBin in binary.
+ * @brief Encodes and write down a QuadTreeBin in binary.
  * 
  * @param tree Tree to encode.
  * @param file File to write.
@@ -33,5 +33,27 @@ void writeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *buf
  * @param bufferSize Buffer size.
  */
 void writeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *bufferSize);
+
+/**
+ * @brief Encodes and write down a minimized QuadTreeRGBA in ASCII.
+ * 
+ * @param tree Tree to encode.
+ * @param file File to write.
+ * @param treeBuffer QuadTreeRGBA buffer.
+ * @param index Index of current node. Should be 0 when function is called.
+ * @param treeSize Size of the tree. Should be 0 when function is called.
+ */
+void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeBuffer, int index, size_t *treeSize);
+
+/**
+ * @brief Encodes and write down a minimized QuadTreeBin in ASCII.
+ * 
+ * @param tree Tree to encode.
+ * @param file File to write.
+ * @param treeBuffer QuadTreeBin buffer.
+ * @param index Index of current node. Should be 0 when function is called.
+ * @param treeSize Size of the tree. Should be 0 when function is called.
+ */
+void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuffer, int index, size_t *treeSize);
 
 #endif /* __WRITER_H */
