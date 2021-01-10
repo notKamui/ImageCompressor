@@ -85,3 +85,119 @@ void writeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *buffe
     writeBin(tree->southEast, file, buffer, bufferSize);
     writeBin(tree->southWest, file, buffer, bufferSize);
 }
+
+void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeBuffer, int index, size_t *treeSize)
+{
+    int i, j;
+
+    QuadTreeRGBA children[4];
+    int childrenIdentifiers[4] = {0, 0, 0, 0};
+
+    if (tree == NULL)
+    {
+        return;
+    }
+
+    children[0] = tree->northWest;
+    children[1] = tree->northEast;
+    children[2] = tree->southEast;
+    children[3] = tree->southWest;
+
+    if (isBufferedRGBA(*treeBuffer, tree))
+        return;
+
+    if (!isLeafRGBA(tree))
+    {
+        for (i = 0; i < 4; i++)
+        {
+            for (j = 0; j < i; j++)
+            {
+                if (children[j] == children[i])
+                {
+                    childrenIdentifiers[i] = childrenIdentifiers[j];
+                    break;
+                }
+            }
+            if (i == 0 || i == j)
+            {
+                childrenIdentifiers[i] = ++(*treeSize);
+            }
+        }
+        fprintf(file, "%d %d %d %d %d\n", index, childrenIdentifiers[0], childrenIdentifiers[1], childrenIdentifiers[2], childrenIdentifiers[3]);
+    }
+    else
+    {
+        fprintf(file, "%df %d %d %d %d\n", index, tree->r, tree->g, tree->b, tree->a);
+    }
+
+    offerRGBABuffer(treeBuffer, tree);
+
+    writeMinimizedRGBA(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
+    writeMinimizedRGBA(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
+    writeMinimizedRGBA(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
+    writeMinimizedRGBA(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
+
+    if (index == 0)
+    {
+        free((*treeBuffer)->buffer);
+        free(*treeBuffer);
+    }
+}
+
+void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuffer, int index, size_t *treeSize)
+{
+    int i, j;
+
+    QuadTreeBin children[4];
+    int childrenIdentifiers[4] = {0, 0, 0, 0};
+
+    if (tree == NULL)
+    {
+        return;
+    }
+
+    children[0] = tree->northWest;
+    children[1] = tree->northEast;
+    children[2] = tree->southEast;
+    children[3] = tree->southWest;
+
+    if (isBufferedBin(*treeBuffer, tree))
+        return;
+
+    if (!isLeafBin(tree))
+    {
+        for (i = 0; i < 4; i++)
+        {
+            for (j = 0; j < i; j++)
+            {
+                if (children[j] == children[i])
+                {
+                    childrenIdentifiers[i] = childrenIdentifiers[j];
+                    break;
+                }
+            }
+            if (i == 0 || i == j)
+            {
+                childrenIdentifiers[i] = ++(*treeSize);
+            }
+        }
+        fprintf(file, "%d %d %d %d %d\n", index, childrenIdentifiers[0], childrenIdentifiers[1], childrenIdentifiers[2], childrenIdentifiers[3]);
+    }
+    else
+    {
+        fprintf(file, "%d %d\n", index, tree->b);
+    }
+
+    offerBinBuffer(treeBuffer, tree);
+
+    writeMinimizedBin(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
+    writeMinimizedBin(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
+    writeMinimizedBin(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
+    writeMinimizedBin(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
+
+    if (index == 0)
+    {
+        free((*treeBuffer)->buffer);
+        free(*treeBuffer);
+    }
+}
