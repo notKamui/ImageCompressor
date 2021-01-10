@@ -212,9 +212,9 @@ void minTreeBinNoLoss(QuadTreeBin *tree)
     free(cache);
 }
 
-void minTreeRGBALoss(QuadTreeRGBA *tree, float distErr) 
+void takeRGBATrees(QuadTreeRGBA *tree, float distErr, QuadTreeRGBA *cache, int *size)
 {
-    int i, j;
+    int i, j, k;
     float dist;
     QuadTreeRGBA **children = (QuadTreeRGBA**)malloc(sizeof(QuadTreeRGBA*)*4);
 
@@ -234,6 +234,19 @@ void minTreeRGBALoss(QuadTreeRGBA *tree, float distErr)
             if (dist <= distErr) /* if exact (or error) same subtrees */
             { 
                 *children[j] = *children[i];
+                for (k = 0; k < *size; k++)
+                {
+                    dist = distTreeRGBA(*children[j], cache[k]);
+                    if (dist <= distErr) /* if similar tree is cached */
+                    {
+                        /* Relinking */
+                        *children[j] = cache[k];
+                    } else { /* Adding tree to cache */
+                        *size += 1;
+                        cache = (QuadTreeRGBA*)realloc(cache, sizeof(QuadTreeRGBA)*(*size));
+                        cache[*size-1] = *children[j];
+                    }
+                }
             }
         }
     }
@@ -243,16 +256,24 @@ void minTreeRGBALoss(QuadTreeRGBA *tree, float distErr)
     {
         if (!isLeafRGBA(*children[i])) 
         {
-            minTreeRGBALoss(children[i], distErr);
+            takeRGBATrees(children[i], distErr, cache, size);
         }
     }
 
     free(children);
 }
 
-void minTreeBinLoss(QuadTreeBin *tree, float distErr) 
+void minTreeRGBALoss(QuadTreeRGBA *tree, float distErr)
 {
-    int i, j;
+    QuadTreeRGBA *cache = (QuadTreeRGBA*)malloc(0);
+    int size = 0;
+    takeRGBATrees(tree, distErr, cache, &size);
+    free(cache);
+}
+
+void takeBinTrees(QuadTreeBin *tree, float distErr, QuadTreeBin *cache, int *size) 
+{
+    int i, j, k;
     float dist;
     QuadTreeBin **children = (QuadTreeBin**)malloc(sizeof(QuadTreeBin*)*4);
 
@@ -272,6 +293,19 @@ void minTreeBinLoss(QuadTreeBin *tree, float distErr)
             if (dist <= distErr) /* if exact (or error) same subtrees */
             { 
                 *children[j] = *children[i];
+                for (k = 0; k < *size; k++)
+                {
+                    dist = distTreeBin(*children[j], cache[k]);
+                    if (dist <= distErr) /* if similar tree is cached */
+                    {
+                        /* Relinking */
+                        *children[j] = cache[k];
+                    } else { /* Adding tree to cache */
+                        *size += 1;
+                        cache = (QuadTreeBin*)realloc(cache, sizeof(QuadTreeBin)*(*size));
+                        cache[*size-1] = *children[j];
+                    }
+                }
             }
         }
     }
@@ -280,10 +314,18 @@ void minTreeBinLoss(QuadTreeBin *tree, float distErr)
     for (i = 0; i < 4; i++) 
     {
         if (!isLeafBin(*children[i])) 
-        {
-            minTreeBinLoss(children[i], distErr);
+        { 
+            takeBinTrees(children[i], distErr, cache, size);
         }
     }
 
     free(children);
+}
+
+void minTreeBinLoss(QuadTreeBin *tree, float distErr)
+{
+    QuadTreeBin *cache = (QuadTreeBin*)malloc(0);
+    int size = 0;
+    takeBinTrees(tree, distErr, cache, &size);
+    free(cache);
 }
