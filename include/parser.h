@@ -53,4 +53,28 @@ int parseRGBA(FILE *file, QuadTreeRGBA tree, unsigned char *buffer, size_t *buff
  */
 int parseBin(FILE *file, QuadTreeBin tree, unsigned char *buffer, size_t *bufferSize);
 
+/**
+ * @brief Build a minimized QuadTreeRGBA from a given file.
+ * 
+ * @param file File to read.
+ * @param index Index of the current node. Should be 0 when function is called.
+ * @param tree Built tree.
+ * @param buffer Tree buffer.
+ * 
+ * @return Whether the build succeeded.
+ */
+int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer);
+
+/**
+ * @brief Build a minimized QuadTreeBin from a given file.
+ * 
+ * @param file File to read.
+ * @param index Index of the current node. Should be 0 when function is called.
+ * @param tree Built tree.
+ * @param buffer Tree buffer.
+ * 
+ * @return Whether the build succeeded.
+ */
+int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer *buffer);
+
 #endif /* __PARSER_H */
