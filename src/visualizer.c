@@ -17,14 +17,16 @@ void writeFileFooter(FILE *file)
     fprintf(file, "}\n");
 }
 
-void writeQuadTreeRGBA(FILE *file, QuadTreeRGBA tree)
+void writeQuadTreeRGBA(FILE *file, QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer)
 {
-    if (tree == NULL)
+    if (tree == NULL || isBufferedRGBA(*buffer, tree) >= 0)
     {
         return;
     }
 
-    if (tree->northWest || tree->northEast || tree->southEast || tree->southWest)
+    offerRGBABuffer(buffer, tree);
+
+    if (!isLeafRGBA(tree))
     {
         fprintf(file, "    n%p [shape=point];\n", (void *)tree);
     }
@@ -50,30 +52,22 @@ void writeQuadTreeRGBA(FILE *file, QuadTreeRGBA tree)
         fprintf(file, "    n%p:c -> n%p:c;\n", (void *)tree, (void *)tree->southWest);
     }
 
-    writeQuadTreeRGBA(file, tree->northWest);
-
-    if (tree->northEast != tree->northWest)
-    {
-        writeQuadTreeRGBA(file, tree->northEast);
-    }
-    if (tree->southEast != tree->northWest && tree->northEast != tree->northWest)
-    {
-        writeQuadTreeRGBA(file, tree->southEast);
-    }
-    if (tree->southWest != tree->northWest && tree->southEast != tree->northWest && tree->northEast != tree->northWest)
-    {
-        writeQuadTreeRGBA(file, tree->southWest);
-    }
+    writeQuadTreeRGBA(file, tree->northWest, buffer);
+    writeQuadTreeRGBA(file, tree->northEast, buffer);
+    writeQuadTreeRGBA(file, tree->southEast, buffer);
+    writeQuadTreeRGBA(file, tree->southWest, buffer);
 }
 
-void writeQuadTreeBin(FILE *file, QuadTreeBin tree)
+void writeQuadTreeBin(FILE *file, QuadTreeBin tree, QuadTreeBinBuffer *buffer)
 {
-    if (tree == NULL)
+    if (tree == NULL || isBufferedBin(*buffer, tree) >= 0)
     {
         return;
     }
 
-    if (tree->northWest || tree->northEast || tree->southEast || tree->southWest)
+    offerBinBuffer(buffer, tree);
+
+    if (!isLeafBin(tree))
     {
         fprintf(file, "    n%p [shape=point];\n", (void *)tree);
     }
@@ -103,20 +97,10 @@ void writeQuadTreeBin(FILE *file, QuadTreeBin tree)
         fprintf(file, "    n%p:c -> n%p:c;\n", (void *)tree, (void *)tree->southWest);
     }
 
-    writeQuadTreeBin(file, tree->northWest);
-
-    if (tree->northEast != tree->northWest)
-    {
-        writeQuadTreeBin(file, tree->northEast);
-    }
-    if (tree->southEast != tree->northWest && tree->northEast != tree->northWest)
-    {
-        writeQuadTreeBin(file, tree->southEast);
-    }
-    if (tree->southWest != tree->northWest && tree->southEast != tree->northWest && tree->northEast != tree->northWest)
-    {
-        writeQuadTreeBin(file, tree->southWest);
-    }
+    writeQuadTreeBin(file, tree->northWest, buffer);
+    writeQuadTreeBin(file, tree->northEast, buffer);
+    writeQuadTreeBin(file, tree->southEast, buffer);
+    writeQuadTreeBin(file, tree->southWest, buffer);
 }
 
 void generatePDFQuadTreeRGBA(char *dotFileName, char *pdfFileName, QuadTreeRGBA tree)
@@ -124,6 +108,7 @@ void generatePDFQuadTreeRGBA(char *dotFileName, char *pdfFileName, QuadTreeRGBA 
     FILE *out = fopen(dotFileName, "w");
     int len = strlen(dotFileName) + strlen(pdfFileName) + 15;
     char *cmd = malloc(sizeof(char) * len);
+    QuadTreeRGBABuffer buffer = allocQuadTreeRGBABuffer();
 
     if (cmd == NULL)
     {
@@ -131,7 +116,9 @@ void generatePDFQuadTreeRGBA(char *dotFileName, char *pdfFileName, QuadTreeRGBA 
     }
 
     writeFileHeader(out);
-    writeQuadTreeRGBA(out, tree);
+    writeQuadTreeRGBA(out, tree, &buffer);
+    free(buffer->buffer);
+    free(buffer);
     writeFileFooter(out);
     fclose(out);
 
@@ -148,6 +135,7 @@ void generatePDFQuadTreeBin(char *dotFileName, char *pdfFileName, QuadTreeBin tr
     FILE *out = fopen(dotFileName, "w");
     int len = strlen(dotFileName) + strlen(pdfFileName) + 15;
     char *cmd = malloc(sizeof(char) * len);
+    QuadTreeBinBuffer buffer = allocQuadTreeBinBuffer();
 
     if (cmd == NULL)
     {
@@ -155,7 +143,9 @@ void generatePDFQuadTreeBin(char *dotFileName, char *pdfFileName, QuadTreeBin tr
     }
 
     writeFileHeader(out);
-    writeQuadTreeBin(out, tree);
+    writeQuadTreeBin(out, tree, &buffer);
+    free(buffer->buffer);
+    free(buffer);
     writeFileFooter(out);
     fclose(out);
 

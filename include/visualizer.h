@@ -6,20 +6,6 @@
 #define __VISUALIZER_H
 
 /**
- * Encodes and writes down a QuadTreeRGBA in dot syntax.
- * 
- * @param file File to write.
- */
-void writeQuadTreeRGBA(FILE *file, QuadTreeRGBA tree);
-
-/**
- * Encodes and writes down a QuadTreeRGBA in dot syntax.
- * 
- * @param file File to write.
- */
-void writeQuadTreeBin(FILE *file, QuadTreeBin tree);
-
-/**
  * Generates a PDF file of a QuadTreeRGBA.
  * 
  * @param dotFileName Name of the .dot file.
