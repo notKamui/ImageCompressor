@@ -38,50 +38,28 @@ int getMenuChoice()
     while (choice == 0) {
         MLV_wait_mouse(&mousex, &mousey);
 
-        if (
-            mousex >= 40 &&
-            mousex <= 160 &&
-            mousey >= 40 &&
-            mousey <= 80
-        )
+        if (mousex >= 40 && mousex <= 160)
         {
-            choice = 1;
-        }
-        else if (
-            mousex >= 40 &&
-            mousex <= 160 &&
-            mousey >= 120 &&
-            mousey <= 160
-        )
-        {
-            choice = 2;
-        }
-        else if (
-            mousex >= 40 &&
-            mousex <= 160 &&
-            mousey >= 200 &&
-            mousey <= 240
-        )
-        {
-            choice = 3;
-        }
-        else if (
-            mousex >= 40 &&
-            mousex <= 160 &&
-            mousey >= 280 &&
-            mousey <= 320
-        )
-        {
-            choice = 4;
-        }
-        else if (
-            mousex >= 40 &&
-            mousex <= 160 &&
-            mousey >= 360 &&
-            mousey <= 400
-        )
-        {
-            choice = 5;
+            if (mousey >= 40 && mousey <= 80)
+            {
+                choice = 1;
+            }
+            else if (mousey >= 120 && mousey <= 160)
+            {
+                choice = 2;
+            }
+            else if (mousey >= 200 && mousey <= 240)
+            {
+                choice = 3;
+            }
+            else if (mousey >= 280 && mousey <= 320)
+            {
+                choice = 4;
+            }
+            else if (mousey >= 360 && mousey <= 400)
+            {
+                choice = 5;
+            }
         }
     }
 
@@ -179,10 +157,12 @@ void launchApp()
                             }
                             break;
                         case 5: /* Quit */
+                            printf("Quitting...\n");
                             return;
                     }
                 }
             case 2: /* Quit */
+                printf("Quitting...\n");
                 return;
         }
     }
