@@ -186,7 +186,7 @@ int isBufferedBin(QuadTreeBinBuffer buffer, QuadTreeBin tree)
 
 void freeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer)
 {
-    if (!isBufferedRGBA(*buffer, tree))
+    if (tree != NULL && !isBufferedRGBA(*buffer, tree))
     {
         freeQuadTreeRGBA(tree->northWest, buffer);
         freeQuadTreeRGBA(tree->northEast, buffer);
