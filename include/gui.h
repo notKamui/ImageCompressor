@@ -5,6 +5,9 @@
 #include <MLV/MLV_all.h>
 #include "quadtree.h"
 
+#define WND_WIDTH 1000
+#define WND_HEIGHT 800
+
 /**
  * @brief Draw a RGBAQuadTree recursively at the given coordinates.
  * 
@@ -22,5 +25,10 @@ void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
  * @param height Height of the draw.
  */
 void drawQuadTreeBin(QuadTreeBin tree, int x, int y, int width, int height);
+
+/**
+ * @brief Displays the menu of the application
+ */
+void launchApp();
 
 #endif /* __GUI_H */
