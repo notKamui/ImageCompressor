@@ -65,33 +65,19 @@ float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2);
 float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2);
 
 /**
- * @brief Minimises a QuadTreeRGBA without loss
- * 
- * @param tree the tree to be minimised
- */
-void minTreeRGBANoLoss(QuadTreeRGBA *tree);
-
-/**
- * @brief Minimises a QuadTreeBin without loss
- * 
- * @param tree the tree to be minimised
- */
-void minTreeBinNoLoss(QuadTreeBin *tree);
-
-/**
  * @brief Minimises a QuadTreeRGBA with loss
  * 
- * @param tree the tree to be minimised
- * @param distErr the max error distance to allow minimisation
+ * @param tree Tree to be minimised
+ * @param distErr Maximum error distance allowed
  */
-void minTreeRGBALoss(QuadTreeRGBA *tree, float distErr);
+void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr);
 
 /**
  * @brief Minimises a QuadTreeBin with loss
  * 
- * @param tree the tree to be minimised
- * @param distErr the max error distance to allow minimisation
+ * @param tree Tree to be minimised
+ * @param distErr Maximum error distance allowed
  */
-void minTreeBinLoss(QuadTreeBin *tree, float distErr);
+void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr);
 
 #endif /* __COMPRESSOR_H */
