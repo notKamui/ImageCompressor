@@ -19,6 +19,16 @@ int isLeafBin(QuadTreeBin tree)
            tree->southEast == NULL;
 }
 
+int equivalentRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2)
+{
+    return tree1->r == tree2->r && tree1->g == tree2->g && tree1->b == tree2->b && tree1->a == tree2->a;
+}
+
+int equivalentBin(QuadTreeBin tree1, QuadTreeBin tree2)
+{
+    return tree1->b == tree2->b;
+}
+
 QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
     QuadTreeRGBA tree;

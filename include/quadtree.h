@@ -58,6 +58,20 @@ int isLeafRGBA(QuadTreeRGBA tree);
  */
 int isLeafBin(QuadTreeBin tree);
 
+/**
+ * @brief Compares two QuadTreeRGBA data regardless of children.
+ * 
+ * @return Whether nodes are equivalent 
+ */
+int equivalentRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2);
+
+/**
+ * @brief Compares two QuadTreeBin data regardless of children.
+ * 
+ * @return Whether nodes are equivalent 
+ */
+int equivalentBin(QuadTreeBin tree1, QuadTreeBin tree2);
+
 /** 
  * @brief Allocates a QuadTreeRGBA node.
  * 
