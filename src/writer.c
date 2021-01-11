@@ -103,7 +103,7 @@ void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeB
     children[2] = tree->southEast;
     children[3] = tree->southWest;
 
-    if (isBufferedRGBA(*treeBuffer, tree))
+    if (isBufferedRGBA(*treeBuffer, tree) >= 0)
         return;
 
     if (!isLeafRGBA(tree))
@@ -161,7 +161,7 @@ void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuff
     children[2] = tree->southEast;
     children[3] = tree->southWest;
 
-    if (isBufferedBin(*treeBuffer, tree))
+    if (isBufferedBin(*treeBuffer, tree) >= 0)
         return;
 
     if (!isLeafBin(tree))

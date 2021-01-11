@@ -152,7 +152,7 @@ int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuf
     char *line = NULL;
     size_t len = 0;
 
-    if (isBufferedRGBA(*buffer, tree))
+    if (isBufferedRGBA(*buffer, tree) >= 0)
         return 0;
 
     setRGBABuffer(buffer, tree, index);
@@ -233,7 +233,7 @@ int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer
     char *line = NULL;
     size_t len = 0;
 
-    if (isBufferedBin(*buffer, tree))
+    if (isBufferedBin(*buffer, tree) >= 0)
         return 0;
 
     setBinBuffer(buffer, tree, index);
