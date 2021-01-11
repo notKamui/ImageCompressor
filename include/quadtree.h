@@ -132,7 +132,7 @@ void offerBinBuffer(QuadTreeBinBuffer *buffer, QuadTreeBin tree);
  * 
  * @param buffer Buffer to search.
  * @param tree Node to check.
- * @return int Whether the node is buffered or not.
+ * @return Index of the node in the buffer is found, -1 otherwise.
  */
 int isBufferedRGBA(QuadTreeRGBABuffer buffer, QuadTreeRGBA tree);
 
@@ -141,7 +141,7 @@ int isBufferedRGBA(QuadTreeRGBABuffer buffer, QuadTreeRGBA tree);
  * 
  * @param buffer Buffer to search.
  * @param tree Node to check.
- * @return int Whether the node is buffered or not.
+ * @return Index of the node in the buffer is found, -1 otherwise.
  */
 int isBufferedBin(QuadTreeBinBuffer buffer, QuadTreeBin tree);
 
