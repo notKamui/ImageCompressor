@@ -140,6 +140,7 @@ void generatePDFQuadTreeRGBA(char *dotFileName, char *pdfFileName, QuadTreeRGBA 
     strcat(cmd, " -o ");
     strcat(cmd, pdfFileName);
     system(cmd);
+    free(cmd);
 }
 
 void generatePDFQuadTreeBin(char *dotFileName, char *pdfFileName, QuadTreeBin tree)
@@ -163,4 +164,5 @@ void generatePDFQuadTreeBin(char *dotFileName, char *pdfFileName, QuadTreeBin tr
     strcat(cmd, " -o ");
     strcat(cmd, pdfFileName);
     system(cmd);
+    free(cmd);
 }
