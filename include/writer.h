@@ -56,4 +56,20 @@ void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeB
  */
 void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuffer, int index, size_t *treeSize);
 
+/**
+ * @brief Encodes and write down a minimized QuadTreeRGBA in binary.
+ * 
+ * @param tree Tree to encode.
+ * @param file File to write.
+ */
+void writeMinimizedRGBA2(QuadTreeRGBA tree, FILE *file);
+
+/**
+ * @brief Encodes and write down a minimized QuadTreeBin in binary.
+ * 
+ * @param tree Tree to encode.
+ * @param file File to write.
+ */
+void writeMinimizedBin2(QuadTreeBin tree, FILE *file);
+
 #endif /* __WRITER_H */
