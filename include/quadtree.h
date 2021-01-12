@@ -175,4 +175,8 @@ void freeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer);
  */
 void freeQuadTreeBin(QuadTreeBin tree, QuadTreeBinBuffer *buffer);
 
+int sizeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer);
+
+int sizeQuadTreeBin(QuadTreeBin tree, QuadTreeBinBuffer *buffer);
+
 #endif /* __QUADTREE_H */

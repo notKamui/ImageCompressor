@@ -219,3 +219,31 @@ void freeQuadTreeBin(QuadTreeBin tree, QuadTreeBinBuffer *buffer)
         free(tree);
     }
 }
+
+int sizeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer)
+{
+    if (tree != NULL && isBufferedRGBA(*buffer, tree) == -1)
+    {
+        offerRGBABuffer(buffer, tree);
+        return sizeQuadTreeRGBA(tree->northWest, buffer) +
+               sizeQuadTreeRGBA(tree->northEast, buffer) +
+               sizeQuadTreeRGBA(tree->southEast, buffer) +
+               sizeQuadTreeRGBA(tree->southWest, buffer) +
+               1;
+    }
+    return 0;
+}
+
+int sizeQuadTreeBin(QuadTreeBin tree, QuadTreeBinBuffer *buffer)
+{
+    if (tree != NULL && isBufferedBin(*buffer, tree) == -1)
+    {
+        offerBinBuffer(buffer, tree);
+        return sizeQuadTreeBin(tree->northWest, buffer) +
+               sizeQuadTreeBin(tree->northEast, buffer) +
+               sizeQuadTreeBin(tree->southEast, buffer) +
+               sizeQuadTreeBin(tree->southWest, buffer) +
+               1;
+    }
+    return 0;
+}
