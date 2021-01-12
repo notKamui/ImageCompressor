@@ -1,15 +1,12 @@
-#define _POSIX_C_SOURCE 200809L
-
 #include <stdio.h>
-#include <inttypes.h>
-#include <stdint.h>
+#include <string.h>
 #include "../include/parser.h"
-
-#define BIN_LINE_INNER_NODE 4
-#define BIN_LINE_OUTER_NODE 1
 
 #define RGBA_LINE_INNER_NODE 0
 #define RGBA_LINE_OUTER_NODE 1
+
+#define BIN_LINE_INNER_NODE 4
+#define BIN_LINE_OUTER_NODE 1
 
 int readBit(FILE *file, unsigned char *bit, unsigned char *buffer, size_t *bufferSize)
 {
@@ -40,6 +37,21 @@ int readByte(FILE *file, unsigned char *byte, unsigned char *buffer, size_t *buf
         *byte = (*byte << 1) | bit;
     }
     return canContinue;
+}
+
+char *readLine(FILE *file)
+{
+    char *line = malloc(0), c;
+    size_t len = 0;
+
+    while ((c = getc(file)) != '\n')
+    {
+        line = realloc(line, len + 1);
+        line[len++] = c;
+    }
+    line = realloc(line, len + 1);
+    line[len++] = '\0';
+    return line;
 }
 
 int parseRGBA(FILE *file, QuadTreeRGBA tree, unsigned char *buffer, size_t *bufferSize)
@@ -149,22 +161,22 @@ int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuf
     int nw, ne, se, sw;
     int r, g, b, a;
 
-    char *line = NULL;
-    size_t len = 0;
+    char *line;
 
     if (isBufferedRGBA(*buffer, tree) >= 0)
         return 0;
 
     setRGBABuffer(buffer, tree, index);
 
-    getline(&line, &len, file);
-    kind = getLineKindRGBA(line, len);
+    line = readLine(file);
+    kind = getLineKindRGBA(line, strlen(line));
 
     if (kind == RGBA_LINE_INNER_NODE)
     {
         sscanf(line, "%d %d %d %d %d", &readIndex, &nw, &ne, &se, &sw);
+        free(line);
 
-        if ((*buffer)->buffer[nw] == NULL || (*buffer)->bufferSize <= nw)
+        if ((*buffer)->bufferSize <= nw || (*buffer)->buffer[nw] == NULL)
         {
             tree->northWest = allocQuadTreeRGBA(0, 0, 0, 0);
             nw = parseMinimizedRGBA(file, nw, tree->northWest, buffer);
@@ -175,7 +187,7 @@ int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuf
             nw = 1;
         }
 
-        if ((*buffer)->buffer[ne] == NULL || (*buffer)->bufferSize <= ne)
+        if ((*buffer)->bufferSize <= ne || (*buffer)->buffer[ne] == NULL)
         {
             tree->northEast = allocQuadTreeRGBA(0, 0, 0, 0);
             ne = parseMinimizedRGBA(file, ne, tree->northEast, buffer);
@@ -186,7 +198,7 @@ int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuf
             ne = 1;
         }
 
-        if ((*buffer)->buffer[se] == NULL || (*buffer)->bufferSize <= se)
+        if ((*buffer)->bufferSize <= se || (*buffer)->buffer[se] == NULL)
         {
             tree->southEast = allocQuadTreeRGBA(0, 0, 0, 0);
             se = parseMinimizedRGBA(file, se, tree->southEast, buffer);
@@ -197,7 +209,7 @@ int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuf
             se = 1;
         }
 
-        if ((*buffer)->buffer[sw] == NULL || (*buffer)->bufferSize <= sw)
+        if ((*buffer)->bufferSize <= sw || (*buffer)->buffer[sw] == NULL)
         {
             tree->southWest = allocQuadTreeRGBA(0, 0, 0, 0);
             sw = parseMinimizedRGBA(file, sw, tree->southWest, buffer);
@@ -212,6 +224,7 @@ int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuf
     else if (kind == RGBA_LINE_OUTER_NODE)
     {
         sscanf(line, "%df %d %d %d %d", &readIndex, &r, &g, &b, &a);
+        free(line);
         tree->r = r;
         tree->g = g;
         tree->b = b;
@@ -230,22 +243,22 @@ int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer
     int nw, ne, se, sw;
     int b;
 
-    char *line = NULL;
-    size_t len = 0;
+    char *line;
 
     if (isBufferedBin(*buffer, tree) >= 0)
         return 0;
 
     setBinBuffer(buffer, tree, index);
 
-    getline(&line, &len, file);
-    kind = getLineKindBin(line, len);
+    line = readLine(file);
+    kind = getLineKindBin(line, strlen(line));
 
     if (kind == BIN_LINE_INNER_NODE)
     {
         sscanf(line, "%d %d %d %d %d", &readIndex, &nw, &ne, &se, &sw);
+        free(line);
 
-        if ((*buffer)->buffer[nw] == NULL || (*buffer)->bufferSize <= nw)
+        if ((*buffer)->bufferSize <= nw || (*buffer)->buffer[nw] == NULL)
         {
             tree->northWest = allocQuadTreeBin(0);
             nw = parseMinimizedBin(file, nw, tree->northWest, buffer);
@@ -256,7 +269,7 @@ int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer
             nw = 1;
         }
 
-        if ((*buffer)->buffer[ne] == NULL || (*buffer)->bufferSize <= ne)
+        if ((*buffer)->bufferSize <= ne || (*buffer)->buffer[ne] == NULL)
         {
             tree->northEast = allocQuadTreeBin(0);
             ne = parseMinimizedBin(file, ne, tree->northEast, buffer);
@@ -267,7 +280,7 @@ int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer
             ne = 1;
         }
 
-        if ((*buffer)->buffer[se] == NULL || (*buffer)->bufferSize <= se)
+        if ((*buffer)->bufferSize <= se || (*buffer)->buffer[se] == NULL)
         {
             tree->southEast = allocQuadTreeBin(0);
             se = parseMinimizedBin(file, se, tree->southEast, buffer);
@@ -278,7 +291,7 @@ int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer
             se = 1;
         }
 
-        if ((*buffer)->buffer[sw] == NULL || (*buffer)->bufferSize <= sw)
+        if ((*buffer)->bufferSize <= sw || (*buffer)->buffer[sw] == NULL)
         {
             tree->southWest = allocQuadTreeBin(0);
             sw = parseMinimizedBin(file, sw, tree->southWest, buffer);
@@ -293,6 +306,7 @@ int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer
     else if (kind == BIN_LINE_OUTER_NODE)
     {
         sscanf(line, "%d %d", &readIndex, &b);
+        free(line);
         tree->b = b;
         return 1;
     }
