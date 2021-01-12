@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "../include/quadtree.h"
 #include "../include/writer.h"
+#include "../include/visualizer.h"
 
 void writeBit(FILE *file, unsigned char bit, unsigned char *buffer, size_t *bufferSize)
 {
@@ -88,7 +90,7 @@ void writeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *buffe
 
 void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeBuffer, int index, size_t *treeSize)
 {
-    int i, j;
+    int i, j, k;
 
     QuadTreeRGBA children[4];
     int childrenIdentifiers[4] = {0, 0, 0, 0};
@@ -103,8 +105,14 @@ void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeB
     children[2] = tree->southEast;
     children[3] = tree->southWest;
 
-    if (isBufferedRGBA(*treeBuffer, tree) >= 0)
+    k = isBufferedRGBA(*treeBuffer, tree);
+    /* if node is buffered but its index is lower than current one, must continue */
+    if (k >= 0 && k <= index)
+    {
         return;
+    }
+
+    setRGBABuffer(treeBuffer, tree, index);
 
     if (!isLeafRGBA(tree))
     {
@@ -118,7 +126,11 @@ void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeB
                     break;
                 }
             }
-            if (i == 0 || i == j)
+            if ((k = isBufferedRGBA(*treeBuffer, children[i])) >= 0)
+            {
+                childrenIdentifiers[i] = k;
+            }
+            else if (i == j)
             {
                 childrenIdentifiers[i] = ++(*treeSize);
             }
@@ -130,23 +142,15 @@ void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeB
         fprintf(file, "%df %d %d %d %d\n", index, tree->r, tree->g, tree->b, tree->a);
     }
 
-    offerRGBABuffer(treeBuffer, tree);
-
     writeMinimizedRGBA(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
     writeMinimizedRGBA(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
     writeMinimizedRGBA(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
     writeMinimizedRGBA(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
-
-    if (index == 0)
-    {
-        free((*treeBuffer)->buffer);
-        free(*treeBuffer);
-    }
 }
 
 void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuffer, int index, size_t *treeSize)
 {
-    int i, j;
+    int i, j, k;
 
     QuadTreeBin children[4];
     int childrenIdentifiers[4] = {0, 0, 0, 0};
@@ -161,8 +165,14 @@ void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuff
     children[2] = tree->southEast;
     children[3] = tree->southWest;
 
-    if (isBufferedBin(*treeBuffer, tree) >= 0)
+    k = isBufferedBin(*treeBuffer, tree);
+    /* if node is buffered but its index is lower than current one, must continue */
+    if (k >= 0 && k <= index)
+    {
         return;
+    }
+
+    setBinBuffer(treeBuffer, tree, index);
 
     if (!isLeafBin(tree))
     {
@@ -176,7 +186,11 @@ void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuff
                     break;
                 }
             }
-            if (i == 0 || i == j)
+            if ((k = isBufferedBin(*treeBuffer, children[i])) >= 0)
+            {
+                childrenIdentifiers[i] = k;
+            }
+            else if (i == j)
             {
                 childrenIdentifiers[i] = ++(*treeSize);
             }
@@ -188,16 +202,8 @@ void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuff
         fprintf(file, "%d %d\n", index, tree->b);
     }
 
-    offerBinBuffer(treeBuffer, tree);
-
     writeMinimizedBin(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
     writeMinimizedBin(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
     writeMinimizedBin(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
     writeMinimizedBin(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
-
-    if (index == 0)
-    {
-        free((*treeBuffer)->buffer);
-        free(*treeBuffer);
-    }
 }
