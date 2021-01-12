@@ -1,17 +1,17 @@
 INCL    := $(wildcard include/*.h)
 SRC     := src/main.c $(subst include/,,$(INCL:%.h=src/%.c))
 OBJ     := $(subst src/,,$(SRC:%.c=bin/%.o))
-LIBS    := -lm -lMLV
+LIBS    := -lm -lMLV -g
 EXE     := prog
 
 CC      := gcc
-CFLAGS  := -ansi -pedantic -Wall -O2
+CFLAGS  := -ansi -pedantic -Wall -O2 -g
 LIBPATH := -L.
 LDFLAGS := -o $(EXE) $(LIBPATH) $(LIBS)
 RM      := rm -f
 
 all: $(OBJ)
-	$(CC) $(LDFLAGS) $(OBJ)
+	$(CC) $(OBJ) $(LDFLAGS)
 
 bin/%.o: src/%.c include/%.h
 	$(CC) -c $(CFLAGS) src/$*.c include/$*.h
