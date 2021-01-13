@@ -88,26 +88,26 @@ void drawImgMenu(int binIsMinimized, int RGBAIsMinimized)
         MLV_draw_rectangle(40, 40, 120, 40, MLV_COLOR_WHITE);
         MLV_draw_text(50, 50, "Save B&W", MLV_COLOR_WHITE);
 
-        MLV_draw_rectangle(40, 200, 120, 40, MLV_COLOR_WHITE);
-        MLV_draw_text(50, 210, "Minimize B&W", MLV_COLOR_WHITE);
+        MLV_draw_rectangle(40, 120, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 130, "Minimize B&W", MLV_COLOR_WHITE);
     }
     else
     {
-        MLV_draw_rectangle(40, 200, 120, 40, MLV_COLOR_WHITE);
-        MLV_draw_text(50, 210, "Save MinB&W", MLV_COLOR_WHITE);
+        MLV_draw_rectangle(40, 40, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 50, "Save MinB&W", MLV_COLOR_WHITE);
     }
 
     if (!RGBAIsMinimized)
     {
-        MLV_draw_rectangle(40, 120, 120, 40, MLV_COLOR_WHITE);
-        MLV_draw_text(50, 130, "Save RGBA", MLV_COLOR_WHITE);
+        MLV_draw_rectangle(40, 200, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 210, "Save RGBA", MLV_COLOR_WHITE);
 
         MLV_draw_rectangle(40, 280, 120, 40, MLV_COLOR_WHITE);
         MLV_draw_text(50, 290, "Minimize RGBA", MLV_COLOR_WHITE);
     }
     else {
-        MLV_draw_rectangle(40, 280, 120, 40, MLV_COLOR_WHITE);
-        MLV_draw_text(50, 290, "Save MinRGBA", MLV_COLOR_WHITE);
+        MLV_draw_rectangle(40, 200, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 210, "Save MinRGBA", MLV_COLOR_WHITE);
     }
 
     MLV_draw_rectangle(40, 360, 120, 40, MLV_COLOR_WHITE);

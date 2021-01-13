@@ -52,21 +52,7 @@ void menu() {
                     choice = getMenuChoice();
                     switch (choice)
                     {
-                        case 1: /* Save B&W */
-                            if (!binIsMinimized)
-                            {
-                                printf("Saving to B&W...\n");
-                                saveBin();
-                            }
-                            break;
-                        case 2: /* Save RGBA */
-                            if (!RGBAIsMinimized)
-                            {
-                                printf("Saving to RGBA...\n");
-                                saveRGBA();
-                            }
-                            break;
-                        case 3: /* Minimize to B&W OR Save MinB&W */
+                        case 1: /* Save B&W OR Save MinB&W */
                             if (binIsMinimized)
                             {
                                 /* Save MinB&W */
@@ -75,13 +61,20 @@ void menu() {
                             }
                             else
                             {
-                                /* Minimize to B&W */
+                                /* MinB&W */
+                                printf("Saving to B&W...\n");
+                                saveBin();
+                            }
+                            break;
+                        case 2: /* Minimize to B&W */
+                            if (!binIsMinimized)
+                            {
                                 printf("Minimizing to B&W...\n");
                                 /*minimizeQuadTreeBin(qtBin, 0);*/
                                 binIsMinimized = 1;
                             }
                             break;
-                        case 4: /* Minimize to RGBA OR Save MinRGBA */
+                        case 3: /* Save RGBA OR Save MinRGBA */
                             if (RGBAIsMinimized)
                             {
                                 /* Save MinRGBA */
@@ -90,7 +83,14 @@ void menu() {
                             }
                             else
                             {
-                                /* Minimize to RGBA */
+                                /* MinRGBA */
+                                printf("Saving to RGBA...\n");
+                                saveRGBA();
+                            }
+                            break;
+                        case 4: /* Minimize to RGBA */
+                            if (!RGBAIsMinimized)
+                            {
                                 printf("Minimizing to RGBA...\n");
                                 /*minimizeQuadTreeRGBA(qtRGBA, 0);*/
                                 RGBAIsMinimized = 1;
