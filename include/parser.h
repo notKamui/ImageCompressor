@@ -6,75 +6,63 @@
 #include "quadtree.h"
 
 /**
- * @brief Read a single bit from a file. Reads 0 if the bit doesn't exists.
+ * @brief Reads and decodes a QuadTreeRGBA from a given file.
  * 
  * @param file File to read.
- * @param bit Read bit.
- * @param buffer Current buffer.
- * @param bufferSize Buffer size.
- * 
- * @return Whether the reading succeeded.
- */
-int readBit(FILE *file, unsigned char *bit, unsigned char *buffer, size_t *bufferSize);
-
-/**
- * @brief Read an entire byte from a file. This take into account the current buffer state.
- * 
- * @param file File to read.
- * @param byte Read byte.
- * @param buffer Current buffer.
- * @param bufferSize Buffer size.
- * 
- * @return Whether the reading succeeded.
- */
-int readByte(FILE *file, unsigned char *byte, unsigned char *buffer, size_t *bufferSize);
-
-/**
- * @brief Build a non-compressed QuadTreeRGBA from a given file.
- * 
- * @param file File to read.
- * @param tree Built tree.
- * @param buffer Current buffer.
- * @param bufferSize Buffer size.
+ * @param tree Built tree. (Method souldn't be called with NULL tree)
  * 
  * @return Whether the build succeeded. 
  */
-int parseRGBA(FILE *file, QuadTreeRGBA tree, unsigned char *buffer, size_t *bufferSize);
+int parseRGBA(FILE *file, QuadTreeRGBA tree);
 
 /**
- * @brief Build a non-compressed QuadTreeBin from a given file.
+ * @brief Reads and decodes a QuadTreeBin from a given file.
  * 
  * @param file File to read.
- * @param tree Built tree.
- * @param buffer Current buffer.
- * @param bufferSize Buffer size.
+ * @param tree Built tree. (Method souldn't be called with NULL tree)
  * 
  * @return Whether the build succeeded. 
  */
-int parseBin(FILE *file, QuadTreeBin tree, unsigned char *buffer, size_t *bufferSize);
+int parseBin(FILE *file, QuadTreeBin tree);
 
 /**
- * @brief Build a minimized QuadTreeRGBA from a given file.
+ * @brief Reads and decodes a minimized QuadTreeRGBA from a given file.
  * 
  * @param file File to read.
- * @param index Index of the current node. Should be 0 when function is called.
- * @param tree Built tree.
- * @param buffer Tree buffer.
+ * @param tree Built tree. (Method souldn't be called with NULL tree)
  * 
  * @return Whether the build succeeded.
  */
-int parseMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer);
+int parseMinimizedRGBA(FILE *file, QuadTreeRGBA tree);
 
 /**
- * @brief Build a minimized QuadTreeBin from a given file.
+ * @brief Reads and decodes a minimized QuadTreeBin from a given file.
  * 
  * @param file File to read.
- * @param index Index of the current node. Should be 0 when function is called.
- * @param tree Built tree.
- * @param buffer Tree buffer.
+ * @param tree Built tree. (Method souldn't be called with NULL tree)
  * 
  * @return Whether the build succeeded.
  */
-int parseMinimizedBin(FILE *file, int index, QuadTreeBin tree, QuadTreeBinBuffer *buffer);
+int parseMinimizedBin(FILE *file, QuadTreeBin tree);
+
+/**
+ * @brief Reads and decodes a minimized QuadTreeRGBA from a given binary file.
+ * 
+ * @param file File to read.
+ * @param tree Built tree. (Method souldn't be called with NULL tree)
+ * 
+ * @return Whether the build succeeded. 
+ */
+int parseMinimizedRGBA2(FILE *file, QuadTreeRGBA tree);
+
+/**
+ * @brief Reads and decodes a minimized QuadTreeBin from a given binary file.
+ * 
+ * @param file File to read.
+ * @param tree Built tree. (Method souldn't be called with NULL tree)
+ * 
+ * @return Whether the build succeeded. 
+ */
+int parseMinimizedBin2(FILE *file, QuadTreeBin tree);
 
 #endif /* __PARSER_H */
