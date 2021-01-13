@@ -16,7 +16,7 @@ void writeBit(FILE *file, unsigned char bit, unsigned char *buffer, size_t *buff
 
     if (*bufferSize == 8)
     {
-        fprintf(file, "%c", *buffer);
+        putc(*buffer, file);
         *bufferSize = 0;
         *buffer = 0;
     }
@@ -50,7 +50,7 @@ void flush(FILE *file, unsigned char *buffer, size_t *bufferSize)
     }
 }
 
-void writeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *bufferSize)
+void encodeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *bufferSize)
 {
     if (tree == NULL)
     {
@@ -70,13 +70,13 @@ void writeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *buf
         writeByte(file, tree->a, buffer, bufferSize);
     }
 
-    writeRGBA(tree->northWest, file, buffer, bufferSize);
-    writeRGBA(tree->northEast, file, buffer, bufferSize);
-    writeRGBA(tree->southEast, file, buffer, bufferSize);
-    writeRGBA(tree->southWest, file, buffer, bufferSize);
+    encodeRGBA(tree->northWest, file, buffer, bufferSize);
+    encodeRGBA(tree->northEast, file, buffer, bufferSize);
+    encodeRGBA(tree->southEast, file, buffer, bufferSize);
+    encodeRGBA(tree->southWest, file, buffer, bufferSize);
 }
 
-void writeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *bufferSize)
+void encodeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *bufferSize)
 {
     if (tree == NULL)
     {
@@ -93,13 +93,27 @@ void writeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *buffe
         writeBit(file, (tree->b > 0), buffer, bufferSize);
     }
 
-    writeBin(tree->northWest, file, buffer, bufferSize);
-    writeBin(tree->northEast, file, buffer, bufferSize);
-    writeBin(tree->southEast, file, buffer, bufferSize);
-    writeBin(tree->southWest, file, buffer, bufferSize);
+    encodeBin(tree->northWest, file, buffer, bufferSize);
+    encodeBin(tree->northEast, file, buffer, bufferSize);
+    encodeBin(tree->southEast, file, buffer, bufferSize);
+    encodeBin(tree->southWest, file, buffer, bufferSize);
 }
 
-void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeBuffer, int index, size_t *treeSize)
+void writeRGBA(QuadTreeRGBA tree, FILE *file)
+{
+    unsigned char buffer = 0;
+    size_t bufferSize = 0;
+    encodeRGBA(tree, file, &buffer, &bufferSize);
+}
+
+void writeBin(QuadTreeBin tree, FILE *file)
+{
+    unsigned char buffer = 0;
+    size_t bufferSize = 0;
+    encodeBin(tree, file, &buffer, &bufferSize);
+}
+
+void encodeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeBuffer, int index, size_t *treeSize)
 {
     int i, j, k;
 
@@ -153,13 +167,13 @@ void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeB
         fprintf(file, "%df %d %d %d %d\n", index, tree->r, tree->g, tree->b, tree->a);
     }
 
-    writeMinimizedRGBA(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
-    writeMinimizedRGBA(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
-    writeMinimizedRGBA(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
-    writeMinimizedRGBA(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
+    encodeMinimizedRGBA(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
+    encodeMinimizedRGBA(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
+    encodeMinimizedRGBA(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
+    encodeMinimizedRGBA(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
 }
 
-void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuffer, int index, size_t *treeSize)
+void encodeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuffer, int index, size_t *treeSize)
 {
     int i, j, k;
 
@@ -213,10 +227,24 @@ void writeMinimizedBin(QuadTreeBin tree, FILE *file, QuadTreeBinBuffer *treeBuff
         fprintf(file, "%d %d\n", index, tree->b);
     }
 
-    writeMinimizedBin(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
-    writeMinimizedBin(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
-    writeMinimizedBin(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
-    writeMinimizedBin(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
+    encodeMinimizedBin(tree->northWest, file, treeBuffer, childrenIdentifiers[0], treeSize);
+    encodeMinimizedBin(tree->northEast, file, treeBuffer, childrenIdentifiers[1], treeSize);
+    encodeMinimizedBin(tree->southEast, file, treeBuffer, childrenIdentifiers[2], treeSize);
+    encodeMinimizedBin(tree->southWest, file, treeBuffer, childrenIdentifiers[3], treeSize);
+}
+
+void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file)
+{
+    size_t treesize = 0;
+    QuadTreeRGBABuffer buffer = allocQuadTreeRGBABuffer();
+    encodeMinimizedRGBA(tree, file, &buffer, 0, &treesize);
+}
+
+void writeMinimizedBin(QuadTreeBin tree, FILE *file)
+{
+    size_t treesize = 0;
+    QuadTreeRGBABuffer buffer = allocQuadTreeBinBuffer();
+    encodeMinimizedBin(tree, file, &buffer, 0, &treesize);
 }
 
 void encodeMinimizedRGBA2(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeBuffer, long index, unsigned char id_len, size_t *treeSize, unsigned char *buffer, size_t *bufferSize)
