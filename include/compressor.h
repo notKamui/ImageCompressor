@@ -1,8 +1,8 @@
 /* Created by Jimmy on 2/11/2020. */
-#include "quadtree.h"
-
 #ifndef __COMPRESSOR_H
 #define __COMPRESSOR_H
+
+#include "quadtree.h"
 
 /**
  * @brief Calculates the color distance between two QuadTreeRGBA nodes

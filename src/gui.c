@@ -79,26 +79,33 @@ void drawMainMenu()
     MLV_actualise_window();
 }
 
-void drawImgMenu(int isMinimized)
+void drawImgMenu(int binIsMinimized, int RGBAIsMinimized)
 {
     MLV_clear_window(MLV_COLOR_BLACK);
 
-    MLV_draw_rectangle(40, 40, 120, 40, MLV_COLOR_WHITE);
-    MLV_draw_text(50, 50, "Save B&W", MLV_COLOR_WHITE);
-
-    MLV_draw_rectangle(40, 120, 120, 40, MLV_COLOR_WHITE);
-    MLV_draw_text(50, 130, "Save RGBA", MLV_COLOR_WHITE);
-
-    if (!isMinimized)
+    if (!binIsMinimized)
     {
+        MLV_draw_rectangle(40, 40, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 50, "Save B&W", MLV_COLOR_WHITE);
+
         MLV_draw_rectangle(40, 200, 120, 40, MLV_COLOR_WHITE);
-        MLV_draw_text(50, 210, "Minimize", MLV_COLOR_WHITE);
+        MLV_draw_text(50, 210, "Minimize B&W", MLV_COLOR_WHITE);
     }
     else
     {
         MLV_draw_rectangle(40, 200, 120, 40, MLV_COLOR_WHITE);
         MLV_draw_text(50, 210, "Save MinB&W", MLV_COLOR_WHITE);
+    }
 
+    if (!RGBAIsMinimized)
+    {
+        MLV_draw_rectangle(40, 120, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 130, "Save RGBA", MLV_COLOR_WHITE);
+
+        MLV_draw_rectangle(40, 280, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 290, "Minimize RGBA", MLV_COLOR_WHITE);
+    }
+    else {
         MLV_draw_rectangle(40, 280, 120, 40, MLV_COLOR_WHITE);
         MLV_draw_text(50, 290, "Save MinRGBA", MLV_COLOR_WHITE);
     }
@@ -108,62 +115,4 @@ void drawImgMenu(int isMinimized)
     
 
     MLV_actualise_window();
-}
-
-void launchApp()
-{
-    int choice = 0;
-    int isMinimized = 0;
-
-    drawMainMenu();
-    while(1)
-    {
-        choice = getMenuChoice();
-        switch (choice) 
-        {
-            case 1: /* Open Image */
-                drawImgMenu(0);
-                printf("Opening image (to QuadTree)...\n");
-                while(1)
-                {
-                    choice = getMenuChoice();
-                    switch (choice)
-                    {
-                        case 1: /* Save B&W */
-                            printf("Saving to B&W...\n");
-                            break;
-                        case 2: /* Save RGBA */
-                            printf("Saving to RGBA...\n");
-                            break;
-                        case 3: /* Minimize OR Save MinB&W */
-                            if (isMinimized)
-                            {
-                                /* Save MinB&W */
-                                printf("Saving to MinB&W...\n");
-                            }
-                            else
-                            {
-                                /* Minimize */
-                                isMinimized = 1;
-                                printf("Minimizing...\n");
-                                drawImgMenu(1);
-                            }
-                            break;
-                        case 4: /* Nothing OR Save MinRGBA */
-                            if (isMinimized)
-                            {
-                                /* Save MinRGBA */
-                                printf("Saving to MinRGBA...\n");
-                            }
-                            break;
-                        case 5: /* Quit */
-                            printf("Quitting...\n");
-                            return;
-                    }
-                }
-            case 2: /* Quit */
-                printf("Quitting...\n");
-                return;
-        }
-    }
 }

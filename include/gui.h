@@ -27,8 +27,23 @@ void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 void drawQuadTreeBin(QuadTreeBin tree, int x, int y, int width, int height);
 
 /**
- * @brief Displays the menu of the application
+ * @brief Gets the menu choice on click
+ * 
+ * @return the clicked menu choice
  */
-void launchApp();
+int getMenuChoice();
+
+/**
+ * @brief Draws the main menu to open an image
+ */
+void drawMainMenu();
+
+/**
+ * @brief Draws the menu for manipulating the image
+ * 
+ * @param binIsMinimized is not 0 if the image has been minimized to B&W
+ * @param RGBAIsMinimized is not 0 if the image has been minimized to RGBA
+ */
+void drawImgMenu(int binIsMinimized, int RGBAIsMinimized);
 
 #endif /* __GUI_H */

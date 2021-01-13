@@ -1,10 +1,6 @@
 #include <stdio.h>
-#include "../include/quadtree.h"
-#include "../include/visualizer.h"
-#include "../include/writer.h"
-#include "../include/gui.h"
-#include "../include/image.h"
-#include "../include/compressor.h"
+
+#include "../include/controler.h"
 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)       \
@@ -19,10 +15,6 @@
 
 int main(void)
 {
-    MLV_create_window("Super image compressor 2000", "", WND_WIDTH, WND_HEIGHT);
-
     launchApp();
-
-    MLV_free_window();
     return 0;
 }
