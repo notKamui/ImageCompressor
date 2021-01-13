@@ -1,5 +1,8 @@
 #include "../include/controler.h"
 
+#include "../include/gui.h"
+#include "../include/compressor.h"
+
 MLV_Image *image;
 QuadTreeBin *qtBin;
 QuadTreeRGBA *qtRGBA;
