@@ -17,7 +17,9 @@ typedef enum
 {
     ORIGINAL_PICTURE,
     QT_BIN,
-    QT_RGBA
+    QT_RGBA,
+    WIREFRAME_QT_BIN,
+    WIREFRAME_QT_RGBA
 } DrawTarget;
 
 /**

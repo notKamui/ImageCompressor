@@ -25,7 +25,7 @@
  */
 void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 
-void drawQuadTreeCircleRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
+void drawQuadTreeWireframeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 
 /**
  * @brief Draw a BinQuadTree recursively at the given coordinates.
@@ -35,6 +35,8 @@ void drawQuadTreeCircleRGBA(QuadTreeRGBA tree, int x, int y, int width, int heig
  * @param height Height of the draw.
  */
 void drawQuadTreeBin(QuadTreeBin tree, int x, int y, int width, int height);
+
+void drawQuadTreeWireframeBin(QuadTreeBin tree, int x, int y, int width, int height);
 
 /**
  * @brief Gets the menu choice on click
