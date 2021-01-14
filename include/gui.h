@@ -5,8 +5,16 @@
 #include <MLV/MLV_all.h>
 #include "quadtree.h"
 
-#define WND_WIDTH 1000
-#define WND_HEIGHT 800
+#define PIC_WIDTH 512
+#define PIC_HEIGHT PIC_WIDTH
+
+#define MARGIN 40
+#define BTN_WIDTH 350
+#define BTN_HEIGHT 60
+
+#define WND_WIDTH 3 * MARGIN + BTN_WIDTH + PIC_WIDTH
+#define BTN_WIDTH_THIRD (BTN_WIDTH - 20) / 3
+#define WND_HEIGHT 2 * MARGIN + PIC_HEIGHT
 
 /**
  * @brief Draw a RGBAQuadTree recursively at the given coordinates.
@@ -16,6 +24,8 @@
  * @param height Height of the draw.
  */
 void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
+
+void drawQuadTreeCircleRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 
 /**
  * @brief Draw a BinQuadTree recursively at the given coordinates.
