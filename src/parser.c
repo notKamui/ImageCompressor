@@ -180,7 +180,7 @@ int decodeMinimizedRGBA(FILE *file, int index, QuadTreeRGBA tree, QuadTreeRGBABu
     int kind;
 
     int readIndex;
-    int nw, ne, se, sw;
+    int nw = 0, ne = 0, se = 0, sw = 0;
     int r, g, b, a;
 
     char *line;
@@ -340,8 +340,7 @@ int parseMinimizedRGBA(FILE *file, QuadTreeRGBA tree)
 {
     QuadTreeRGBABuffer buffer = allocQuadTreeRGBABuffer();
     int res = decodeMinimizedRGBA(file, 0, tree, &buffer);
-    free(buffer->buffer);
-    free(buffer);
+    freeRGBABuffer(buffer);
     return res;
 }
 
@@ -349,8 +348,7 @@ int parseMinimizedBin(FILE *file, QuadTreeBin tree)
 {
     QuadTreeBinBuffer buffer = allocQuadTreeBinBuffer();
     int res = decodeMinimizedBin(file, 0, tree, &buffer);
-    free(buffer->buffer);
-    free(buffer);
+    freeBinBuffer(buffer);
     return res;
 }
 

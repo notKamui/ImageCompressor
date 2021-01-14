@@ -194,6 +194,42 @@ int isBufferedBin(QuadTreeBinBuffer buffer, QuadTreeBin tree)
     return -1;
 }
 
+void freeRGBABuffer(QuadTreeRGBABuffer buffer)
+{
+    free(buffer->buffer);
+    free(buffer);
+}
+
+void hardFreeRGBABuffer(QuadTreeRGBABuffer buffer)
+{
+    int i;
+    QuadTreeRGBABuffer freeBuffer = allocQuadTreeRGBABuffer();
+    for (i = 0; i < buffer->bufferSize; i++)
+    {
+        freeQuadTreeRGBA(buffer->buffer[i], &freeBuffer);
+    }
+    freeRGBABuffer(buffer);
+    freeRGBABuffer(freeBuffer);
+}
+
+void freeBinBuffer(QuadTreeBinBuffer buffer)
+{
+    free(buffer->buffer);
+    free(buffer);
+}
+
+void hardFreeBinBuffer(QuadTreeBinBuffer buffer)
+{
+    int i;
+    QuadTreeBinBuffer freeBuffer = allocQuadTreeBinBuffer();
+    for (i = 0; i < buffer->bufferSize; i++)
+    {
+        freeQuadTreeBin(buffer->buffer[i], &freeBuffer);
+    }
+    freeBinBuffer(buffer);
+    freeBinBuffer(freeBuffer);
+}
+
 void freeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer)
 {
     if (tree != NULL && isBufferedRGBA(*buffer, tree) == -1)

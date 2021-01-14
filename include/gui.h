@@ -5,6 +5,7 @@
 #include <MLV/MLV_all.h>
 #include "quadtree.h"
 
+<<<<<<< Updated upstream
 #define PIC_WIDTH 512
 #define PIC_HEIGHT PIC_WIDTH
 
@@ -15,15 +16,28 @@
 #define WND_WIDTH 3 * MARGIN + BTN_WIDTH + PIC_WIDTH
 #define BTN_WIDTH_THIRD (BTN_WIDTH - 20) / 3
 #define WND_HEIGHT 2 * MARGIN + PIC_HEIGHT
+=======
+#define FONT_SIZE 42
 
-/**
+    typedef struct s_button_info
+{
+    int x;
+    int y;
+    int width;
+    int height;
+    void(*f);
+} ButtonInfo;
+>>>>>>> Stashed changes
+
+    /**
  * @brief Draw a RGBAQuadTree recursively at the given coordinates.
  * 
  * @param tree RGBAQuadTree to draw.
  * @param width Width of the draw.
  * @param height Height of the draw.
  */
-void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
+    void
+    drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 
 void drawQuadTreeCircleRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 

@@ -117,8 +117,7 @@ void generatePDFQuadTreeRGBA(char *dotFileName, char *pdfFileName, QuadTreeRGBA 
 
     writeFileHeader(out);
     writeQuadTreeRGBA(out, tree, &buffer);
-    free(buffer->buffer);
-    free(buffer);
+    freeRGBABuffer(buffer);
     writeFileFooter(out);
     fclose(out);
 
@@ -144,8 +143,7 @@ void generatePDFQuadTreeBin(char *dotFileName, char *pdfFileName, QuadTreeBin tr
 
     writeFileHeader(out);
     writeQuadTreeBin(out, tree, &buffer);
-    free(buffer->buffer);
-    free(buffer);
+    freeBinBuffer(buffer);
     writeFileFooter(out);
     fclose(out);
 

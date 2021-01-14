@@ -96,14 +96,14 @@ QuadTreeBin allocQuadTreeBin(unsigned char b);
 /**
  * @brief Allocates a QuadTreeRGBA buffer structure made of an array of QuadTreeRGBA and this array's size.
  * 
- * @return QuadTreeRGBABuffer
+ * @return Allocated buffer.
  */
 QuadTreeRGBABuffer allocQuadTreeRGBABuffer();
 
 /**
  * @brief Allocates a QuadTreeBin buffer structure made of an array of QuadTreeBin and this array's size.
  * 
- * @return QuadTreeRGBABuffer
+ * @return Allocated buffer.
  */
 QuadTreeBinBuffer allocQuadTreeBinBuffer();
 
@@ -142,22 +142,44 @@ void offerRGBABuffer(QuadTreeRGBABuffer *buffer, QuadTreeRGBA tree);
 void offerBinBuffer(QuadTreeBinBuffer *buffer, QuadTreeBin tree);
 
 /**
- * @brief Checks is the given RGBA node is in the given buffer.
+ * @brief Checks if the given RGBA node is in the given buffer.
  * 
  * @param buffer Buffer to search.
  * @param tree Node to check.
+ * 
  * @return Index of the node in the buffer is found, -1 otherwise.
  */
 int isBufferedRGBA(QuadTreeRGBABuffer buffer, QuadTreeRGBA tree);
 
 /**
- * @brief Checks is the given bin node is in the given buffer.
+ * @brief Checks if the given bin node is in the given buffer.
  * 
  * @param buffer Buffer to search.
  * @param tree Node to check.
+ * 
  * @return Index of the node in the buffer is found, -1 otherwise.
  */
 int isBufferedBin(QuadTreeBinBuffer buffer, QuadTreeBin tree);
+
+/**
+ * @brief Frees the given QuadTreeRGBABuffer.
+ */
+void freeRGBABuffer(QuadTreeRGBABuffer buffer);
+
+/**
+ * @brief Frees the given QuadTreeRGBABuffer and the buffered trees inside.
+ */
+void hardFreeRGBABuffer(QuadTreeRGBABuffer buffer);
+
+/**
+ * @brief Frees the given QuadTreeBinBuffer.
+ */
+void freeBinBuffer(QuadTreeBinBuffer buffer);
+
+/**
+ * @brief Frees the given QuadTreeBinBuffer and the buffered trees inside.
+ */
+void hardFreeBinBuffer(QuadTreeBinBuffer buffer);
 
 /**
  * @brief Free memory allocated by the given QuadTreeRGBA.
@@ -175,8 +197,26 @@ void freeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer);
  */
 void freeQuadTreeBin(QuadTreeBin tree, QuadTreeBinBuffer *buffer);
 
+/**
+ * @brief Computes the size of the given QuadTreeRGBA.
+ * 
+ * @param tree Tree to measure.
+ * @param buffer Tree buffer.
+ */
 int sizeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer);
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+/**
+ * @brief Computes the size of the given QuadTreeBin.
+ * 
+ * @param tree Tree to measure.
+ * @param buffer Tree buffer.
+ */
+>>>>>>> Stashed changes
 int sizeQuadTreeBin(QuadTreeBin tree, QuadTreeBinBuffer *buffer);
 
+=======
+>>>>>>> Stashed changes
 #endif /* __QUADTREE_H */

@@ -337,42 +337,22 @@ void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr)
 {
     QuadTreeRGBABuffer buffer = allocQuadTreeRGBABuffer();
     QuadTreeRGBABuffer trash = allocQuadTreeRGBABuffer();
-    QuadTreeRGBABuffer freeBuffer = allocQuadTreeRGBABuffer();
     int i;
 
     simplifyTreesRGBA(tree, distErr, &buffer, &trash);
     removeDuplicateLeavesRGBA(tree, &buffer, &trash);
-    free(buffer->buffer);
-    free(buffer);
-
-    for (i = 0; i < trash->bufferSize; i++)
-    {
-        freeQuadTreeRGBA(trash->buffer[i], &freeBuffer);
-    }
-    free(trash->buffer);
-    free(trash);
-    free(freeBuffer->buffer);
-    free(freeBuffer);
+    freeRGBABuffer(buffer);
+    hardFreeRGBABuffer(trash);
 }
 
 void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
 {
     QuadTreeBinBuffer buffer = allocQuadTreeBinBuffer();
     QuadTreeBinBuffer trash = allocQuadTreeBinBuffer();
-    QuadTreeBinBuffer freeBuffer = allocQuadTreeBinBuffer();
     int i;
 
     simplifyTreesBin(tree, distErr, &buffer, &trash);
     removeDuplicateLeavesBin(tree, &buffer, &trash);
-    free(buffer->buffer);
-    free(buffer);
-
-    for (i = 0; i < trash->bufferSize; i++)
-    {
-        freeQuadTreeBin(trash->buffer[i], &freeBuffer);
-    }
-    free(trash->buffer);
-    free(trash);
-    free(freeBuffer->buffer);
-    free(freeBuffer);
+    freeBinBuffer(buffer);
+    hardFreeBinBuffer(trash);
 }
