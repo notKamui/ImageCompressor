@@ -24,7 +24,7 @@
 #define INTENT_SW_RGBA 12
 
 MLV_Image *image;
-MLV_Input_box *input, *fileInput;
+MLV_Input_box *fileInput;
 QuadTreeBin qtBin;
 QuadTreeRGBA qtRGBA;
 DrawTarget target;
@@ -300,10 +300,13 @@ void closeImage()
 
 void quitApp()
 {
-    QuadTreeBinBuffer binBuffer = allocQuadTreeBinBuffer();
     QuadTreeRGBABuffer rgbaBuffer = allocQuadTreeRGBABuffer();
+    QuadTreeBinBuffer binBuffer = allocQuadTreeBinBuffer();
+    freeQuadTreeRGBA(qtRGBA, &rgbaBuffer);
     freeQuadTreeBin(qtBin, &binBuffer);
-    freeQuadTreeRGBA(qtRGBA, &binBuffer);
+    freeRGBABuffer(rgbaBuffer);
+    freeBinBuffer(binBuffer);
+    MLV_free_input_box(fileInput);
 }
 
 void menu()
@@ -387,7 +390,6 @@ void launchApp()
     binIsMinimized = 0;
     qtRGBA = NULL;
     RGBAIsMinimized = 0;
-    input = NULL;
     fileName = malloc(sizeof(char));
     *fileName = '\0';
     target = ORIGINAL_PICTURE;

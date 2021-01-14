@@ -337,7 +337,6 @@ void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr)
 {
     QuadTreeRGBABuffer buffer = allocQuadTreeRGBABuffer();
     QuadTreeRGBABuffer trash = allocQuadTreeRGBABuffer();
-    int i;
 
     simplifyTreesRGBA(tree, distErr, &buffer, &trash);
     removeDuplicateLeavesRGBA(tree, &buffer, &trash);
@@ -349,7 +348,6 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
 {
     QuadTreeBinBuffer buffer = allocQuadTreeBinBuffer();
     QuadTreeBinBuffer trash = allocQuadTreeBinBuffer();
-    int i;
 
     simplifyTreesBin(tree, distErr, &buffer, &trash);
     removeDuplicateLeavesBin(tree, &buffer, &trash);
