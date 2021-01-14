@@ -243,6 +243,7 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
         {
             if (treeHeightRGBA((*buffer)->buffer[k]) > treeHeightRGBA(*children[i]))
             {
+                offerRGBABuffer(trash, (*buffer)->buffer[k]);
                 (*buffer)->buffer[k] = *children[i];
             }
             else
@@ -286,21 +287,18 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
     /* check for each children */
     for (i = 0; i < 4; i++)
     {
-        printf("y\n");
         isCached = 0;
         for (k = 0; k < (*buffer)->bufferSize; k++)
         {
-            printf("z\n");
             if ((*buffer)->buffer[k] == *children[i])
                 continue;
-            printf("a\n");
+
             if (treeHeightBin((*buffer)->buffer[k]) < treeHeightBin(*children[i]))
                 continue;
+
             dist = distTreeBin(*children[i], (*buffer)->buffer[k]);
-            printf("b\n");
             if (dist != -1 && dist <= distErr) /* if similar tree is cached */
             {
-                printf("c\n");
                 isCached = 1;
                 break;
             }
@@ -310,27 +308,23 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
         {
             if (treeHeightBin((*buffer)->buffer[k]) > treeHeightBin(*children[i]))
             {
-                printf("d\n");
+                offerBinBuffer(trash, (*buffer)->buffer[k]);
                 (*buffer)->buffer[k] = *children[i];
             }
             else
             {
-                printf("e\n");
                 /* Relinking */
                 if (isBufferedBin(*buffer, *children[i]) == -1 && isBufferedBin(*trash, *children[i]) == -1)
                 {
                     offerBinBuffer(trash, *children[i]);
                 }
                 *children[i] = (*buffer)->buffer[k];
-                printf("f\n");
             }
         }
         else
         {
-            printf("g\n");
             /* Adding tree to cache */
             offerBinBuffer(buffer, *children[i]);
-            printf("h\n");
         }
     }
 
