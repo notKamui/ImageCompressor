@@ -29,13 +29,14 @@ void drawQuadTreeBin(QuadTreeBin tree, int x, int y, int width, int height)
     drawQuadTreeBin(tree->southWest, x, y + height / 2, width / 2, height / 2);
 }
 
-int getMenuChoice() 
+int getMenuChoice()
 {
     int mousex, mousey;
     int choice;
 
     choice = 0;
-    while (choice == 0) {
+    while (choice == 0)
+    {
         MLV_wait_mouse(&mousex, &mousey);
 
         if (mousex >= 40 && mousex <= 160)
@@ -85,8 +86,9 @@ void drawImgMenu(int binIsMinimized, int RGBAIsMinimized)
 
     if (!binIsMinimized)
     {
-        MLV_draw_rectangle(40, 40, 120, 40, MLV_COLOR_WHITE);
-        MLV_draw_text(50, 50, "Save B&W", MLV_COLOR_WHITE);
+        MLV_draw_text_box(40, 40, 130, 40, "Save B&W", 20, MLV_COLOR_WHITE, MLV_COLOR_WHITE, MLV_COLOR_BLACK, MLV_TEXT_CENTER, MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER);
+        /*MLV_draw_rectangle(40, 40, 120, 40, MLV_COLOR_WHITE);
+        MLV_draw_text(50, 50, "Save B&W", MLV_COLOR_WHITE);*/
 
         MLV_draw_rectangle(40, 120, 120, 40, MLV_COLOR_WHITE);
         MLV_draw_text(50, 130, "Minimize B&W", MLV_COLOR_WHITE);
@@ -105,14 +107,14 @@ void drawImgMenu(int binIsMinimized, int RGBAIsMinimized)
         MLV_draw_rectangle(40, 280, 120, 40, MLV_COLOR_WHITE);
         MLV_draw_text(50, 290, "Minimize RGBA", MLV_COLOR_WHITE);
     }
-    else {
+    else
+    {
         MLV_draw_rectangle(40, 200, 120, 40, MLV_COLOR_WHITE);
         MLV_draw_text(50, 210, "Save MinRGBA", MLV_COLOR_WHITE);
     }
 
     MLV_draw_rectangle(40, 360, 120, 40, MLV_COLOR_WHITE);
     MLV_draw_text(70, 370, "Quit", MLV_COLOR_WHITE);
-    
 
     MLV_actualise_window();
 }

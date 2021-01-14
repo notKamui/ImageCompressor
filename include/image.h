@@ -44,4 +44,17 @@ int colorError(MLV_Image *image, MLV_Color average, int x, int y, int width, int
  */
 void buildRGBATree(QuadTreeRGBA tree, MLV_Image *image, int x, int y, int width, int height, int maxError);
 
+/**
+ * @brief Build a QuadTreeBin from a given image.
+ * 
+ * @param tree QuadTreeBin tree.
+ * @param image Image to compute.
+ * @param x x-axis of the start point.
+ * @param y y-axis of the start point.
+ * @param width Width of the image.
+ * @param height Height of the image.
+ * @param maxError Maximal color error tolarated.
+ */
+void buildBinTree(QuadTreeBin tree, MLV_Image *image, int x, int y, int width, int height, int maxError);
+
 #endif /* __IMAGE_H */
