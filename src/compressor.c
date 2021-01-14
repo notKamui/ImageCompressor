@@ -8,7 +8,7 @@
 #include "../include/quadtree.h"
 #include "../include/visualizer.h"
 
-int distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2)
+float distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2)
 {
     return sqrt(
         (node1->r - node2->r) * (node1->r - node2->r) +
@@ -17,7 +17,7 @@ int distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2)
         (node1->a - node2->a) * (node1->a - node2->a));
 }
 
-int distBin(QuadTreeBin node1, QuadTreeBin node2)
+float distBin(QuadTreeBin node1, QuadTreeBin node2)
 {
     return sqrt((node1->b - node2->b) * (node1->b - node2->b));
 }
@@ -60,7 +60,7 @@ QuadTreeBin avgBin(QuadTreeBin nodes[], int size)
 float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2)
 {
     if (tree1 == NULL || tree2 == NULL)
-        return 99999999999;
+        return -1;
 
     if (isLeafRGBA(tree1) && isLeafRGBA(tree2))
     {
@@ -87,13 +87,13 @@ float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2)
                distTreeRGBA(tree1->southWest, tree2->southWest) / 4 +
                distTreeRGBA(tree1->southEast, tree2->southEast) / 4;
     }
-    return 99999999999;
+    return -1;
 }
 
 float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2)
 {
     if (tree1 == NULL || tree2 == NULL)
-        return 99999999999;
+        return -1;
 
     if (isLeafBin(tree1) && isLeafBin(tree2))
     {
@@ -120,7 +120,7 @@ float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2)
                distTreeBin(tree1->southWest, tree2->southWest) / 4 +
                distTreeBin(tree1->southEast, tree2->southEast) / 4;
     }
-    return 99999999999;
+    return -1;
 }
 
 void removeDuplicateLeavesRGBA(QuadTreeRGBA *tree, QuadTreeRGBABuffer *buffer, QuadTreeRGBABuffer *trash)
@@ -228,7 +228,7 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
                 continue;
 
             dist = distTreeRGBA(*children[i], *children[j]);
-            if (dist <= distErr) /* if exact (or error) same subtrees */
+            if (dist != -1 && dist <= distErr) /* if exact (or error) same subtrees */
             {
                 if (isBufferedRGBA(*buffer, *children[j]) == -1 && isBufferedRGBA(*trash, *children[j]) == -1)
                 {
@@ -242,7 +242,7 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
                         continue;
 
                     dist = distTreeRGBA(*children[j], (*buffer)->buffer[k]);
-                    if (dist <= distErr) /* if similar tree is cached */
+                    if (dist != -1 && dist <= distErr) /* if similar tree is cached */
                     {
                         /* Relinking */
                         printf("Replace level 2\n");
@@ -292,7 +292,7 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
                 continue;
 
             dist = distTreeBin(*children[i], *children[j]);
-            if (dist <= distErr) /* if exact (or error) same subtrees */
+            if (dist != -1 && dist <= distErr) /* if exact (or error) same subtrees */
             {
                 if (isBufferedBin(*buffer, *children[j]) == -1 && isBufferedBin(*trash, *children[j]) == -1)
                 {
@@ -306,7 +306,7 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
                         continue;
 
                     dist = distTreeBin(*children[j], (*buffer)->buffer[k]);
-                    if (dist <= distErr) /* if similar tree is cached */
+                    if (dist != -1 && dist <= distErr) /* if similar tree is cached */
                     {
                         /* Relinking */
                         printf("Replace level 2\n");

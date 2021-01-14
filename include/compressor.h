@@ -12,7 +12,7 @@
  * 
  * @return The color distance between the two nodes
  */
-int distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2);
+float distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2);
 
 /**
  * @brief Calculates the color distance between two QuadTreeBin nodes
@@ -22,7 +22,7 @@ int distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2);
  * 
  * @return The color distance between the two nodes
  */
-int distBin(QuadTreeBin node1, QuadTreeBin node2);
+float distBin(QuadTreeBin node1, QuadTreeBin node2);
 
 /**
  * @brief Calculates an average of given QuadTreeRGBA nodes
