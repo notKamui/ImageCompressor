@@ -1,8 +1,8 @@
 /* Created by Jimmy on 2/11/2020. */
-#include "quadtree.h"
-
 #ifndef __COMPRESSOR_H
 #define __COMPRESSOR_H
+
+#include "quadtree.h"
 
 /**
  * @brief Calculates the color distance between two QuadTreeRGBA nodes
@@ -65,7 +65,7 @@ float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2);
 float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2);
 
 /**
- * @brief Minimises a QuadTreeRGBA with loss
+ * @brief Minimises a QuadTreeRGBA (with loss if distErr > 0)
  * 
  * @param tree Tree to be minimised
  * @param distErr Maximum error distance allowed
@@ -73,7 +73,7 @@ float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2);
 void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr);
 
 /**
- * @brief Minimises a QuadTreeBin with loss
+ * @brief Minimises a QuadTreeBin (with loss if distErr > 0)
  * 
  * @param tree Tree to be minimised
  * @param distErr Maximum error distance allowed
