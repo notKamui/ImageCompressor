@@ -96,6 +96,6 @@ void buildBinTree(QuadTreeBin tree, MLV_Image *image, int x, int y, int width, i
     else
     {
         MLV_convert_color_to_rgba(color, &r, &g, &b, &a);
-        tree->b = (r + g + b + a) / 4 <= 126 ? 0 : 1;
+        tree->b = (r + g + b + a) / 4 > 126 ? 0 : 1;
     }
 }
