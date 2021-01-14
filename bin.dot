@@ -1,0 +1,30 @@
+digraph quadtree {
+    node [style=filled label=""];
+    edge [arrowhead=none];
+
+    n0x55fe39f50850 [shape=point];
+    n0x55fe39f50850:c -> n0x55fe39f50880:c;
+    n0x55fe39f50850:c -> n0x55fe39f508b0:c;
+    n0x55fe39f50850:c -> n0x55fe39f508e0:c;
+    n0x55fe39f50850:c -> n0x55fe39f50910:c;
+    n0x55fe39f50880 [shape=point];
+    n0x55fe39f50880:c -> n0x55fe39f50a00:c;
+    n0x55fe39f50880:c -> n0x55fe39f50a30:c;
+    n0x55fe39f50880:c -> n0x55fe39f50a60:c;
+    n0x55fe39f50880:c -> n0x55fe39f50a90:c;
+    n0x55fe39f50a00 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x55fe39f50a30 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x55fe39f50a60 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=white];
+    n0x55fe39f50a90 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x55fe39f508b0 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x55fe39f508e0 [shape=point];
+    n0x55fe39f508e0:c -> n0x55fe39f50940:c;
+    n0x55fe39f508e0:c -> n0x55fe39f50970:c;
+    n0x55fe39f508e0:c -> n0x55fe39f509a0:c;
+    n0x55fe39f508e0:c -> n0x55fe39f509d0:c;
+    n0x55fe39f50940 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x55fe39f50970 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x55fe39f509a0 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=white];
+    n0x55fe39f509d0 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=black];
+    n0x55fe39f50910 [fixedsize=true width=.15 height=.15 shape=circle fillcolor=white];
+}

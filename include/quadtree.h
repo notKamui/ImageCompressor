@@ -59,6 +59,22 @@ int isLeafRGBA(QuadTreeRGBA tree);
 int isLeafBin(QuadTreeBin tree);
 
 /**
+ * @brief Calculates the height of a QuadTreeRGBA
+ * 
+ * @param tree the tree to calculate the height
+ * @return the height of the tree
+ */
+int treeHeightRGBA(QuadTreeRGBA tree);
+
+/**
+ * @brief Calculates the height of a QuadTreeBin
+ * 
+ * @param tree the tree to calculate the height
+ * @return the height of the tree
+ */
+int treeHeightBin(QuadTreeBin tree);
+
+/**
  * @brief Compares two QuadTreeRGBA data regardless of children.
  * 
  * @return Whether nodes are equivalent 

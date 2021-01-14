@@ -29,6 +29,51 @@ int equivalentBin(QuadTreeBin tree1, QuadTreeBin tree2)
     return tree1->b == tree2->b;
 }
 
+int max(int a, int b)
+{
+    return a > b ? a : b;
+}
+
+int treeHeightRGBA(QuadTreeRGBA tree)
+{
+    if (tree == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        int nwH, neH, swH, seH;
+
+        nwH = treeHeightRGBA(tree->northWest);
+        neH = treeHeightRGBA(tree->northEast);
+        swH = treeHeightRGBA(tree->southWest);
+        seH = treeHeightRGBA(tree->southEast);
+
+        return max(max(nwH, neH), max(swH, seH)) + 1;
+    }
+    
+}
+
+int treeHeightBin(QuadTreeBin tree)
+{
+    if (tree == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        int nwH, neH, swH, seH;
+
+        nwH = treeHeightBin(tree->northWest);
+        neH = treeHeightBin(tree->northEast);
+        swH = treeHeightBin(tree->southWest);
+        seH = treeHeightBin(tree->southEast);
+
+        return max(max(nwH, neH), max(swH, seH)) + 1;
+    }
+    
+}
+
 QuadTreeRGBA allocQuadTreeRGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
     QuadTreeRGBA tree;
