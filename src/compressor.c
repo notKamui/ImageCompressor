@@ -227,9 +227,6 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
         {
             if ((*buffer)->buffer[k] == *children[i])
                 continue;
-
-            if (treeHeightRGBA((*buffer)->buffer[k]) < treeHeightRGBA(*children[i]))
-                continue;
             
             dist = distTreeRGBA(*children[i], (*buffer)->buffer[k]);
             if (dist != -1 && dist <= distErr) /* if similar tree is cached */
@@ -291,9 +288,6 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
         for (k = 0; k < (*buffer)->bufferSize; k++)
         {
             if ((*buffer)->buffer[k] == *children[i])
-                continue;
-
-            if (treeHeightBin((*buffer)->buffer[k]) < treeHeightBin(*children[i]))
                 continue;
 
             dist = distTreeBin(*children[i], (*buffer)->buffer[k]);
