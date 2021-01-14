@@ -243,7 +243,7 @@ void writeMinimizedRGBA(QuadTreeRGBA tree, FILE *file)
 void writeMinimizedBin(QuadTreeBin tree, FILE *file)
 {
     size_t treesize = 0;
-    QuadTreeRGBABuffer buffer = allocQuadTreeBinBuffer();
+    QuadTreeBinBuffer buffer = allocQuadTreeBinBuffer();
     encodeMinimizedBin(tree, file, &buffer, 0, &treesize);
 }
 
