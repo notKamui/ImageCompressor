@@ -3,7 +3,7 @@
 #define __COMPRESSOR_H
 
 #include "quadtree.h"
-#include <MLV/MLV_color.h>
+#include <MLV/MLV_all.h>
 
 /**
  * @brief Calculates the color distance between two QuadTreeRGBA nodes
@@ -44,8 +44,6 @@ QuadTreeRGBA avgRGBA(QuadTreeRGBA nodes[], int size);
  * @return the average of the given nodes
  */
 QuadTreeBin avgBin(QuadTreeBin nodes[], int size);
-
-MLV_Color avgColorRGBA(QuadTreeRGBA tree, int index);
 
 /**
  * @brief Calculates the general distance between two whole QuadTreeRGBA trees

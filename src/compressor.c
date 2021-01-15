@@ -243,7 +243,8 @@ void removeDuplicateLeavesBin(QuadTreeBin *tree, QuadTreeBinBuffer *buffer, Quad
     }
 }
 
-void naiveTreeReductionRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *trash) {
+void naiveTreeReductionRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *trash)
+{
     float dist;
     MLV_Color avg;
     unsigned char r, g, b, a;
@@ -256,7 +257,7 @@ void naiveTreeReductionRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffe
     avg = avgColorRGBA(*tree, 0);
     MLV_convert_color_to_rgba(avg, &r, &g, &b, &a);
     tmp = allocQuadTreeRGBA(r, g, b, a);
-    
+
     dist = distTreeRGBA(tmp, *tree);
     if (dist <= distErr)
     {
