@@ -6,7 +6,7 @@
 
 int main(void)
 {
-        QuadTreeBin node1 = allocQuadTreeBin(0);
+    /*QuadTreeBin node1 = allocQuadTreeBin(0);
 
     QuadTreeBin node2 = allocQuadTreeBin(0);
 
@@ -60,7 +60,9 @@ int main(void)
 
     minimizeQuadTreeBin(&node1, 0);
 
-    generatePDFQuadTreeBin("bin2.dot", "bin2.pdf", node1);
+    generatePDFQuadTreeBin("bin2.dot", "bin2.pdf", node1);*/
+
+    launchApp();
 
     return 0;
 }

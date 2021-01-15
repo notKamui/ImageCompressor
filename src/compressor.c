@@ -335,7 +335,7 @@ void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr)
     QuadTreeRGBABuffer trash = allocQuadTreeRGBABuffer();
 
     simplifyTreesRGBA(tree, distErr, &buffer, &trash);
-    removeDuplicateLeavesRGBA(tree, &buffer, &trash);
+    /*removeDuplicateLeavesRGBA(tree, &buffer, &trash);*/
     freeRGBABuffer(buffer);
     hardFreeRGBABuffer(trash);
 }
@@ -346,10 +346,7 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
     QuadTreeBinBuffer trash = allocQuadTreeBinBuffer();
 
     simplifyTreesBin(tree, distErr, &buffer, &trash);
-    removeDuplicateLeavesBin(tree, &buffer, &trash);
-    printf("A\n");
+    /*removeDuplicateLeavesBin(tree, &buffer, &trash);*/
     freeBinBuffer(buffer);
-    printf("B\n");
     hardFreeBinBuffer(trash);
-    printf("C\n");
 }
