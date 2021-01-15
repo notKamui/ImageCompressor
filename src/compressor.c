@@ -1,8 +1,8 @@
 /* Created by Jimmy on 2/11/2020. */
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
+#include <math.h>
 #include <MLV/MLV_color.h>
 
 #include "../include/compressor.h"
@@ -106,24 +106,24 @@ float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2)
     }
     else if (isLeafRGBA(tree1) && !isLeafRGBA(tree2))
     {
-        return distTreeRGBA(tree1, tree2->northWest) / 4 +
-               distTreeRGBA(tree1, tree2->northEast) / 4 +
-               distTreeRGBA(tree1, tree2->southWest) / 4 +
-               distTreeRGBA(tree1, tree2->southEast) / 4;
+        return (distTreeRGBA(tree1, tree2->northWest) +
+               distTreeRGBA(tree1, tree2->northEast) +
+               distTreeRGBA(tree1, tree2->southWest) +
+               distTreeRGBA(tree1, tree2->southEast)) * .25; /* (1/4) * is way faster than / */
     }
     else if (!isLeafRGBA(tree1) && isLeafRGBA(tree2))
     {
-        return distTreeRGBA(tree2, tree1->northWest) / 4 +
-               distTreeRGBA(tree2, tree1->northEast) / 4 +
-               distTreeRGBA(tree2, tree1->southWest) / 4 +
-               distTreeRGBA(tree2, tree1->southEast) / 4;
+        return (distTreeRGBA(tree2, tree1->northWest) +
+               distTreeRGBA(tree2, tree1->northEast) +
+               distTreeRGBA(tree2, tree1->southWest) +
+               distTreeRGBA(tree2, tree1->southEast)) * .25;
     }
     else if (!isLeafRGBA(tree1) && !isLeafRGBA(tree2))
     {
-        return distTreeRGBA(tree1->northWest, tree2->northWest) / 4 +
-               distTreeRGBA(tree1->northEast, tree2->northEast) / 4 +
-               distTreeRGBA(tree1->southWest, tree2->southWest) / 4 +
-               distTreeRGBA(tree1->southEast, tree2->southEast) / 4;
+        return (distTreeRGBA(tree1->northWest, tree2->northWest) +
+               distTreeRGBA(tree1->northEast, tree2->northEast) +
+               distTreeRGBA(tree1->southWest, tree2->southWest) +
+               distTreeRGBA(tree1->southEast, tree2->southEast)) * .25;
     }
     return -1;
 }
@@ -139,24 +139,24 @@ float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2)
     }
     else if (isLeafBin(tree1) && !isLeafBin(tree2))
     {
-        return distTreeBin(tree1, tree2->northWest) / 4 +
-               distTreeBin(tree1, tree2->northEast) / 4 +
-               distTreeBin(tree1, tree2->southWest) / 4 +
-               distTreeBin(tree1, tree2->southEast) / 4;
+        return (distTreeBin(tree1, tree2->northWest) +
+               distTreeBin(tree1, tree2->northEast) +
+               distTreeBin(tree1, tree2->southWest) +
+               distTreeBin(tree1, tree2->southEast)) * .25;
     }
     else if (!isLeafBin(tree1) && isLeafBin(tree2))
     {
-        return distTreeBin(tree2, tree1->northWest) / 4 +
-               distTreeBin(tree2, tree1->northEast) / 4 +
-               distTreeBin(tree2, tree1->southWest) / 4 +
-               distTreeBin(tree2, tree1->southEast) / 4;
+        return (distTreeBin(tree2, tree1->northWest) +
+               distTreeBin(tree2, tree1->northEast) +
+               distTreeBin(tree2, tree1->southWest) +
+               distTreeBin(tree2, tree1->southEast)) * .25;
     }
     else if (!isLeafBin(tree1) && !isLeafBin(tree2))
     {
-        return distTreeBin(tree1->northWest, tree2->northWest) / 4 +
-               distTreeBin(tree1->northEast, tree2->northEast) / 4 +
-               distTreeBin(tree1->southWest, tree2->southWest) / 4 +
-               distTreeBin(tree1->southEast, tree2->southEast) / 4;
+        return (distTreeBin(tree1->northWest, tree2->northWest) +
+               distTreeBin(tree1->northEast, tree2->northEast) +
+               distTreeBin(tree1->southWest, tree2->southWest) +
+               distTreeBin(tree1->southEast, tree2->southEast)) * .25;
     }
     return -1;
 }
@@ -278,125 +278,95 @@ void naiveTreeReductionRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffe
 
 void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *buffer, QuadTreeRGBABuffer *trash)
 {
-    int i, k, isCached;
+    int k, heightOfCurrent;
     float dist;
-    QuadTreeRGBA *children[4];
 
     if (*tree == NULL)
         return;
 
-    children[0] = &(*tree)->northWest;
-    children[1] = &(*tree)->northEast;
-    children[2] = &(*tree)->southEast;
-    children[3] = &(*tree)->southWest;
+    /* Recursive recall on children to go down the tree first */
+    simplifyTreesRGBA(&(*tree)->northWest, distErr, buffer, trash);
+    simplifyTreesRGBA(&(*tree)->northEast, distErr, buffer, trash);
+    simplifyTreesRGBA(&(*tree)->southWest, distErr, buffer, trash);
+    simplifyTreesRGBA(&(*tree)->southEast, distErr, buffer, trash);
 
-    /* check for each children */
-    for (i = 0; i < 4; i++)
+    heightOfCurrent = treeHeightRGBA(*tree);
+
+    /* check if similar tree is cached in the buffer */
+    for (k = 0; k < (*buffer)->bufferSize; k++)
     {
-        isCached = 0;
-        for (k = 0; k < (*buffer)->bufferSize; k++)
-        {
-            if ((*buffer)->buffer[k] == *children[i])
-                continue;
+        if ((*buffer)->buffer[k] == *tree)
+            continue;
 
-            dist = distTreeRGBA(*children[i], (*buffer)->buffer[k]);
+        if (treeHeightRGBA((*buffer)->buffer[k]) <= heightOfCurrent)
+        {
+            dist = distTreeRGBA(*tree, (*buffer)->buffer[k]);
             if (dist != -1 && dist <= distErr) /* if similar tree is cached */
             {
-                isCached = 1;
+                /* Relinking */
+                offerRGBABuffer(trash, *tree);
+                *tree = (*buffer)->buffer[k];
                 break;
-            }
-        }
-
-        if (isCached)
-        {
-            if (treeHeightRGBA((*buffer)->buffer[k]) > treeHeightRGBA(*children[i]))
-            {
-                offerRGBABuffer(trash, (*buffer)->buffer[k]);
-                (*buffer)->buffer[k] = *children[i];
             }
             else
             {
-                /* Relinking */
-                if (isBufferedRGBA(*buffer, *children[i]) == -1 && isBufferedRGBA(*trash, *children[i]) == -1)
-                {
-                    offerRGBABuffer(trash, *children[i]);
-                }
-                *children[i] = (*buffer)->buffer[k];
+                /* Adding tree to cache */
+                offerRGBABuffer(buffer, *tree);
+                break;
             }
         }
-        else
-        {
+        else {
             /* Adding tree to cache */
-            offerRGBABuffer(buffer, *children[i]);
+            offerRGBABuffer(buffer, *tree);
+            break;
         }
-    }
-
-    /* Recursive recall on children */
-    for (i = 0; i < 4; i++)
-    {
-        simplifyTreesRGBA(children[i], distErr, buffer, trash);
     }
 }
 
 void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffer, QuadTreeBinBuffer *trash)
 {
-    int i, k, isCached;
+    int k, heightOfCurrent;
     float dist;
-    QuadTreeBin *children[4];
 
     if (*tree == NULL)
         return;
 
-    children[0] = &(*tree)->northWest;
-    children[1] = &(*tree)->northEast;
-    children[2] = &(*tree)->southEast;
-    children[3] = &(*tree)->southWest;
+    /* Recursive recall on children to go down the tree first */
+    simplifyTreesBin(&(*tree)->northWest, distErr, buffer, trash);
+    simplifyTreesBin(&(*tree)->northEast, distErr, buffer, trash);
+    simplifyTreesBin(&(*tree)->southWest, distErr, buffer, trash);
+    simplifyTreesBin(&(*tree)->southEast, distErr, buffer, trash);
 
-    /* check for each children */
-    for (i = 0; i < 4; i++)
+    heightOfCurrent = treeHeightBin(*tree);
+
+    /* check if similar tree is cached in the buffer */
+    for (k = 0; k < (*buffer)->bufferSize; k++)
     {
-        isCached = 0;
-        for (k = 0; k < (*buffer)->bufferSize; k++)
-        {
-            if ((*buffer)->buffer[k] == *children[i])
-                continue;
+        if ((*buffer)->buffer[k] == *tree)
+            continue;
 
-            dist = distTreeBin(*children[i], (*buffer)->buffer[k]);
+        if (treeHeightBin((*buffer)->buffer[k]) <= heightOfCurrent)
+        {
+            dist = distTreeBin(*tree, (*buffer)->buffer[k]);
             if (dist != -1 && dist <= distErr) /* if similar tree is cached */
             {
-                isCached = 1;
+                /* Relinking */
+                offerBinBuffer(trash, *tree);
+                *tree = (*buffer)->buffer[k];
                 break;
-            }
-        }
-
-        if (isCached)
-        {
-            if (treeHeightBin((*buffer)->buffer[k]) > treeHeightBin(*children[i]))
-            {
-                offerBinBuffer(trash, (*buffer)->buffer[k]);
-                (*buffer)->buffer[k] = *children[i];
             }
             else
             {
-                /* Relinking */
-                if (isBufferedBin(*buffer, *children[i]) == -1 && isBufferedBin(*trash, *children[i]) == -1)
-                {
-                    offerBinBuffer(trash, *children[i]);
-                }
-                *children[i] = (*buffer)->buffer[k];
+                /* Adding tree to cache */
+                offerBinBuffer(buffer, *tree);
+                break;
             }
         }
-        else
-        {
+        else {
             /* Adding tree to cache */
-            offerBinBuffer(buffer, *children[i]);
+            offerBinBuffer(buffer, *tree);
+            break;
         }
-    }
-
-    /* Recursive recall on children */
-    for (i = 0; i < 4; i++)
-    {
-        simplifyTreesBin(children[i], distErr, buffer, trash);
     }
 }
 
@@ -422,8 +392,8 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
     QuadTreeBinBuffer trash = allocQuadTreeBinBuffer();
 
     printf("Starting minimization...\n");
-    /*removeDuplicateLeavesBin(tree, &buffer, &trash);*/
-    simplifyTreesBin(tree, distErr, &buffer, &trash);
+    removeDuplicateLeavesBin(tree, &buffer, &trash);
+    /*simplifyTreesBin(tree, distErr, &buffer, &trash);*/
 
     printf("Minimization completed !\nFreeing buffers...\n");
     freeBinBuffer(buffer);

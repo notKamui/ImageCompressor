@@ -51,7 +51,6 @@ int treeHeightRGBA(QuadTreeRGBA tree)
 
         return max(max(nwH, neH), max(swH, seH)) + 1;
     }
-    
 }
 
 int treeHeightBin(QuadTreeBin tree)

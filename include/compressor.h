@@ -45,6 +45,13 @@ QuadTreeRGBA avgRGBA(QuadTreeRGBA nodes[], int size);
  */
 QuadTreeBin avgBin(QuadTreeBin nodes[], int size);
 
+/**
+ * @brief Calculates the average color of a given QuadTreeRGBA
+ * 
+ * @param tree the tree to evaluate
+ * @param index the current index of iteration
+ * @return the average color of the tree
+ */
 MLV_Color avgColorRGBA(QuadTreeRGBA tree, int index);
 
 /**
