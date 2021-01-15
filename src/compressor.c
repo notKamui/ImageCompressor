@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <MLV/MLV_color.h>
 
 #include "../include/compressor.h"
 #include "../include/quadtree.h"
@@ -20,6 +21,43 @@ float distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2)
 float distBin(QuadTreeBin node1, QuadTreeBin node2)
 {
     return sqrt((node1->b - node2->b) * (node1->b - node2->b));
+}
+
+MLV_Color avgColorRGBA(QuadTreeRGBA tree, int index)
+{
+    MLV_Color color;
+    Uint8 tmpR, tmpG, tmpB, tmpA;
+    double r = 0, g = 0, b = 0, a = 0;
+    int i;
+    QuadTreeRGBA children[4];
+
+    children[0] = tree->northWest;
+    children[1] = tree->northEast;
+    children[2] = tree->southEast;
+    children[3] = tree->southWest;
+
+    if (tree == NULL)
+    {
+        return MLV_rgba(0, 0, 0, 0);
+    }
+
+    if (isLeafRGBA(tree))
+    {
+        return MLV_rgba(tree->r, tree->g, tree->b, tree->a);
+    }
+    else
+    {
+        for (i = 0; i < 4; i++)
+        {
+            color = avgColorRGBA(children[i], index + 1);
+            MLV_convert_color_to_rgba(color, &tmpR, &tmpG, &tmpB, &tmpA);
+            r += tmpR;
+            g += tmpG;
+            b += tmpB;
+            a += tmpA;
+        }
+        return MLV_rgba(floor(r / 4), floor(g / 4), floor(b / 4), floor(a / 4));
+    }
 }
 
 QuadTreeRGBA avgRGBA(QuadTreeRGBA nodes[], int size)
@@ -227,7 +265,7 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
         {
             if ((*buffer)->buffer[k] == *children[i])
                 continue;
-            
+
             dist = distTreeRGBA(*children[i], (*buffer)->buffer[k]);
             if (dist != -1 && dist <= distErr) /* if similar tree is cached */
             {
