@@ -57,7 +57,7 @@ void encodeRGBA(QuadTreeRGBA tree, FILE *file, unsigned char *buffer, size_t *bu
         return;
     }
 
-    if (tree->northWest || tree->northEast || tree->southEast || tree->southWest)
+    if (!isLeafRGBA(tree))
     {
         writeBit(file, 0, buffer, bufferSize);
     }
@@ -83,14 +83,14 @@ void encodeBin(QuadTreeBin tree, FILE *file, unsigned char *buffer, size_t *buff
         return;
     }
 
-    if (tree->northWest || tree->northEast || tree->southEast || tree->southWest)
+    if (!isLeafBin(tree))
     {
         writeBit(file, 0, buffer, bufferSize);
     }
     else
     {
         writeBit(file, 1, buffer, bufferSize);
-        writeBit(file, (tree->b > 0), buffer, bufferSize);
+        writeBit(file, tree->b, buffer, bufferSize);
     }
 
     encodeBin(tree->northWest, file, buffer, bufferSize);
@@ -104,6 +104,7 @@ void writeRGBA(QuadTreeRGBA tree, FILE *file)
     unsigned char buffer = 0;
     size_t bufferSize = 0;
     encodeRGBA(tree, file, &buffer, &bufferSize);
+    flush(file, &buffer, &bufferSize);
 }
 
 void writeBin(QuadTreeBin tree, FILE *file)
@@ -111,6 +112,7 @@ void writeBin(QuadTreeBin tree, FILE *file)
     unsigned char buffer = 0;
     size_t bufferSize = 0;
     encodeBin(tree, file, &buffer, &bufferSize);
+    flush(file, &buffer, &bufferSize);
 }
 
 void encodeMinimizedRGBA(QuadTreeRGBA tree, FILE *file, QuadTreeRGBABuffer *treeBuffer, int index, size_t *treeSize)
