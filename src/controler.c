@@ -291,11 +291,11 @@ int getMenuChoice(int page)
                 {
                     choice = qtBin ? (binIsMinimized ? INTENT_UNKNOWN : INTENT_SAVE_BIN) : (image ? INTENT_BUILD_BIN : INTENT_UNKNOWN);
                 }
-                else if (mousey >= 110 && mousey <= 170 && qtRGBA && page == 1)
+                else if (mousey >= 110 && mousey <= 170 && qtBin && page == 1)
                 {
                     choice = binIsMinimized ? INTENT_SAVE_MIN_BIN : INTENT_MIN_BIN;
                 }
-                else if (mousey >= 180 && mousey <= 240 && qtRGBA && page == 1)
+                else if (mousey >= 180 && mousey <= 240 && qtBin && page == 1)
                 {
                     choice = binIsMinimized ? INTENT_SAVE_MIN_BIN_2 : INTENT_UNKNOWN;
                 }
