@@ -3,7 +3,7 @@
 #define __COMPRESSOR_H
 
 #include "quadtree.h"
-#include <MLV/MLV_color.h>
+#include <MLV/MLV_all.h>
 
 /**
  * @brief Calculates the color distance between two QuadTreeRGBA nodes
