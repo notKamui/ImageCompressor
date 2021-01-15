@@ -24,6 +24,8 @@
 #define INTENT_SW_RGBA 12
 #define INTENT_SW_BW_WIRE 13
 #define INTENT_SW_RGBA_WIRE 14
+#define INTENT_BUILD_BIN 15
+#define INTENT_BUILD_RGBA 16
 
 MLV_Image *image;
 MLV_Input_box *fileInput;
@@ -91,10 +93,6 @@ int openImage(const char *fname)
             return 0;
         }
         MLV_resize_image(image, PIC_WIDTH, PIC_HEIGHT);
-        qtRGBA = allocQuadTreeRGBA(0, 0, 0, 0);
-        qtBin = allocQuadTreeBin(0);
-        buildRGBATree(qtRGBA, image, 0, 0, PIC_WIDTH, PIC_HEIGHT, 50);
-        buildBinTree(qtBin, image, 0, 0, PIC_WIDTH, PIC_HEIGHT, 50);
         return 1;
     case TYPE_QTN:
         if ((file = fopen(fname, "r")) == NULL)
@@ -167,7 +165,7 @@ int openImage(const char *fname)
 
 void saveBin()
 {
-    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 4)) == NULL)
+    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 5)) == NULL)
     {
         fprintf(stderr, "FATAL: Allocation error.\n");
         exit(1);
@@ -183,7 +181,7 @@ void saveBin()
 
 void saveMinBin()
 {
-    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 4)) == NULL)
+    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 5)) == NULL)
     {
         fprintf(stderr, "FATAL: Allocation error.\n");
         exit(1);
@@ -199,7 +197,7 @@ void saveMinBin()
 
 void saveMinBin2()
 {
-    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 4)) == NULL)
+    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 5)) == NULL)
     {
         fprintf(stderr, "FATAL: Allocation error.\n");
         exit(1);
@@ -215,7 +213,7 @@ void saveMinBin2()
 
 void saveRGBA()
 {
-    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 4)) == NULL)
+    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 5)) == NULL)
     {
         fprintf(stderr, "FATAL: Allocation error.\n");
         exit(1);
@@ -231,7 +229,7 @@ void saveRGBA()
 
 void saveMinRGBA()
 {
-    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 4)) == NULL)
+    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 5)) == NULL)
     {
         fprintf(stderr, "FATAL: Allocation error.\n");
         exit(1);
@@ -248,7 +246,7 @@ void saveMinRGBA()
 
 void saveMinRGBA2()
 {
-    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 4)) == NULL)
+    if ((outputFileName = calloc(sizeof(char), strlen(fileName) + 5)) == NULL)
     {
         fprintf(stderr, "FATAL: Allocation error.\n");
         exit(1);
@@ -283,31 +281,35 @@ int getMenuChoice(int page)
         }
         else if (event == MLV_MOUSE_BUTTON && button == MLV_BUTTON_LEFT && state == MLV_PRESSED)
         {
+            if (mousex >= MARGIN * 2 + BTN_WIDTH && mousex <= WND_WIDTH - MARGIN && mousey >= MARGIN && mousey <= WND_HEIGHT - MARGIN && image)
+            {
+                target = ORIGINAL_PICTURE;
+            }
             if (mousex >= MARGIN && mousex <= WND_WIDTH - 2 * MARGIN - PIC_WIDTH)
             {
-                if (mousey >= 40 && mousey <= 100 && qtRGBA)
+                if (mousey >= 40 && mousey <= 100 && page == 1)
                 {
-                    choice = page == 0 ? -1 : (binIsMinimized ? INTENT_UNKNOWN : INTENT_SAVE_BIN);
+                    choice = qtBin ? (binIsMinimized ? INTENT_UNKNOWN : INTENT_SAVE_BIN) : (image ? INTENT_BUILD_BIN : INTENT_UNKNOWN);
                 }
-                else if (mousey >= 110 && mousey <= 170 && qtRGBA)
+                else if (mousey >= 110 && mousey <= 170 && qtRGBA && page == 1)
                 {
-                    choice = page == 0 ? -1 : (binIsMinimized ? INTENT_SAVE_MIN_BIN : INTENT_MIN_BIN);
+                    choice = binIsMinimized ? INTENT_SAVE_MIN_BIN : INTENT_MIN_BIN;
                 }
-                else if (mousey >= 180 && mousey <= 240 && qtRGBA)
+                else if (mousey >= 180 && mousey <= 240 && qtRGBA && page == 1)
                 {
-                    choice = page == 0 ? -1 : (binIsMinimized ? INTENT_SAVE_MIN_BIN_2 : INTENT_UNKNOWN);
+                    choice = binIsMinimized ? INTENT_SAVE_MIN_BIN_2 : INTENT_UNKNOWN;
                 }
-                else if (mousey >= 250 && mousey <= 310 && qtRGBA)
+                else if (mousey >= 250 && mousey <= 310 && page == 1)
                 {
-                    choice = page == 0 ? -1 : (RGBAIsMinimized ? INTENT_UNKNOWN : INTENT_SAVE_RGBA);
+                    choice = qtRGBA ? (RGBAIsMinimized ? INTENT_UNKNOWN : INTENT_SAVE_RGBA) : (image ? INTENT_BUILD_RGBA : INTENT_UNKNOWN);
                 }
-                else if (mousey >= 320 && mousey <= 380 && qtRGBA)
+                else if (mousey >= 320 && mousey <= 380 && qtRGBA && page == 1)
                 {
-                    choice = page == 0 ? -1 : (RGBAIsMinimized ? INTENT_SAVE_MIN_RGBA : INTENT_MIN_RGBA);
+                    choice = RGBAIsMinimized ? INTENT_SAVE_MIN_RGBA : INTENT_MIN_RGBA;
                 }
-                else if (mousey >= 390 && mousey <= 450 && qtRGBA)
+                else if (mousey >= 390 && mousey <= 450 && qtRGBA && page == 1)
                 {
-                    choice = page == 0 ? -1 : (RGBAIsMinimized ? INTENT_SAVE_MIN_RGBA_2 : INTENT_UNKNOWN);
+                    choice = RGBAIsMinimized ? INTENT_SAVE_MIN_RGBA_2 : INTENT_UNKNOWN;
                 }
                 else if (mousey >= WND_HEIGHT - MARGIN - BTN_HEIGHT && mousey <= WND_HEIGHT - MARGIN)
                 {
@@ -456,6 +458,20 @@ void menu()
                     break;
                 case INTENT_SW_RGBA_WIRE:
                     target = WIREFRAME_QT_RGBA;
+                    break;
+                case INTENT_BUILD_BIN:
+                    assert(image);
+                    assert(!qtBin);
+                    qtBin = allocQuadTreeBin(0);
+                    buildBinTree(qtBin, image, 0, 0, PIC_WIDTH, PIC_HEIGHT, 0);
+                    target = QT_BIN;
+                    break;
+                case INTENT_BUILD_RGBA:
+                    assert(image);
+                    assert(!qtRGBA);
+                    qtRGBA = allocQuadTreeRGBA(0, 0, 0, 0);
+                    buildRGBATree(qtRGBA, image, 0, 0, PIC_WIDTH, PIC_HEIGHT, 0);
+                    target = QT_RGBA;
                     break;
                 case INTENT_CLOSE:
                     open = 0;
