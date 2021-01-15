@@ -243,6 +243,39 @@ void removeDuplicateLeavesBin(QuadTreeBin *tree, QuadTreeBinBuffer *buffer, Quad
     }
 }
 
+void naiveTreeReductionRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *trash) {
+    float dist;
+    MLV_Color avg;
+    unsigned char r, g, b, a;
+    QuadTreeRGBA tmp;
+
+    if (*tree == NULL)
+        return;
+
+    /* Creating the average leaf color of the current tree */
+    avg = avgColorRGBA(*tree, 0);
+    MLV_convert_color_to_rgba(avg, &r, &g, &b, &a);
+    tmp = allocQuadTreeRGBA(r, g, b, a);
+    
+    dist = distTreeRGBA(tmp, *tree);
+    if (dist <= distErr)
+    {
+        /* Discarding the previous tree and replacing it by its average */
+        offerRGBABuffer(trash, *tree);
+        *tree = tmp;
+    }
+    else
+    {
+        /* Discarding the average and recursive call on children */
+        offerRGBABuffer(trash, tmp);
+
+        naiveTreeReductionRGBA(&(*tree)->northWest, distErr, trash);
+        naiveTreeReductionRGBA(&(*tree)->northEast, distErr, trash);
+        naiveTreeReductionRGBA(&(*tree)->southWest, distErr, trash);
+        naiveTreeReductionRGBA(&(*tree)->southEast, distErr, trash);
+    }
+}
+
 void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *buffer, QuadTreeRGBABuffer *trash)
 {
     int i, k, isCached;
@@ -372,10 +405,15 @@ void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr)
     QuadTreeRGBABuffer buffer = allocQuadTreeRGBABuffer();
     QuadTreeRGBABuffer trash = allocQuadTreeRGBABuffer();
 
-    simplifyTreesRGBA(tree, distErr, &buffer, &trash);
-    /*removeDuplicateLeavesRGBA(tree, &buffer, &trash);*/
+    printf("Starting minimization...\n");
+    naiveTreeReductionRGBA(tree, distErr, &trash);
+    removeDuplicateLeavesRGBA(tree, &buffer, &trash);
+    /*simplifyTreesRGBA(tree, distErr, &buffer, &trash);*/
+
+    printf("Minimization completed !\nFreeing buffers...\n");
     freeRGBABuffer(buffer);
     hardFreeRGBABuffer(trash);
+    printf("Completed !\n");
 }
 
 void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
@@ -383,8 +421,12 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
     QuadTreeBinBuffer buffer = allocQuadTreeBinBuffer();
     QuadTreeBinBuffer trash = allocQuadTreeBinBuffer();
 
-    simplifyTreesBin(tree, distErr, &buffer, &trash);
+    printf("Starting minimization...\n");
     /*removeDuplicateLeavesBin(tree, &buffer, &trash);*/
+    simplifyTreesBin(tree, distErr, &buffer, &trash);
+
+    printf("Minimization completed !\nFreeing buffers...\n");
     freeBinBuffer(buffer);
     hardFreeBinBuffer(trash);
+    printf("Completed !\n");
 }
