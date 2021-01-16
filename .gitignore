@@ -3,4 +3,4 @@
 .idea/
 .vscode/
 *.h.gch
-prog
+./prog
