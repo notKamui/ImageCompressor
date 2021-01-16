@@ -443,11 +443,7 @@ void menu()
                     break;
                 case INTENT_MIN_RGBA:
                     assert(RGBAIsMinimized == 0);
-<<<<<<< HEAD
                     minimizeQuadTreeRGBA(&qtRGBA, 10);
-=======
-                    minimizeQuadTreeRGBA(&qtRGBA, 2);
->>>>>>> 995c2553d26d1e95dfc8c6ecae02167ff4c40b01
                     target = QT_RGBA;
                     RGBAIsMinimized = 1;
                     break;
