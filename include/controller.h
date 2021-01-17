@@ -1,6 +1,10 @@
 #ifndef __CONTROLLER_H
 #define __CONTROLLER_H
 
+/**
+ * @brief Defines the different supported file types
+ * 
+ */
 typedef enum
 {
     TYPE_UNKNOWN,
@@ -13,6 +17,10 @@ typedef enum
     TYPE_GMN2
 } FileType;
 
+/**
+ * @brief Defines the possible targets to draw on the window
+ * 
+ */
 typedef enum
 {
     ORIGINAL_PICTURE,

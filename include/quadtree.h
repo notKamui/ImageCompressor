@@ -7,6 +7,11 @@
 #define INNER_NODE 0
 #define OUTER_NODE 1
 
+/**
+ * @brief A quadtree node with rgba channels.
+ * 
+ * If all children are NULL then it is a leaf.
+ */
 typedef struct s_quadtree_rgba
 {
     struct s_quadtree_rgba *northWest;
@@ -19,6 +24,11 @@ typedef struct s_quadtree_rgba
     unsigned char a;
 } * QuadTreeRGBA;
 
+/**
+ * @brief A quadtree node with binary channel.
+ * 
+ * If all children are NULL then it is a leaf.
+ */
 typedef struct s_quadtree_bin
 {
     struct s_quadtree_bin *northWest;
@@ -28,12 +38,20 @@ typedef struct s_quadtree_bin
     unsigned char b;
 } * QuadTreeBin;
 
+/**
+ * @brief A buffer to contain RGBA quadtree nodes.
+ * Knows its size.
+ */
 typedef struct s_quadtree_rgba_buffer
 {
     QuadTreeRGBA *buffer;
     size_t bufferSize;
 } * QuadTreeRGBABuffer;
 
+/**
+ * @brief A buffer to contain binary quadtree nodes.
+ * Knows its size.
+ */
 typedef struct s_quadtree_bin_buffer
 {
     QuadTreeBin *buffer;
@@ -207,12 +225,32 @@ int sizeQuadTreeRGBA(QuadTreeRGBA tree, QuadTreeRGBABuffer *buffer);
  */
 int sizeQuadTreeBin(QuadTreeBin tree, QuadTreeBinBuffer *buffer);
 
+/**
+ * @brief Frees a given RGBA buffer.
+ * 
+ * @param buffer The buffer to be freed.
+ */
 void freeRGBABuffer(QuadTreeRGBABuffer buffer);
 
+/**
+ * @brief Frees a given Bin buffer.
+ * 
+ * @param buffer The buffer to be freed.
+ */
 void freeBinBuffer(QuadTreeBinBuffer buffer);
 
+/**
+ * @brief Frees the given RGBA buffer along with its content.
+ * 
+ * @param buffer The buffer to be freed.
+ */
 void hardFreeRGBABuffer(QuadTreeRGBABuffer buffer);
 
+/**
+ * @brief Frees the given Bin buffer along with its content.
+ * 
+ * @param buffer The buffer to be freed.
+ */
 void hardFreeBinBuffer(QuadTreeBinBuffer buffer);
 
 #endif /* __QUADTREE_H */

@@ -20,22 +20,44 @@
  * @brief Draw a RGBAQuadTree recursively at the given coordinates.
  * 
  * @param tree RGBAQuadTree to draw.
+ * @param x The x coordinate.
+ * @param y The y coordinate.
  * @param width Width of the draw.
  * @param height Height of the draw.
  */
 void drawQuadTreeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 
+/**
+ * @brief Draw a RGBAQuadTree recursively in wireframes at given coordinates.
+ * 
+ * @param tree QuadTreeRGBA to draw.
+ * @param x The x coordinate.
+ * @param y The y coordinate.
+ * @param width Width of the draw.
+ * @param height Height of the draw.
+ */
 void drawQuadTreeWireframeRGBA(QuadTreeRGBA tree, int x, int y, int width, int height);
 
 /**
  * @brief Draw a BinQuadTree recursively at the given coordinates.
  * 
  * @param tree BinQuadTree to draw.
+ * @param x The x coordinate.
+ * @param y The y coordinate.
  * @param width Width of the draw.
  * @param height Height of the draw.
  */
 void drawQuadTreeBin(QuadTreeBin tree, int x, int y, int width, int height);
 
+/**
+ * @brief Draw a BinQuadTree recursively in wireframes at given coordinates.
+ * 
+ * @param tree QuadTreeBin to draw.
+ * @param x The x coordinate.
+ * @param y The y coordinate.
+ * @param width Width of the draw.
+ * @param height Height of the draw.
+ */
 void drawQuadTreeWireframeBin(QuadTreeBin tree, int x, int y, int width, int height);
 
 /**
