@@ -307,7 +307,9 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
         else 
         {
             /* Adding tree to cache */
-            offerRGBABuffer(buffer, *tree);
+            if (!isBufferedRGBA(*buffer, *tree)) {
+                offerRGBABuffer(buffer, *tree);
+            }
         }  
     }
 }
@@ -359,7 +361,9 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
         else 
         {
             /* Adding tree to cache */
-            offerBinBuffer(buffer, *tree);
+            if (!isBufferedBin(*buffer, *tree)) {
+                offerBinBuffer(buffer, *tree);
+            }
         }  
     }
 }
