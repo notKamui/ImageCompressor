@@ -406,6 +406,7 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
     QuadTreeBinBuffer trash2 = allocQuadTreeBinBuffer();
     QuadTreeBinBuffer trueTrash = allocQuadTreeBinBuffer();
 
+    /* since there will be no other leaves, might as well make them in advance */
     QuadTreeBin black = allocQuadTreeBin(0);
     QuadTreeBin white = allocQuadTreeBin(1);
     offerBinBuffer(&buffer1, black);
@@ -419,9 +420,8 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
     freeBinBuffer(buffer1);
     hardFreeBinBuffer(trash1);
     /* checking for truly unused nodes */
-    printf("%ld\n", trash2->bufferSize);
     for (i = 0; i < trash2->bufferSize; i++) {
-        if (!isBufferedBin(buffer2, trash2->buffer[i])) {
+        if (isBufferedBin(buffer2, trash2->buffer[i])) {
             printf("a\n");
             offerBinBuffer(&trueTrash, trash2->buffer[i]);
         }
