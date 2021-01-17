@@ -1,0 +1,639 @@
+commit cbfc7ffe69e5ccbc0648442de3fb06bef54ca8c4
+Merge: e95ebaa 5624ac8
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 17 19:34:00 2021 +0100
+
+    Merge branch 'master' of https://git-etud.u-pem.fr/compression-d-images-avec-des-quadtrees-im-jt
+
+commit e95ebaab658f3384da927dd47a0a458969b9612c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 17 19:33:40 2021 +0100
+
+    Add documentation and technical report
+
+commit 5624ac843a63e9092b877b22d44f62792a26418b
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 18:39:39 2021 +0100
+
+    cleaned directory
+
+commit 97b57af925e6b11bc72948c70948b0a3b65561c6
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 17:51:16 2021 +0100
+
+    Completed documentation in header files
+
+commit 69fd3b83856f4af472b36d66688c9070deed3907
+Merge: 2664b63 5e82d0d
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 17:40:12 2021 +0100
+
+    Merge branch 'devJim'
+
+commit 5e82d0d5b34ab1b79fb59442c91bfab5dc458ab4
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 15:35:56 2021 +0100
+
+    minor optimization on mini
+
+commit 2664b638ad594979e3862b39004a0b380788738e
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 17 15:12:15 2021 +0100
+
+    Add pictures to test out the program
+
+commit bfb66ea8592e824d4ce43d343cd72aa3960dd741
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 17 15:11:47 2021 +0100
+
+    Fix typo in controller module name
+
+commit 809267c1b86ef5d606283ecbf9f06485a15d4136
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 13:41:55 2021 +0100
+
+    small bugfix
+
+commit 008c7dbcbdc5e305399903cd4c3537a5d30dbd9e
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 13:21:13 2021 +0100
+
+    small correction on error distance
+
+commit 1e6d781c5f68cd269a44d417a872d623c29e09b8
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 13:19:21 2021 +0100
+
+    simplified removeDuplicateLeavesBin because it was overly complicated
+
+commit 04434c0b8648d39ba96902e602ea615ff060c6cb
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 17 13:11:37 2021 +0100
+
+    updated compressor to support the simplify algorithm
+
+commit 804eb12a4c0935e3152156169d51053b86940745
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sat Jan 16 10:54:12 2021 +0100
+
+    reorganized buffer management
+
+commit f7e2d688083921884dbb12c11e8066de0c944c9b
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sat Jan 16 01:08:04 2021 +0100
+
+    updated gitignore
+
+commit 3d6aa143ee0e5c26ac75dba08cb31b273efee7e2
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sat Jan 16 01:07:41 2021 +0100
+
+    updated gitignore
+
+commit dd3cdf6485ead352d0149fbf7df839b2e07c0e65
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sat Jan 16 01:00:15 2021 +0100
+
+    resolve conflict
+
+commit cbbfbc46163c4d91ac73cec770978cebe06a04bb
+Merge: 5d2c7ef 995c255
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sat Jan 16 00:57:19 2021 +0100
+
+    resolve conflict
+
+commit 5d2c7ef23d1eb2b6dfe72a48c7d04f221f89a061
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sat Jan 16 00:56:05 2021 +0100
+
+    improved minimisation
+
+commit 995c2553d26d1e95dfc8c6ecae02167ff4c40b01
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Fri Jan 15 22:31:06 2021 +0100
+
+    Little tweaks
+
+commit d8d6a77684c13c6c5f99dcd29fc1a5a18f52ee32
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Fri Jan 15 20:24:58 2021 +0100
+
+    added naive reduction on rgba tree
+
+commit 737918d547a13f2b0812069bfe3e851a3a84b796
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Fri Jan 15 13:46:58 2021 +0100
+
+    Add method to compute average color of a tree (little inacurate due to rounding)
+
+commit 56aac3256f46ab4238ede5319354a78d5d998fde
+Merge: b192e93 d8290ae
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Fri Jan 15 12:34:36 2021 +0100
+
+    Merge branch 'master' into devCompressor
+
+commit d8290ae40704d3c314e0276380d726fbedeb1d12
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Fri Jan 15 11:08:55 2021 +0100
+
+    Fix little typo
+
+commit b192e934bfd0a7052dad333c3dfdde2cefd6d9c1
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Fri Jan 15 10:39:44 2021 +0100
+
+    soft removed unnecessary leaf caching
+
+commit 5f120b3996be63cb1139219279e6d4d3bb4188fe
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Fri Jan 15 01:21:17 2021 +0100
+
+    Remove automatic tree building
+
+commit 94f2d723a93a4406b80554c9728e23ed5a821f14
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Fri Jan 15 00:39:40 2021 +0100
+
+    cleaning
+
+commit 4ded9af40431141214609a274ae1e9ab6522532e
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Fri Jan 15 00:36:45 2021 +0100
+
+    cleaning
+
+commit 06f27e293f60058ea3065c190dbe081f625c0b00
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Fri Jan 15 00:30:22 2021 +0100
+
+    *trying* to improve compressor
+
+commit e36e3285b74d02cbc4989e4bba603faa7d22386c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Fri Jan 15 00:23:18 2021 +0100
+
+    Fix writer not flushing last byte
+
+commit 244335f5f6b0083bbbf41186025e929b953116a3
+Merge: cb2bccf 6928306
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Thu Jan 14 22:47:13 2021 +0100
+
+    Merge branch 'devIrwin' into devJim
+    
+    well i need the fonts
+
+commit 692830687696bfc08c6ac9b3665e9e0094b8b960
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 22:45:18 2021 +0100
+
+    Add font
+
+commit cb2bccfddb2595abedcc9e9e8017d1ac050b0ea8
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Thu Jan 14 22:43:24 2021 +0100
+
+    Tree distance is now a float
+
+commit df25537d4052a1dda8343c5b75d8428e95804fed
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 22:30:21 2021 +0100
+
+    Add quadtree read system + wireframe view
+
+commit c27a6f0627df329575e0779dcedccd40c79f6c65
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 21:12:43 2021 +0100
+
+    Fix some memory issue
+
+commit 0b60c5e06ec9ec692765be77bc6f5aeb527a2a0c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 20:58:38 2021 +0100
+
+    Merge some old stash
+
+commit 8fcdc9d60dfa1c10a118eea26dc5f4f82cecab75
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 20:55:51 2021 +0100
+
+    Add a LOT of GUI features
+
+commit a303db1d94bebb487e6a964c10ba408150af8898
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 20:55:17 2021 +0100
+
+    Fix inverted QTN colors
+
+commit 76319d04e45ea3a5e36fd9493c91115ea5c96a9c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 20:54:43 2021 +0100
+
+    Fix writer
+
+commit 65c2d73cb16e69dbe2af0899b98a9d0996de403a
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 20:49:12 2021 +0100
+
+    Some stupid merge
+
+commit 44f334a125ab317035f56b386e833ab9ba38ac47
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 18:42:26 2021 +0100
+
+    Add QuadTreeBin build method
+
+commit b3cebb67b1ec040f0149c37f3e2865e352bd0f80
+Merge: ef9bf42 cd5ca0d
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Thu Jan 14 14:16:20 2021 +0100
+
+    Merge branch 'devJim' into devIrwin
+
+commit cd5ca0d8633a0b07b47f628246e3f96569580544
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Wed Jan 13 16:54:05 2021 +0100
+
+    optimized inclusions
+
+commit 2c5da2fd1f634559b89404e3bb7841cd33202c7d
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Wed Jan 13 16:50:10 2021 +0100
+
+    Better order for the buttons
+
+commit fb95e7383b0127252fab207e84921332f948100c
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Wed Jan 13 16:36:10 2021 +0100
+
+    GUI and Controler update
+
+commit ef9bf42ca2dd4d74ec3c92c8110f616b039f2be1
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Jan 13 14:34:58 2021 +0100
+
+    Simplify writer methods
+
+commit 3974f12e65f7efdc0fcf25464616c13d79b4d399
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Jan 13 14:26:20 2021 +0100
+
+    Add methods to decode binary minimized trees and simplify parser methods
+
+commit 94a679d607b48228d3e7e6f8a76cc0bf19189cee
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Jan 12 23:05:28 2021 +0100
+
+    Add methods to encode minimized trees in binary files
+
+commit c456db1ceefd83b570a42d69f35ca2d4ba0b598c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Jan 12 03:15:18 2021 +0100
+
+    Fix Makefile
+
+commit f3b98fa99243a5d76b947c047c8043d1cb2f9e57
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Jan 12 03:14:48 2021 +0100
+
+    Add methods to compute tree size
+
+commit 960b7977a06b64a7fc54375135ba9ef24737fd76
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Jan 12 03:10:16 2021 +0100
+
+    Fix write not writing some minimized nodes in very specific cases
+
+commit 6d0f150194bf1b0c71089ed57093fccab22fec8c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Jan 12 02:58:51 2021 +0100
+
+    Fix memory leak and invalid read in parser
+
+commit 0f9d454d11d4f4727222fb6bc28faa19bef6b2ff
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Jan 12 02:40:38 2021 +0100
+
+    Fix compressor
+
+commit f7cf931abbfd2b93f91694a236bd65d988516e42
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Mon Jan 11 23:20:58 2021 +0100
+
+    basic gui refactor
+
+commit c4b53db88263f519f462881d080ed74ac2673b2d
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Mon Jan 11 23:16:53 2021 +0100
+
+    base gui app
+
+commit ad5867d0704dc99a93c66703388aa225164908f5
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Mon Jan 11 19:42:56 2021 +0100
+
+    updated documentation
+
+commit c0db511aac7d4e0af0cd3fa1ef0749fc13baa2eb
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 19:37:16 2021 +0100
+
+    Rework of the compressor
+
+commit adba8529d2eff0d2f65c1c77a98890f32e04b9f3
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 19:36:13 2021 +0100
+
+    Fix visualizer not behaving correctly with minimized trees
+
+commit badbfa40b049f1471164ad891b6414cba094bf2d
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 16:23:05 2021 +0100
+
+    Add equivalence check methods
+
+commit 1709a8e7e13a3570225511cab605ef997b9c96e2
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 16:15:19 2021 +0100
+
+    Change buffred checks implementation
+
+commit 4b395ec28e878c654635d8430b040bc1c0cb8d9f
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 16:14:39 2021 +0100
+
+    Fix little memory leak
+
+commit 37bed0a9dbcaa0a6910b8df9613393be371dc5ae
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 16:14:05 2021 +0100
+
+    Change buffered checks to return index of the node is found
+
+commit f70a42ccd27606db3afc5360c1b3e3a216ef0f8a
+Merge: a6a2caf 4695fae
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 13:47:06 2021 +0100
+
+    Merge branch 'devIrwin' in 'master'
+
+commit 4695fae946a58c45a326295356158e559a9867ae
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Jan 11 10:29:52 2021 +0100
+
+    Fix QuadTreeRGBA free mistake
+
+commit a6a2caf0cf94203c86ed5934719c7f8a6e5644fa
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Mon Jan 11 00:10:55 2021 +0100
+
+    updated documentation
+
+commit 59ba1d700a8a7f9af8ef5001b135f1cfd3b2826b
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Mon Jan 11 00:09:47 2021 +0100
+
+    added tree caching to minimization
+
+commit af9f9cf401793016b91633705ea468fb6f49f4d7
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 10 23:19:51 2021 +0100
+
+    cleaning workspace
+
+commit 9ace7d355acbc2d295f1d40e7c2f34f00b3da968
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 10 23:17:45 2021 +0100
+
+    Refactor and conflict resolve
+
+commit 8f7087efb7ab9dcf6391e3d5e2e4dcc87a053f41
+Merge: 5fa8c28 0c33221
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Jan 10 23:09:06 2021 +0100
+
+    Merge branch 'devIrwin' of https://git-etud.u-pem.fr/compression-d-images-avec-des-quadtrees-im-jt into devIrwin
+
+commit 0c332213834f70b9d280bad689cd37243d30e864
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 10 19:31:27 2021 +0100
+
+    Add support of minimized trees in parser
+
+commit 823d439e44315107ab236e917794300c53ffdd95
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 10 19:18:28 2021 +0100
+
+    Update QuadTree buffer system
+
+commit 3120f7f377061011c9eb435d196675a79f468594
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 10 15:01:38 2021 +0100
+
+    Refactor leaf check methods + reformat code + fix some warnings
+
+commit 3a40d6b9c109bbc0673bce2b3498b7f1191d0236
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 10 14:54:24 2021 +0100
+
+    Add tree buffer system + code tweaks
+
+commit 77e877f7e5d06573b9a6c4b6f45a964456dadba5
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Jan 10 14:53:54 2021 +0100
+
+    Add support of minimized trees in writer
+
+commit 5fa8c28694d274be21ec3157e83cf41b5b192f2f
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Tue Dec 8 14:49:52 2020 +0100
+
+    Resolve conflict inner
+
+commit 0c6b7065b50640fc41b143570b889df1e3329222
+Merge: 7fd5d9d 3e53900
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Tue Dec 8 14:37:10 2020 +0100
+
+    Resolve conflict
+
+commit 3e53900b848fb78b1724aaabc7a761b2220168b8
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Sun Dec 6 23:53:35 2020 +0100
+
+    Jim : FINALLY completed the minimizer/compressor
+
+commit 7fd5d9de967e9fa9807e4d0d93db24fda143d325
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Nov 18 20:13:24 2020 +0100
+
+    Update doc files
+
+commit b62ad04c2c65eabb649716cd112ab37c2ac4cd43
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Nov 18 20:13:00 2020 +0100
+
+    Add module to read and parse trees
+
+commit 8b5113b557e50e2b9cc8f9b36ad0c341fe8808d1
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 16 11:32:51 2020 +0100
+
+    Remove unused variable
+
+commit f22faee791f8596175bd7bd32c07f5513cefe77c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 16 11:31:20 2020 +0100
+
+    Add free methods
+
+commit d77eb11649928f56f5455872da458c09cebf1717
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Nov 15 15:51:57 2020 +0100
+
+    Testing RGBA trees export with a blank image
+
+commit 6604eef33c35bda9aaf327b1ef9d4c152aae316b
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Nov 15 15:49:44 2020 +0100
+
+    Fix GUI module drawing non-filled rectangle
+
+commit 25280690a70f8b0ea8a6b861999d1ab723412dc8
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Nov 15 15:49:08 2020 +0100
+
+    Add first methods to build a quadtree from an image
+
+commit 1f75d9f74ba804a47873d4a33729c0e2218c43a1
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sun Nov 15 15:44:08 2020 +0100
+
+    Fix writer to write bitwise files
+
+commit 14758c03ba77d8e26f74e09d663d2e88cb577768
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sat Nov 14 14:01:05 2020 +0100
+
+    Add a junk main file to test modules
+
+commit d398d82855fa388875897d37bacb6307b4a3cd00
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sat Nov 14 14:00:34 2020 +0100
+
+    Add first image color tools
+
+commit 116fca04436c2f6f2d57b8bafc4e1f29dbe1a7db
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sat Nov 14 00:52:36 2020 +0100
+
+    Add first GUI function to draw trees
+
+commit 4ea10c06aa705d7c4f42984c875fd1090226ee54
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Sat Nov 14 00:52:14 2020 +0100
+
+    Fix leaf check functions
+
+commit 708ea9ad9273ac86d0f381fa3d0b5bbe0da97c7b
+Merge: 219d2e8 504701a
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Nov 3 10:25:35 2020 +0100
+
+    Merge branches 'devIrwin' and 'devJim'
+
+commit 504701ab80d275b34fddeb0de19bc2af87e41a5e
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 2 22:55:20 2020 +0100
+
+    Update visualizer demos in doc/
+
+commit b1682030d8de03ee1fdacc41982aa5ad027ecfef
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 2 22:53:48 2020 +0100
+
+    Add writer module to export trees to binary files
+
+commit 5b0a130c13d5153bfdecf3da2179d09aee38f82b
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 2 22:49:45 2020 +0100
+
+    Rework of visualizer
+
+commit 5a38aaa38a3fc2d226427141f95f4f8e6e1fc515
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 2 21:05:02 2020 +0100
+
+    Revert alpha to unsigned char for file encoder module
+
+commit 219d2e807f9cde6c69cdc2baa198ef176dd5f00f
+Author: Jimmy <teillard.jimmy@outlook.fr>
+Date:   Mon Nov 2 15:09:51 2020 +0100
+
+    Jimmy :
+    Updated quadtree ; is a tree a leaf ?
+    Updated compressor ; added tree distance functions
+
+commit 5d3df710e35f87430b0969d7b7c17aa8c6777315
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 2 13:22:22 2020 +0100
+
+    Add documentation to quadtree.h and visualizer.h
+
+commit 6af9fe097fe3ac44ec5890b7e6ef34ddf4b1644d
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Mon Nov 2 12:42:19 2020 +0100
+
+    Change Makefile to output executable in root instead of bin/
+
+commit aca5120eaa14ddba1c3914a8b81bddbfc22f3d1e
+Author: notKamui <teillard.jimmy@outlook.fr>
+Date:   Mon Nov 2 12:26:16 2020 +0100
+
+    Jimmy :
+    Updated quadtree.c/h to better reflect the behavior of a node (unsigned char, float)
+    Created compressor.c/h containing distance and average functions
+
+commit 8ee8d8ce99fa307c6ba491a408ca752d65c5dedb
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Oct 28 13:53:52 2020 +0100
+
+    Fix visualizer
+
+commit c94d59d7ed9a748d0e4a8820af629d870b51514c
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Oct 28 12:15:12 2020 +0100
+
+    Add visualizer module to draw trees
+
+commit 59acf449ca63ca89407e36834da19cc26123bf83
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Oct 28 12:14:12 2020 +0100
+
+    QuadTree data type implementation
+
+commit 5ced04c1598353e41400ccade885a4c30b36a1de
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Oct 28 12:12:57 2020 +0100
+
+    Update .gitignore
+
+commit 34c78e2153fe2981676cb4a7bc24c7a7cc4beac7
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Wed Oct 28 12:12:46 2020 +0100
+
+    Update Makefile
+
+commit fd57647c26ebd3300cf8be46ad3439eff309dd28
+Author: Irwin Madet <irwin.madet@gmail.com>
+Date:   Tue Oct 27 17:05:40 2020 +0100
+
+    Add Makefile
+
+commit 329eef0a0846256272de03238feec44d84878aaf
+Author: Slama <irwin.madet@gmail.com>
+Date:   Tue Oct 27 15:02:51 2020 +0100
+
+    Initial commit
