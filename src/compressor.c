@@ -421,8 +421,7 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
     hardFreeBinBuffer(trash1);
     /* checking for truly unused nodes */
     for (i = 0; i < trash2->bufferSize; i++) {
-        if (isBufferedBin(buffer2, trash2->buffer[i])) {
-            printf("a\n");
+        if (!isBufferedBin(buffer2, trash2->buffer[i])) {
             offerBinBuffer(&trueTrash, trash2->buffer[i]);
         }
     }
