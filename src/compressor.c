@@ -299,13 +299,13 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
     /* check if similar tree is cached in the buffer */
     for (k = 0; k < (*buffer)->bufferSize; k++)
     {
-        if ((*buffer)->buffer[k] == *tree)
+        if ((*buffer)->buffer[k] == *tree) {
             continue;
+        }
 
         if (treeHeightRGBA((*buffer)->buffer[k]) <= heightOfCurrent)
         {
             dist = distTreeRGBA(*tree, (*buffer)->buffer[k]);
-            printf("%f\n", dist);
             if (dist != -1 && dist <= distErr) /* if similar tree is cached */
             {
                 /* Relinking */
@@ -316,13 +316,16 @@ void simplifyTreesRGBA(QuadTreeRGBA *tree, float distErr, QuadTreeRGBABuffer *bu
             else
             {
                 /* Adding tree to cache */
-                offerRGBABuffer(buffer, *tree);
+                if (!isBufferedRGBA(*buffer, *tree)) {
+                    offerRGBABuffer(buffer, *tree);
+                }
             }
         }
-        else {
+        else 
+        {
             /* Adding tree to cache */
             offerRGBABuffer(buffer, *tree);
-        }
+        }  
     }
 }
 
@@ -342,16 +345,19 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
 
     heightOfCurrent = treeHeightBin(*tree);
 
+    if ((*buffer)->bufferSize == 0)
+        offerBinBuffer(buffer, *tree);
+
     /* check if similar tree is cached in the buffer */
     for (k = 0; k < (*buffer)->bufferSize; k++)
     {
-        if ((*buffer)->buffer[k] == *tree)
+        if ((*buffer)->buffer[k] == *tree) {
             continue;
+        }
 
         if (treeHeightBin((*buffer)->buffer[k]) <= heightOfCurrent)
         {
             dist = distTreeBin(*tree, (*buffer)->buffer[k]);
-            printf("%f\n", dist);
             if (dist != -1 && dist <= distErr) /* if similar tree is cached */
             {
                 /* Relinking */
@@ -362,57 +368,78 @@ void simplifyTreesBin(QuadTreeBin *tree, float distErr, QuadTreeBinBuffer *buffe
             else
             {
                 /* Adding tree to cache */
-                offerBinBuffer(buffer, *tree);
+                if (!isBufferedBin(*buffer, *tree)) {
+                    offerBinBuffer(buffer, *tree);
+                }
             }
         }
-        else {
+        else 
+        {
             /* Adding tree to cache */
             offerBinBuffer(buffer, *tree);
-        }
+        }  
     }
-
-    /* only attained if buffer is empty */
-    offerBinBuffer(buffer, *tree);
-
 }
 
 void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr)
 {
+    int i;
     QuadTreeRGBABuffer buffer1 = allocQuadTreeRGBABuffer();
-    /*QuadTreeRGBABuffer buffer2 = allocQuadTreeRGBABuffer();*/
+    QuadTreeRGBABuffer buffer2 = allocQuadTreeRGBABuffer();
     QuadTreeRGBABuffer trash1 = allocQuadTreeRGBABuffer();
     QuadTreeRGBABuffer trash2 = allocQuadTreeRGBABuffer();
-    /*QuadTreeRGBABuffer trash3 = allocQuadTreeRGBABuffer();*/
+    QuadTreeRGBABuffer trash3 = allocQuadTreeRGBABuffer();
+    QuadTreeRGBABuffer trueTrash = allocQuadTreeRGBABuffer();
 
     printf("Starting minimization...\n");
-    naiveTreeReductionRGBA(tree, distErr, &trash1);
+    if (distErr > 0) { /* no point in doing that if the allowed error is 0 */
+        naiveTreeReductionRGBA(tree, distErr, &trash1);
+    }
     removeDuplicateLeavesRGBA(tree, &buffer1, &trash2);
-    /*simplifyTreesRGBA(tree, distErr, &buffer2, &trash3);*/
+    simplifyTreesRGBA(tree, distErr, &buffer2, &trash3);
 
     printf("Minimization completed !\nFreeing buffers...\n");
     freeRGBABuffer(buffer1);
-    /*freeRGBABuffer(buffer2);*/
     hardFreeRGBABuffer(trash1);
     hardFreeRGBABuffer(trash2);
-    /*hardFreeRGBABuffer(trash3);*/
+    /* checking for truly unused nodes */
+    for (i = 0; i < trash3->bufferSize; i++) {
+        if (!isBufferedRGBA(buffer2, trash3->buffer[i])) {
+            offerRGBABuffer(&trueTrash, trash3->buffer[i]);
+        }
+    }
+    freeRGBABuffer(buffer2);
+    freeRGBABuffer(trash3);
+    hardFreeRGBABuffer(trueTrash);
     printf("Completed !\n");
 }
 
 void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
 {
+    int i;
     QuadTreeBinBuffer buffer1 = allocQuadTreeBinBuffer();
-    /*QuadTreeBinBuffer buffer2 = allocQuadTreeBinBuffer();*/
+    QuadTreeBinBuffer buffer2 = allocQuadTreeBinBuffer();
     QuadTreeBinBuffer trash1 = allocQuadTreeBinBuffer();
-    /*QuadTreeBinBuffer trash2 = allocQuadTreeBinBuffer();*/
+    QuadTreeBinBuffer trash2 = allocQuadTreeBinBuffer();
+    QuadTreeBinBuffer trueTrash = allocQuadTreeBinBuffer();
 
     printf("Starting minimization...\n");
     removeDuplicateLeavesBin(tree, &buffer1, &trash1);
-    /*simplifyTreesBin(tree, distErr, &buffer2, &trash2);*/
+    simplifyTreesBin(tree, distErr, &buffer2, &trash2);
 
     printf("Minimization completed !\nFreeing buffers...\n");
     freeBinBuffer(buffer1);
-    /*freeBinBuffer(buffer2);*/
     hardFreeBinBuffer(trash1);
-    /*hardFreeBinBuffer(trash2);*/
+    /* checking for truly unused nodes */
+    printf("%ld\n", trash2->bufferSize);
+    for (i = 0; i < trash2->bufferSize; i++) {
+        if (!isBufferedBin(buffer2, trash2->buffer[i])) {
+            printf("a\n");
+            offerBinBuffer(&trueTrash, trash2->buffer[i]);
+        }
+    }
+    freeBinBuffer(buffer2);
+    freeBinBuffer(trash2);
+    hardFreeBinBuffer(trueTrash);
     printf("Completed !\n");
 }
