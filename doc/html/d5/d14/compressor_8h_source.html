@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Super image compressor 2000:  Fichier source de include/compressor.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Super image compressor 2000
+   </div>
+   <div id="projectbrief">Système de compression d&#39;images à l&#39;aide d&#39;arbres quaternaires</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">compressor.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/d14/compressor_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* Created by Jimmy on 2/11/2020. */</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef __COMPRESSOR_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define __COMPRESSOR_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../dc/d08/quadtree_8h.html">quadtree.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;MLV/MLV_all.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">float</span> <a class="code" href="../../d5/d14/compressor_8h.html#aa5a0ee21c53569ab0208296048da8b42">distRGBA</a>(<a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> node1, <a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> node2);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">float</span> <a class="code" href="../../d5/d14/compressor_8h.html#a715d87f0c9ce6de6254b91ad98424151">distBin</a>(<a class="code" href="../../d0/dab/structs__quadtree__bin.html">QuadTreeBin</a> node1, <a class="code" href="../../d0/dab/structs__quadtree__bin.html">QuadTreeBin</a> node2);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> <a class="code" href="../../d5/d14/compressor_8h.html#ae2384d1d67a2431a7182bd923750dd9a">avgRGBA</a>(<a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> nodes[], <span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<a class="code" href="../../d0/dab/structs__quadtree__bin.html">QuadTreeBin</a> <a class="code" href="../../d5/d14/compressor_8h.html#a960f895adf5bf8ccc54b20600b2758e7">avgBin</a>(<a class="code" href="../../d0/dab/structs__quadtree__bin.html">QuadTreeBin</a> nodes[], <span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;MLV_Color <a class="code" href="../../d5/d14/compressor_8h.html#a0643da995f3597d2ec2b4bb2eb08b44f">avgColorRGBA</a>(<a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> tree, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">float</span> <a class="code" href="../../d5/d14/compressor_8h.html#aa831e24a4e33f25dbbdf733162e8824f">distTreeRGBA</a>(<a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> tree1, <a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> tree2);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">float</span> <a class="code" href="../../d5/d14/compressor_8h.html#ab59207ac3d3b361e1e3e11769608d323">distTreeBin</a>(<a class="code" href="../../d0/dab/structs__quadtree__bin.html">QuadTreeBin</a> tree1, <a class="code" href="../../d0/dab/structs__quadtree__bin.html">QuadTreeBin</a> tree2);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d5/d14/compressor_8h.html#aba605f59aba4ccdc8cce9629c8efe8fd">minimizeQuadTreeRGBA</a>(<a class="code" href="../../d8/d56/structs__quadtree__rgba.html">QuadTreeRGBA</a> *tree, <span class="keywordtype">float</span> distErr);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d5/d14/compressor_8h.html#a2e26b129ab88cc8c7127598f5ebe52fe">minimizeQuadTreeBin</a>(<a class="code" href="../../d0/dab/structs__quadtree__bin.html">QuadTreeBin</a> *tree, <span class="keywordtype">float</span> distErr);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __COMPRESSOR_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acompressor_8h_html_a0643da995f3597d2ec2b4bb2eb08b44f"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#a0643da995f3597d2ec2b4bb2eb08b44f">avgColorRGBA</a></div><div class="ttdeci">MLV_Color avgColorRGBA(QuadTreeRGBA tree, int index)</div><div class="ttdoc">Calculates the average color of a given QuadTreeRGBA.</div><div class="ttdef"><b>Definition:</b> compressor.c:26</div></div>
+<div class="ttc" id="acompressor_8h_html_a2e26b129ab88cc8c7127598f5ebe52fe"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#a2e26b129ab88cc8c7127598f5ebe52fe">minimizeQuadTreeBin</a></div><div class="ttdeci">void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)</div><div class="ttdoc">Minimises a QuadTreeBin (with loss if distErr &gt; 0)</div><div class="ttdef"><b>Definition:</b> compressor.c:415</div></div>
+<div class="ttc" id="acompressor_8h_html_a715d87f0c9ce6de6254b91ad98424151"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#a715d87f0c9ce6de6254b91ad98424151">distBin</a></div><div class="ttdeci">float distBin(QuadTreeBin node1, QuadTreeBin node2)</div><div class="ttdoc">Calculates the color distance between two QuadTreeBin nodes.</div><div class="ttdef"><b>Definition:</b> compressor.c:21</div></div>
+<div class="ttc" id="acompressor_8h_html_a960f895adf5bf8ccc54b20600b2758e7"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#a960f895adf5bf8ccc54b20600b2758e7">avgBin</a></div><div class="ttdeci">QuadTreeBin avgBin(QuadTreeBin nodes[], int size)</div><div class="ttdoc">Calculates an average of given QuadTreeBin nodes.</div><div class="ttdef"><b>Definition:</b> compressor.c:83</div></div>
+<div class="ttc" id="acompressor_8h_html_aa5a0ee21c53569ab0208296048da8b42"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#aa5a0ee21c53569ab0208296048da8b42">distRGBA</a></div><div class="ttdeci">float distRGBA(QuadTreeRGBA node1, QuadTreeRGBA node2)</div><div class="ttdoc">Calculates the color distance between two QuadTreeRGBA nodes.</div><div class="ttdef"><b>Definition:</b> compressor.c:12</div></div>
+<div class="ttc" id="acompressor_8h_html_aa831e24a4e33f25dbbdf733162e8824f"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#aa831e24a4e33f25dbbdf733162e8824f">distTreeRGBA</a></div><div class="ttdeci">float distTreeRGBA(QuadTreeRGBA tree1, QuadTreeRGBA tree2)</div><div class="ttdoc">Calculates the general distance between two whole QuadTreeRGBA trees.</div><div class="ttdef"><b>Definition:</b> compressor.c:98</div></div>
+<div class="ttc" id="acompressor_8h_html_ab59207ac3d3b361e1e3e11769608d323"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#ab59207ac3d3b361e1e3e11769608d323">distTreeBin</a></div><div class="ttdeci">float distTreeBin(QuadTreeBin tree1, QuadTreeBin tree2)</div><div class="ttdoc">Calculates the general distance between two whole QuadTreeBin trees.</div><div class="ttdef"><b>Definition:</b> compressor.c:134</div></div>
+<div class="ttc" id="acompressor_8h_html_aba605f59aba4ccdc8cce9629c8efe8fd"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#aba605f59aba4ccdc8cce9629c8efe8fd">minimizeQuadTreeRGBA</a></div><div class="ttdeci">void minimizeQuadTreeRGBA(QuadTreeRGBA *tree, float distErr)</div><div class="ttdoc">Minimises a QuadTreeRGBA (with loss if distErr &gt; 0)</div><div class="ttdef"><b>Definition:</b> compressor.c:379</div></div>
+<div class="ttc" id="acompressor_8h_html_ae2384d1d67a2431a7182bd923750dd9a"><div class="ttname"><a href="../../d5/d14/compressor_8h.html#ae2384d1d67a2431a7182bd923750dd9a">avgRGBA</a></div><div class="ttdeci">QuadTreeRGBA avgRGBA(QuadTreeRGBA nodes[], int size)</div><div class="ttdoc">Calculates an average of given QuadTreeRGBA nodes.</div><div class="ttdef"><b>Definition:</b> compressor.c:63</div></div>
+<div class="ttc" id="aquadtree_8h_html"><div class="ttname"><a href="../../dc/d08/quadtree_8h.html">quadtree.h</a></div></div>
+<div class="ttc" id="astructs__quadtree__bin_html"><div class="ttname"><a href="../../d0/dab/structs__quadtree__bin.html">s_quadtree_bin</a></div><div class="ttdef"><b>Definition:</b> quadtree.h:23</div></div>
+<div class="ttc" id="astructs__quadtree__rgba_html"><div class="ttname"><a href="../../d8/d56/structs__quadtree__rgba.html">s_quadtree_rgba</a></div><div class="ttdef"><b>Definition:</b> quadtree.h:11</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>

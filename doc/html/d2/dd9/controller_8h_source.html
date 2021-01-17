@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Super image compressor 2000:  Fichier source de include/controller.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Super image compressor 2000
+   </div>
+   <div id="projectbrief">Système de compression d&#39;images à l&#39;aide d&#39;arbres quaternaires</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">controller.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d2/dd9/controller_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __CONTROLLER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __CONTROLLER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">    4</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a64599dea7071bc28732936e0bfddff3e">    6</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a64599dea7071bc28732936e0bfddff3e">TYPE_UNKNOWN</a>,</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a47d2fed0b5f8e780b8333a98e11fc296">    7</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a47d2fed0b5f8e780b8333a98e11fc296">TYPE_PICTURE</a>,</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a0483728c151b8652bed679797cece60a">    8</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a0483728c151b8652bed679797cece60a">TYPE_QTC</a>,</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3acccc293a45077babdd875a340ac3cf2e">    9</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3acccc293a45077babdd875a340ac3cf2e">TYPE_QTN</a>,</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a4f3be43bb77920ea6572c6370767fdcf">   10</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a4f3be43bb77920ea6572c6370767fdcf">TYPE_GMC</a>,</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a300e3c37f638aec658d8e5ac9b621a5a">   11</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a300e3c37f638aec658d8e5ac9b621a5a">TYPE_GMN</a>,</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a24cefce4e8145330520f3e149f4d1a55">   12</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a24cefce4e8145330520f3e149f4d1a55">TYPE_GMC2</a>,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a60b1b952a787fb395cd1dbfb56e2c989">TYPE_GMN2</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a60b1b952a787fb395cd1dbfb56e2c989">   14</a></span>&#160;} <a class="code" href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a2d54d0e67aef1c01d37e7c79ce60af87">   18</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a2d54d0e67aef1c01d37e7c79ce60af87">ORIGINAL_PICTURE</a>,</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a58318c4e98116f9655e4c6815af1a5e4">   19</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a58318c4e98116f9655e4c6815af1a5e4">QT_BIN</a>,</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a0402bf6dda2d48b457207179396adc36">   20</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a0402bf6dda2d48b457207179396adc36">QT_RGBA</a>,</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a287156b085447adb4ba17053f159ccf1">   21</a></span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a287156b085447adb4ba17053f159ccf1">WIREFRAME_QT_BIN</a>,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a5a7d7c7815d60b687a21d9710ed9a740">WIREFRAME_QT_RGBA</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a5a7d7c7815d60b687a21d9710ed9a740">   23</a></span>&#160;} <a class="code" href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47">DrawTarget</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d2/dd9/controller_8h.html#ab6a6522427046328209758d3e1dfc0f6">launchApp</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __CONTROLLER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3">FileType</a></div><div class="ttdeci">FileType</div><div class="ttdef"><b>Definition:</b> controller.h:5</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a0483728c151b8652bed679797cece60a"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a0483728c151b8652bed679797cece60a">TYPE_QTC</a></div><div class="ttdeci">@ TYPE_QTC</div><div class="ttdef"><b>Definition:</b> controller.h:8</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a24cefce4e8145330520f3e149f4d1a55"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a24cefce4e8145330520f3e149f4d1a55">TYPE_GMC2</a></div><div class="ttdeci">@ TYPE_GMC2</div><div class="ttdef"><b>Definition:</b> controller.h:12</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a300e3c37f638aec658d8e5ac9b621a5a"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a300e3c37f638aec658d8e5ac9b621a5a">TYPE_GMN</a></div><div class="ttdeci">@ TYPE_GMN</div><div class="ttdef"><b>Definition:</b> controller.h:11</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a47d2fed0b5f8e780b8333a98e11fc296"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a47d2fed0b5f8e780b8333a98e11fc296">TYPE_PICTURE</a></div><div class="ttdeci">@ TYPE_PICTURE</div><div class="ttdef"><b>Definition:</b> controller.h:7</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a4f3be43bb77920ea6572c6370767fdcf"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a4f3be43bb77920ea6572c6370767fdcf">TYPE_GMC</a></div><div class="ttdeci">@ TYPE_GMC</div><div class="ttdef"><b>Definition:</b> controller.h:10</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a60b1b952a787fb395cd1dbfb56e2c989"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a60b1b952a787fb395cd1dbfb56e2c989">TYPE_GMN2</a></div><div class="ttdeci">@ TYPE_GMN2</div><div class="ttdef"><b>Definition:</b> controller.h:13</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3a64599dea7071bc28732936e0bfddff3e"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3a64599dea7071bc28732936e0bfddff3e">TYPE_UNKNOWN</a></div><div class="ttdeci">@ TYPE_UNKNOWN</div><div class="ttdef"><b>Definition:</b> controller.h:6</div></div>
+<div class="ttc" id="acontroller_8h_html_a2c794c5c13ab4dd7e65bad031dbe41c3acccc293a45077babdd875a340ac3cf2e"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a2c794c5c13ab4dd7e65bad031dbe41c3acccc293a45077babdd875a340ac3cf2e">TYPE_QTN</a></div><div class="ttdeci">@ TYPE_QTN</div><div class="ttdef"><b>Definition:</b> controller.h:9</div></div>
+<div class="ttc" id="acontroller_8h_html_a3b81e91d8987d97979e228934eefae47"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47">DrawTarget</a></div><div class="ttdeci">DrawTarget</div><div class="ttdef"><b>Definition:</b> controller.h:17</div></div>
+<div class="ttc" id="acontroller_8h_html_a3b81e91d8987d97979e228934eefae47a0402bf6dda2d48b457207179396adc36"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a0402bf6dda2d48b457207179396adc36">QT_RGBA</a></div><div class="ttdeci">@ QT_RGBA</div><div class="ttdef"><b>Definition:</b> controller.h:20</div></div>
+<div class="ttc" id="acontroller_8h_html_a3b81e91d8987d97979e228934eefae47a287156b085447adb4ba17053f159ccf1"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a287156b085447adb4ba17053f159ccf1">WIREFRAME_QT_BIN</a></div><div class="ttdeci">@ WIREFRAME_QT_BIN</div><div class="ttdef"><b>Definition:</b> controller.h:21</div></div>
+<div class="ttc" id="acontroller_8h_html_a3b81e91d8987d97979e228934eefae47a2d54d0e67aef1c01d37e7c79ce60af87"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a2d54d0e67aef1c01d37e7c79ce60af87">ORIGINAL_PICTURE</a></div><div class="ttdeci">@ ORIGINAL_PICTURE</div><div class="ttdef"><b>Definition:</b> controller.h:18</div></div>
+<div class="ttc" id="acontroller_8h_html_a3b81e91d8987d97979e228934eefae47a58318c4e98116f9655e4c6815af1a5e4"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a58318c4e98116f9655e4c6815af1a5e4">QT_BIN</a></div><div class="ttdeci">@ QT_BIN</div><div class="ttdef"><b>Definition:</b> controller.h:19</div></div>
+<div class="ttc" id="acontroller_8h_html_a3b81e91d8987d97979e228934eefae47a5a7d7c7815d60b687a21d9710ed9a740"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#a3b81e91d8987d97979e228934eefae47a5a7d7c7815d60b687a21d9710ed9a740">WIREFRAME_QT_RGBA</a></div><div class="ttdeci">@ WIREFRAME_QT_RGBA</div><div class="ttdef"><b>Definition:</b> controller.h:22</div></div>
+<div class="ttc" id="acontroller_8h_html_ab6a6522427046328209758d3e1dfc0f6"><div class="ttname"><a href="../../d2/dd9/controller_8h.html#ab6a6522427046328209758d3e1dfc0f6">launchApp</a></div><div class="ttdeci">void launchApp()</div><div class="ttdoc">Displays the menu of the application.</div><div class="ttdef"><b>Definition:</b> controller.c:492</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>

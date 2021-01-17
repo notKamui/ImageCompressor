@@ -1,0 +1,917 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Super image compressor 2000: Référence du fichier src/parser.c</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Super image compressor 2000
+   </div>
+   <div id="projectbrief">Système de compression d&#39;images à l&#39;aide d&#39;arbres quaternaires</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier parser.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../d5/d36/parser_8h_source.html">../include/parser.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de parser.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d7/d92/parser_8c__incl.png" border="0" usemap="#asrc_2parser_8c" alt=""/></div>
+<map name="asrc_2parser_8c" id="asrc_2parser_8c">
+<area shape="rect" title=" " alt="" coords="13,5,104,32"/>
+<area shape="rect" title=" " alt="" coords="5,155,67,181"/>
+<area shape="rect" title=" " alt="" coords="26,80,91,107"/>
+<area shape="rect" href="../../d5/d36/parser_8h.html" title=" " alt="" coords="115,80,242,107"/>
+<area shape="rect" href="../../dc/d08/quadtree_8h.html" title=" " alt="" coords="137,155,220,181"/>
+<area shape="rect" title=" " alt="" coords="147,229,211,256"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:af4645b0d49789dd876376df751f2f3f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#af4645b0d49789dd876376df751f2f3f4">RGBA_LINE_INNER_NODE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:af4645b0d49789dd876376df751f2f3f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172e5734336d895d926efdcac879f863"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a172e5734336d895d926efdcac879f863">RGBA_LINE_OUTER_NODE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a172e5734336d895d926efdcac879f863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad967dd3d7ae133608bdd779137bc19c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#ad967dd3d7ae133608bdd779137bc19c4">BIN_LINE_INNER_NODE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ad967dd3d7ae133608bdd779137bc19c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0de25facf413d126d46cc863734dbc39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a0de25facf413d126d46cc863734dbc39">BIN_LINE_OUTER_NODE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a0de25facf413d126d46cc863734dbc39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ab51a26c3caa570ab6b56a54ee2dcd7d7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#ab51a26c3caa570ab6b56a54ee2dcd7d7">readBit</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, unsigned char *bit, unsigned char *buffer, size_t *bufferSize)</td></tr>
+<tr class="separator:ab51a26c3caa570ab6b56a54ee2dcd7d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac319a4a218f7a34eb277977b4ccefe9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#aac319a4a218f7a34eb277977b4ccefe9">readNumber</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, long *number, unsigned char len, unsigned char *buffer, size_t *bufferSize)</td></tr>
+<tr class="separator:aac319a4a218f7a34eb277977b4ccefe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf117cba3aa982654609de738f9068e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#acaf117cba3aa982654609de738f9068e">readByte</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, unsigned char *byte, unsigned char *buffer, size_t *bufferSize)</td></tr>
+<tr class="separator:acaf117cba3aa982654609de738f9068e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea257a40ff18bdee40a0782253ca6d1e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#aea257a40ff18bdee40a0782253ca6d1e">readLine</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>)</td></tr>
+<tr class="separator:aea257a40ff18bdee40a0782253ca6d1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca782e2cefaefe8193c331f6d9136244"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#aca782e2cefaefe8193c331f6d9136244">decodeRGBA</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a> tree, unsigned char *buffer, size_t *bufferSize)</td></tr>
+<tr class="separator:aca782e2cefaefe8193c331f6d9136244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43041ccb3efe726124df3994f1bda4a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a43041ccb3efe726124df3994f1bda4a8">decodeBin</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a> tree, unsigned char *buffer, size_t *bufferSize)</td></tr>
+<tr class="separator:a43041ccb3efe726124df3994f1bda4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e79f6e603e640d43bff2561a7177dad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a1e79f6e603e640d43bff2561a7177dad">parseRGBA</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a> tree)</td></tr>
+<tr class="memdesc:a1e79f6e603e640d43bff2561a7177dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and decodes a QuadTreeRGBA from a given file.  <a href="../../d2/d72/parser_8c.html#a1e79f6e603e640d43bff2561a7177dad">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1e79f6e603e640d43bff2561a7177dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12fd6dc6a12ef8100c22d5aa440fbc0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a12fd6dc6a12ef8100c22d5aa440fbc0e">parseBin</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a> tree)</td></tr>
+<tr class="memdesc:a12fd6dc6a12ef8100c22d5aa440fbc0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and decodes a QuadTreeBin from a given file.  <a href="../../d2/d72/parser_8c.html#a12fd6dc6a12ef8100c22d5aa440fbc0e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a12fd6dc6a12ef8100c22d5aa440fbc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9fde0d2381dd51174a18ff15ef35c2c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#ac9fde0d2381dd51174a18ff15ef35c2c">getLineKindRGBA</a> (const char *line, size_t length)</td></tr>
+<tr class="separator:ac9fde0d2381dd51174a18ff15ef35c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c02dedde2e7bcce198ed3fed9cf9632"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a0c02dedde2e7bcce198ed3fed9cf9632">getLineKindBin</a> (const char *line, size_t length)</td></tr>
+<tr class="separator:a0c02dedde2e7bcce198ed3fed9cf9632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed93c188ee85518ee502828ce55d89d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#aed93c188ee85518ee502828ce55d89d0">decodeMinimizedRGBA</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, int index, <a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a> tree, <a class="el" href="../../dc/d08/quadtree_8h.html#a4a00c415ef19c64f0cd63ec765e796f2">QuadTreeRGBABuffer</a> *buffer)</td></tr>
+<tr class="separator:aed93c188ee85518ee502828ce55d89d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a417d6bd7a3ee5aa2642ec5f8f678dec6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a417d6bd7a3ee5aa2642ec5f8f678dec6">decodeMinimizedBin</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, int index, <a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a> tree, <a class="el" href="../../dc/d08/quadtree_8h.html#ab69756d1f280734490c407777d81d248">QuadTreeBinBuffer</a> *buffer)</td></tr>
+<tr class="separator:a417d6bd7a3ee5aa2642ec5f8f678dec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27bda054f006f3c2d7abc95e289c4297"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a27bda054f006f3c2d7abc95e289c4297">parseMinimizedRGBA</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a> tree)</td></tr>
+<tr class="memdesc:a27bda054f006f3c2d7abc95e289c4297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and decodes a minimized QuadTreeRGBA from a given file.  <a href="../../d2/d72/parser_8c.html#a27bda054f006f3c2d7abc95e289c4297">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a27bda054f006f3c2d7abc95e289c4297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a03529d1cc4e8a7db0bd3ce0da2eab8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a9a03529d1cc4e8a7db0bd3ce0da2eab8">parseMinimizedBin</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a> tree)</td></tr>
+<tr class="memdesc:a9a03529d1cc4e8a7db0bd3ce0da2eab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and decodes a minimized QuadTreeBin from a given file.  <a href="../../d2/d72/parser_8c.html#a9a03529d1cc4e8a7db0bd3ce0da2eab8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9a03529d1cc4e8a7db0bd3ce0da2eab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c71a6e4459312198494829b1ccf740f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a5c71a6e4459312198494829b1ccf740f">decodeMinimizedRGBA2</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, int index, unsigned char id_len, <a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a> tree, <a class="el" href="../../dc/d08/quadtree_8h.html#a4a00c415ef19c64f0cd63ec765e796f2">QuadTreeRGBABuffer</a> *treeBuffer, unsigned char *buffer, size_t *bufferSize)</td></tr>
+<tr class="separator:a5c71a6e4459312198494829b1ccf740f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e962e34eb6db46da78fadc82ba9b0f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a0e962e34eb6db46da78fadc82ba9b0f3">decodeMinimizedBin2</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, int index, unsigned char id_len, <a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a> tree, <a class="el" href="../../dc/d08/quadtree_8h.html#ab69756d1f280734490c407777d81d248">QuadTreeBinBuffer</a> *treeBuffer, unsigned char *buffer, size_t *bufferSize)</td></tr>
+<tr class="separator:a0e962e34eb6db46da78fadc82ba9b0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d6226a9b47de24eca02c99c69107ff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a76d6226a9b47de24eca02c99c69107ff">parseMinimizedRGBA2</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a> tree)</td></tr>
+<tr class="memdesc:a76d6226a9b47de24eca02c99c69107ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and decodes a minimized QuadTreeRGBA from a given binary file.  <a href="../../d2/d72/parser_8c.html#a76d6226a9b47de24eca02c99c69107ff">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a76d6226a9b47de24eca02c99c69107ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f1ec47bcaa3d28a2c6e1d64d5fb03e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d72/parser_8c.html#a54f1ec47bcaa3d28a2c6e1d64d5fb03e">parseMinimizedBin2</a> (FILE *<a class="el" href="../../d1/d75/controller_8c.html#a702945180aa732857b380a007a7e2a21">file</a>, <a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a> tree)</td></tr>
+<tr class="memdesc:a54f1ec47bcaa3d28a2c6e1d64d5fb03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and decodes a minimized QuadTreeBin from a given binary file.  <a href="../../d2/d72/parser_8c.html#a54f1ec47bcaa3d28a2c6e1d64d5fb03e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a54f1ec47bcaa3d28a2c6e1d64d5fb03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des macros</h2>
+<a id="ad967dd3d7ae133608bdd779137bc19c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad967dd3d7ae133608bdd779137bc19c4">&#9670;&nbsp;</a></span>BIN_LINE_INNER_NODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIN_LINE_INNER_NODE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0de25facf413d126d46cc863734dbc39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0de25facf413d126d46cc863734dbc39">&#9670;&nbsp;</a></span>BIN_LINE_OUTER_NODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIN_LINE_OUTER_NODE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4645b0d49789dd876376df751f2f3f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4645b0d49789dd876376df751f2f3f4">&#9670;&nbsp;</a></span>RGBA_LINE_INNER_NODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RGBA_LINE_INNER_NODE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a172e5734336d895d926efdcac879f863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a172e5734336d895d926efdcac879f863">&#9670;&nbsp;</a></span>RGBA_LINE_OUTER_NODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RGBA_LINE_OUTER_NODE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a43041ccb3efe726124df3994f1bda4a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43041ccb3efe726124df3994f1bda4a8">&#9670;&nbsp;</a></span>decodeBin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int decodeBin </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a>&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a417d6bd7a3ee5aa2642ec5f8f678dec6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a417d6bd7a3ee5aa2642ec5f8f678dec6">&#9670;&nbsp;</a></span>decodeMinimizedBin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int decodeMinimizedBin </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a>&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#ab69756d1f280734490c407777d81d248">QuadTreeBinBuffer</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e962e34eb6db46da78fadc82ba9b0f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e962e34eb6db46da78fadc82ba9b0f3">&#9670;&nbsp;</a></span>decodeMinimizedBin2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int decodeMinimizedBin2 </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>id_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a>&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#ab69756d1f280734490c407777d81d248">QuadTreeBinBuffer</a> *&#160;</td>
+          <td class="paramname"><em>treeBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed93c188ee85518ee502828ce55d89d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed93c188ee85518ee502828ce55d89d0">&#9670;&nbsp;</a></span>decodeMinimizedRGBA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int decodeMinimizedRGBA </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a>&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a4a00c415ef19c64f0cd63ec765e796f2">QuadTreeRGBABuffer</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c71a6e4459312198494829b1ccf740f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c71a6e4459312198494829b1ccf740f">&#9670;&nbsp;</a></span>decodeMinimizedRGBA2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int decodeMinimizedRGBA2 </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>id_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a>&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a4a00c415ef19c64f0cd63ec765e796f2">QuadTreeRGBABuffer</a> *&#160;</td>
+          <td class="paramname"><em>treeBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca782e2cefaefe8193c331f6d9136244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca782e2cefaefe8193c331f6d9136244">&#9670;&nbsp;</a></span>decodeRGBA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int decodeRGBA </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a>&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c02dedde2e7bcce198ed3fed9cf9632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c02dedde2e7bcce198ed3fed9cf9632">&#9670;&nbsp;</a></span>getLineKindBin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getLineKindBin </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9fde0d2381dd51174a18ff15ef35c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9fde0d2381dd51174a18ff15ef35c2c">&#9670;&nbsp;</a></span>getLineKindRGBA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getLineKindRGBA </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12fd6dc6a12ef8100c22d5aa440fbc0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12fd6dc6a12ef8100c22d5aa440fbc0e">&#9670;&nbsp;</a></span>parseBin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseBin </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a>&#160;</td>
+          <td class="paramname"><em>tree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads and decodes a QuadTreeBin from a given file. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>File to read. </td></tr>
+    <tr><td class="paramname">tree</td><td>Built tree. (Method souldn't be called with NULL tree)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Whether the build succeeded. </dd></dl>
+
+</div>
+</div>
+<a id="a9a03529d1cc4e8a7db0bd3ce0da2eab8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a03529d1cc4e8a7db0bd3ce0da2eab8">&#9670;&nbsp;</a></span>parseMinimizedBin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseMinimizedBin </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a>&#160;</td>
+          <td class="paramname"><em>tree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads and decodes a minimized QuadTreeBin from a given file. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>File to read. </td></tr>
+    <tr><td class="paramname">tree</td><td>Built tree. (Method souldn't be called with NULL tree)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Whether the build succeeded. </dd></dl>
+
+</div>
+</div>
+<a id="a54f1ec47bcaa3d28a2c6e1d64d5fb03e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54f1ec47bcaa3d28a2c6e1d64d5fb03e">&#9670;&nbsp;</a></span>parseMinimizedBin2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseMinimizedBin2 </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a04136577d1f4dae504acae4481ed2b24">QuadTreeBin</a>&#160;</td>
+          <td class="paramname"><em>tree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads and decodes a minimized QuadTreeBin from a given binary file. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>File to read. </td></tr>
+    <tr><td class="paramname">tree</td><td>Built tree. (Method souldn't be called with NULL tree)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Whether the build succeeded. </dd></dl>
+
+</div>
+</div>
+<a id="a27bda054f006f3c2d7abc95e289c4297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27bda054f006f3c2d7abc95e289c4297">&#9670;&nbsp;</a></span>parseMinimizedRGBA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseMinimizedRGBA </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a>&#160;</td>
+          <td class="paramname"><em>tree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads and decodes a minimized QuadTreeRGBA from a given file. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>File to read. </td></tr>
+    <tr><td class="paramname">tree</td><td>Built tree. (Method souldn't be called with NULL tree)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Whether the build succeeded. </dd></dl>
+
+</div>
+</div>
+<a id="a76d6226a9b47de24eca02c99c69107ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76d6226a9b47de24eca02c99c69107ff">&#9670;&nbsp;</a></span>parseMinimizedRGBA2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseMinimizedRGBA2 </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a>&#160;</td>
+          <td class="paramname"><em>tree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads and decodes a minimized QuadTreeRGBA from a given binary file. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>File to read. </td></tr>
+    <tr><td class="paramname">tree</td><td>Built tree. (Method souldn't be called with NULL tree)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Whether the build succeeded. </dd></dl>
+
+</div>
+</div>
+<a id="a1e79f6e603e640d43bff2561a7177dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e79f6e603e640d43bff2561a7177dad">&#9670;&nbsp;</a></span>parseRGBA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseRGBA </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d08/quadtree_8h.html#a5f3067061d8be8f7a5db86363c77a590">QuadTreeRGBA</a>&#160;</td>
+          <td class="paramname"><em>tree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads and decodes a QuadTreeRGBA from a given file. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>File to read. </td></tr>
+    <tr><td class="paramname">tree</td><td>Built tree. (Method souldn't be called with NULL tree)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Whether the build succeeded. </dd></dl>
+
+</div>
+</div>
+<a id="ab51a26c3caa570ab6b56a54ee2dcd7d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab51a26c3caa570ab6b56a54ee2dcd7d7">&#9670;&nbsp;</a></span>readBit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readBit </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>bit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acaf117cba3aa982654609de738f9068e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf117cba3aa982654609de738f9068e">&#9670;&nbsp;</a></span>readByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readByte </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>byte</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea257a40ff18bdee40a0782253ca6d1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea257a40ff18bdee40a0782253ca6d1e">&#9670;&nbsp;</a></span>readLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* readLine </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac319a4a218f7a34eb277977b4ccefe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac319a4a218f7a34eb277977b4ccefe9">&#9670;&nbsp;</a></span>readNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readNumber </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long *&#160;</td>
+          <td class="paramname"><em>number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>bufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>
