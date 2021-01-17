@@ -204,34 +204,17 @@ void removeDuplicateLeavesRGBA(QuadTreeRGBA *tree, QuadTreeRGBABuffer *buffer, Q
 
 void removeDuplicateLeavesBin(QuadTreeBin *tree, QuadTreeBinBuffer *buffer, QuadTreeBinBuffer *trash)
 {
-    int buffered;
     int i;
 
     if (*tree != NULL && isLeafBin(*tree))
     {
-        /* Checking if leaf is cached */
-        buffered = 0;
-        for (i = 0; i < (*buffer)->bufferSize; i++)
-        {
-            if (equivalentBin((*buffer)->buffer[i], *tree))
-            {
-                buffered = 1;
-                break;
+        for (i = 0; i < (*buffer)->bufferSize; i++) {
+            if (equivalentBin((*buffer)->buffer[i], *tree)) {
+                /* Relinking */
+                offerBinBuffer(trash, *tree);
+                *tree = (*buffer)->buffer[i];
             }
-        }
-
-        if (!buffered)
-        {
-            offerBinBuffer(buffer, allocQuadTreeBin((*tree)->b));
-        }
-
-        if (isBufferedBin(*buffer, *tree) == -1 && isBufferedBin(*trash, *tree) == -1)
-        {
-            offerBinBuffer(trash, *tree);
-        }
-
-        /* Relinking */
-        *tree = (*buffer)->buffer[i];
+        }        
     }
     else
     {
@@ -422,6 +405,11 @@ void minimizeQuadTreeBin(QuadTreeBin *tree, float distErr)
     QuadTreeBinBuffer trash1 = allocQuadTreeBinBuffer();
     QuadTreeBinBuffer trash2 = allocQuadTreeBinBuffer();
     QuadTreeBinBuffer trueTrash = allocQuadTreeBinBuffer();
+
+    QuadTreeBin black = allocQuadTreeBin(0);
+    QuadTreeBin white = allocQuadTreeBin(1);
+    offerBinBuffer(&buffer1, black);
+    offerBinBuffer(&buffer1, white);
 
     printf("Starting minimization...\n");
     removeDuplicateLeavesBin(tree, &buffer1, &trash1);
