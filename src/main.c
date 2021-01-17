@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../include/controler.h"
+#include "../include/controller.h"
 #include "../include/compressor.h"
 #include "../include/visualizer.h"
 

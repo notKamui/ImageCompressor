@@ -1,5 +1,5 @@
-#ifndef __CONTROLER_H
-#define __CONTROLER_H
+#ifndef __CONTROLLER_H
+#define __CONTROLLER_H
 
 typedef enum
 {
@@ -27,4 +27,4 @@ typedef enum
  */
 void launchApp();
 
-#endif /* __CONTROLER_H */
+#endif /* __CONTROLLER_H */

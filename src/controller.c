@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "../include/controler.h"
+#include "../include/controller.h"
 #include "../include/gui.h"
 #include "../include/compressor.h"
 #include "../include/image.h"
@@ -443,7 +443,7 @@ void menu()
                     break;
                 case INTENT_MIN_RGBA:
                     assert(RGBAIsMinimized == 0);
-                    minimizeQuadTreeRGBA(&qtRGBA, 5);
+                    minimizeQuadTreeRGBA(&qtRGBA, 3);
                     target = QT_RGBA;
                     RGBAIsMinimized = 1;
                     break;

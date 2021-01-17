@@ -1,5 +1,5 @@
 #include "../include/gui.h"
-#include "../include/controler.h"
+#include "../include/controller.h"
 #include <stdio.h>
 
 extern MLV_Input_box *fileInput;
