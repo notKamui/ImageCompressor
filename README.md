@@ -2,7 +2,7 @@
 
 ## Authors
 
-Irwin "[Slama](https://github.com/SlamaFR)" MADET et Jimmy "[notKamui](https://github.com/notKamui)" TEILLARD
+Irwin "[Slama](https://github.com/SlamaFR)" MADET and Jimmy "[notKamui](https://github.com/notKamui)" TEILLARD
 
 ## Building
 
